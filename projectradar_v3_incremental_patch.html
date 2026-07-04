@@ -127,6 +127,15 @@
   background: var(--brand-soft) !important;
   color: var(--brand-strong) !important;
 }
+.nav-link-tab{
+  transition:background .18s ease, color .18s ease;
+}
+
+.nav-link-tab:hover{
+  background:#f1f5f9;
+  color:var(--text);
+}
+
     .metric{padding:var(--space-5);border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface)}
     .metric strong{display:block;font-size:30px;line-height:1;letter-spacing:-.05em;margin-bottom:8px}
     .metric span{display:block;font-size:14px;font-weight:700;color:var(--text-2)}
@@ -447,8 +456,27 @@
   grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
   min-width: 900px !important;
 }
-    .project-list-head{font-size:12px}
-    .project-row{padding:18px}
+    /* [수정 적용] 전역 테이블 헤더의 둥근 모서리 곡률 보정 및 상단 마스크 우회 여백 확보 */
+  .project-list-head {
+    display: grid;
+    grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+    min-width: 900px !important;
+    
+    /* 상단 패딩을 24px로 확장하여 모서리 22px 라운드 안쪽으로 글씨가 절대 침범하지 못하도록 물리적 여백 고정 */
+    padding: 24px 18px 14px 18px !important; 
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-3);
+    letter-spacing: -.01em;
+    
+    /* 부모 카드 테두리와 일치하도록 둥근 값 부여 */
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+  }
+  .project-row{padding:18px}
     .project-row.active{background:#f8fbff}
     .project-main{display:grid;gap:10px}
     .project-main-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
@@ -483,12 +511,17 @@
     .intel-item{align-items:center}
     .muted strong{color:var(--text)}
     @media (max-width:1280px){
-      .site-nav{gap:14px}
-      .header-search{width:200px;flex-basis:200px}
-      .workspace-body{grid-template-columns:280px minmax(0,1fr) 312px}
-      .list-shell{grid-template-columns:minmax(0,1fr) minmax(320px,.92fr)}
-      .project-list-head,.project-row{grid-template-columns:minmax(0,2.1fr) minmax(0,1.1fr) 104px 126px 100px 108px}
+    .site-nav{gap:14px}
+    .header-search{width:200px;flex-basis:200px}
+    .workspace-body{grid-template-columns:280px minmax(0,1fr) 312px}
+    .list-shell{grid-template-columns:minmax(0,1fr) minmax(320px,.92fr)}
+    
+    /* [수정 적용] 창 크기가 줄어들어도 테이블 헤더와 열이 900px 이하로 무너지지 않도록 방지 */
+    .project-list-head,.project-row{
+      grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+      min-width: 900px !important; /* [핵심] 미디어 쿼리 내에서도 최소 가로폭 900px을 유지하여 헤더 깎임 현상을 완벽히 차단합니다. */
     }
+  }
     @media (max-width:1120px){
       .site-nav{height:auto;min-height:72px;padding:12px 0;flex-wrap:wrap;align-items:center}
       .site-nav-left,.site-nav-right{width:100%;justify-content:space-between}
@@ -565,6 +598,271 @@
       *,*::before,*::after{scroll-behavior:auto !important;animation:none !important;transition:none !important}
     }
     :focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
+  /* =========================
+   PATCH A — 텍스트 안정성 강화
+   위치: </style> 바로 위
+========================= */
+
+/* 1. 브라우저 확대/축소/모바일 폰트 자동확대 방지 */
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+/* 2. 전체 텍스트 기본 안정화 */
+body{
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  line-height:1.6;
+}
+
+body, button, input, select, textarea, a, span, strong, small, p, div, h1, h2, h3, h4, h5, h6, label{
+  writing-mode:horizontal-tb;
+  text-orientation:mixed;
+}
+
+/* 3. 중요 텍스트는 clamp/ellipsis로 숨기지 않기 */
+.line-clamp-1,
+.line-clamp-2{
+  display:block !important;
+  overflow:visible !important;
+  -webkit-line-clamp:unset !important;
+  -webkit-box-orient:unset !important;
+}
+
+.project-title,
+.project-client strong,
+.detail-header h3,
+.detail-info span,
+.detail-kpi strong,
+.metric strong,
+.metric span,
+.metric p,
+.release-row strong,
+.faq-q span,
+.brand-copy strong,
+.brand-copy span,
+.note-box,
+.small,
+.caption{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  word-break:keep-all !important;
+  overflow-wrap:break-word !important;
+}
+
+/* 4. flex/grid 내부에서 글자 잘림 방지 */
+.project-main,
+.project-client,
+.project-stage,
+.project-update,
+.project-ai,
+.detail-card,
+.intel-card,
+.metric,
+.release-row,
+.faq-item,
+.footer-grid > div,
+.workspace-top > div,
+.workspace-status,
+.results-meta{
+  min-width:0;
+}
+
+/* 5. 표 형태 영역은 PC에서는 스크롤 허용, 모바일에서는 카드형 전환 */
+.list-card{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* 6. 프로젝트 목록 최소폭 안정화 */
+.project-list-head,
+.project-row{
+  min-width:980px !important;
+}
+
+/* 7. KPI/상세 정보는 줄바꿈 우선 */
+.detail-kpi strong,
+.detail-info span{
+  white-space:normal !important;
+}
+
+/* 8. 상단 라이브 스트립도 줄바꿈 허용 */
+.live-strip-inner{
+  min-height:38px;
+  height:auto;
+  padding:8px 0;
+}
+
+.live-strip-list span{
+  white-space:normal;
+}
+
+/* 9. 모바일/태블릿에서 글씨 누락 없이 1열 재배치 */
+@media (max-width: 920px){
+  .project-list-head,
+  .project-row{
+    min-width:0 !important;
+  }
+
+  .project-row{
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+  }
+
+  .project-meta,
+  .workspace-status,
+  .results-meta,
+  .hero-actions,
+  .chip-group,
+  .summary-pills,
+  .active-cat-list{
+    row-gap:8px;
+  }
+
+  .detail-grid,
+  .detail-info-grid,
+  .hero-metrics,
+  .proof-metrics,
+  .pipeline,
+  .form-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* 10. 매우 작은 화면에서 폰트와 패딩 축소 */
+@media (max-width: 640px){
+  .hero-copy h1{
+    font-size:clamp(28px, 8vw, 36px) !important;
+    line-height:1.28 !important;
+  }
+
+  .hero-copy p{
+    font-size:14px !important;
+    line-height:1.75 !important;
+  }
+
+  .workspace-top h2,
+  .section-head h2{
+    font-size:22px !important;
+    line-height:1.35 !important;
+  }
+
+  .project-title{
+    font-size:18px !important;
+    line-height:1.42 !important;
+  }
+
+  .detail-header h3{
+    font-size:20px !important;
+    line-height:1.4 !important;
+  }
+
+  .metric strong{
+    font-size:24px !important;
+  }
+
+  .detail-kpi strong{
+    font-size:15px !important;
+  }
+
+  .control-rail,
+  .result-rail,
+  .intel-rail,
+  .workspace-top{
+    padding:14px !important;
+  }
+}
+/* =========================
+   PATCH B — Hero 배경 영상
+   위치: </style> 바로 위
+========================= */
+
+.workspace-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  min-height:clamp(720px, 78vh, 980px);
+}
+
+.workspace-hero > .container{
+  position:relative;
+  z-index:2;
+}
+
+.hero-video-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+.hero-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.42) saturate(.9) contrast(1.05);
+}
+
+.hero-video-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(8,15,32,.55) 0%, rgba(8,15,32,.35) 22%, rgba(246,248,251,.16) 52%, rgba(246,248,251,.88) 100%),
+    radial-gradient(circle at 20% 20%, rgba(37,99,235,.18), transparent 35%);
+}
+
+.hero-copy,
+.hero-metrics,
+.workspace-frame{
+  position:relative;
+  z-index:2;
+}
+
+.hero-copy h1,
+.hero-copy p,
+.workspace-top h2,
+.workspace-top p{
+  color:#fff;
+}
+
+.workspace-frame{
+  margin-top:16px;
+  backdrop-filter:blur(6px);
+  background:rgba(255,255,255,.92);
+}
+
+@media (max-width: 920px){
+  .workspace-hero{
+    min-height:auto;
+  }
+
+  .hero-video{
+    object-position:center center;
+  }
+
+  .hero-copy h1{
+    color:#fff !important;
+  }
+
+  .hero-copy p{
+    color:rgba(255,255,255,.9) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-video{
+    display:none;
+  }
+
+  .workspace-hero{
+    background:
+      radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 24%),
+      linear-gradient(180deg,#0f172a 0%, #1e293b 35%, #f6f8fb 100%);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -592,12 +890,12 @@
           <span class="brand-copy"><strong>ProjectRadar</strong><span>운영형 B2B 프로젝트 인텔리전스</span></span>
         </a>
         <nav class="nav-links" id="topNavLinks" aria-label="주요 메뉴">
-  <a href="javascript:void(0)" class="nav-link-tab active-tab" data-view="all">전체 홈</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="about">회사 소개</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="international">국제 프로젝트</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="domestic">국내 프로젝트</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="myprojects">내 프로젝트</a>
+  <a href="#top" class="nav-link-tab active-tab" data-nav="home">전체 홈</a>
+  <a href="#proof" class="nav-link-tab" data-nav="about">회사 소개</a>
+  <a href="#workspace" class="nav-link-tab" data-nav="projects">프로젝트</a>
+  <a href="#savedProjectList" class="nav-link-tab" data-nav="myprojects">내 프로젝트</a>
 </nav>
+
       </div>
       <div class="site-nav-right nav-actions">
         <button class="icon-btn" type="button" aria-label="알림"><span>🔔</span><em>3</em></button>
@@ -612,10 +910,11 @@
       </div>
     </div>
     <div class="container mobile-nav" id="mobileNav">
-      <a href="#workspace">워크스페이스</a>
-      <a href="#projectListShell">프로젝트</a>
-      <a href="#recommendationNotes">AI 추천</a>
-      <a href="#savedProjectList">저장 목록</a>
+  <a href="#top">전체 홈</a>
+  <a href="#proof">회사 소개</a>
+  <a href="#workspace">프로젝트</a>
+  <a href="#savedProjectList">내 프로젝트</a>
+
       <button data-open-auth="login">로그인</button>
       <button data-open-auth="register">회원가입</button>
       <button data-open-auth="register">무료 체험</button>
@@ -624,7 +923,22 @@
 
   <main id="top">
     <section class="workspace-hero" id="workspace">
-      <div class="container">
+  <div class="hero-video-bg" aria-hidden="true">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="assets/projectradar-ai-collect-poster.jpg">
+      <source src="assets/projectradar-ai-collect.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+  </div>
+
+  <div class="container">
+
         <div class="hero-head">
           <div class="hero-copy">
             <span class="eyebrow"><span class="eyebrow-dot"></span> 3초 안에 프로젝트를 판단하는 홈 화면</span>
@@ -720,6 +1034,14 @@
                     <span>최근 본 <strong id="recentCount">0</strong></span>
                   </div>
                 </div>
+                <div class="quick-filter-row" id="projectScopeTabs" style="margin-bottom:12px;">
+  <div class="quick-filters">
+    <button class="quick-pill active" type="button" data-scope="all">전체 프로젝트</button>
+    <button class="quick-pill" type="button" data-scope="domestic">국내 프로젝트</button>
+    <button class="quick-pill" type="button" data-scope="international">국제 프로젝트</button>
+  </div>
+</div>
+
                 <div class="quick-filter-row">
                   <div class="quick-filters" id="quickFilterGroup">
                     <button class="quick-pill active" data-quick="all">전체 <span id="countAll">0</span></button>
@@ -1105,8 +1427,10 @@
   selectedCats:new Set(), // 초기에 빈 Set으로 지정하여 첫 로딩 시 전체 프로젝트 리스트가 즉시 렌더링되도록 수정합니다.
   openGroups:new Set(allGroupIds),
   saved:initialSaved,
-  currentView: 'all' // [추가] 상단 카테고리 뷰 상태값 동기화용 변수
+  currentView: 'all', // [추가] 상단 카테고리 뷰 상태값 동기화용 변수
+projectScope: 'all'
 };
+
 
     const els = {
       projectList:document.getElementById('projectList'),
@@ -1178,15 +1502,36 @@
     }
 
     function applyFilters(){
-      const query = state.query.trim().toLowerCase();
-      let list = projects.filter(project => {
-        const catMatch = state.selectedCats.size === 0 || state.selectedCats.has(project.catCode);
-        const regionMatch = state.currentRegion === 'all' || project.region === state.currentRegion || (state.currentRegion === '국내' && ['경기','전국','대전/충청'].includes(project.region));
-        const statusMatch = state.currentStatus === 'all' || project.status === state.currentStatus || project.stage === state.currentStatus;
-        const querySource = [project.title, project.client, project.scope, project.region, project.category, project.catCode, project.catLabel, project.country, project.stage, project.keywords.join(' '), project.relatedCompanies.join(' ')].join(' ').toLowerCase();
-        const queryMatch = !query || querySource.includes(query);
-        return catMatch && regionMatch && statusMatch && queryMatch;
-      });
+  const query = state.query.trim().toLowerCase();
+  let list = projects.filter(project => {
+    const catMatch = state.selectedCats.size === 0 || state.selectedCats.has(project.catCode);
+    const regionMatch = state.currentRegion === 'all' || project.region === state.currentRegion || (state.currentRegion === '국내' && ['경기','전국','대전/충청'].includes(project.region));
+    const statusMatch = state.currentStatus === 'all' || project.status === state.currentStatus || project.stage === state.currentStatus;
+
+    const scopeMatch =
+      state.projectScope === 'all' ||
+      (state.projectScope === 'domestic' && project.country === '대한민국') ||
+      (state.projectScope === 'international' && project.country !== '대한민국');
+
+    const querySource = [
+      project.title,
+      project.client,
+      project.scope,
+      project.region,
+      project.category,
+      project.catCode,
+      project.catLabel,
+      project.country,
+      project.stage,
+      project.keywords.join(' '),
+      project.relatedCompanies.join(' ')
+    ].join(' ').toLowerCase();
+
+    const queryMatch = !query || querySource.includes(query);
+
+    return catMatch && regionMatch && statusMatch && scopeMatch && queryMatch;
+  });
+
 
       if(state.currentQuick === 'highFit') list = list.filter(project => project.fit >= 80);
       if(state.currentQuick === 'closingSoon') list = list.filter(project => project.dueDays <= 7);
@@ -1572,6 +1917,36 @@
     document.getElementById('demoLoginBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('데모 로그인 완료'); });
     document.getElementById('demoRegisterBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('무료 체험 계정 생성 데모 완료'); });
     document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('siteHeader').classList.toggle('open'));
+/* 상단 탭 active 처리 */
+document.querySelectorAll('#topNavLinks .nav-link-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('#topNavLinks .nav-link-tab').forEach(item => item.classList.remove('active-tab'));
+    tab.classList.add('active-tab');
+  });
+});
+
+/* 프로젝트 범위(전체/국내/국제) 탭 처리 */
+document.querySelectorAll('[data-scope]').forEach(button => {
+  button.addEventListener('click', () => {
+    state.projectScope = button.dataset.scope;
+    document.querySelectorAll('[data-scope]').forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+
+    if (state.projectScope === 'domestic') {
+      state.currentRegion = '국내';
+      els.regionFilter.value = '국내';
+    } else if (state.projectScope === 'international') {
+      state.currentRegion = '중동';
+      els.regionFilter.value = '중동';
+    } else {
+      state.currentRegion = 'all';
+      els.regionFilter.value = 'all';
+    }
+
+    activateQuickFilter(state.currentQuick);
+  });
+});
+
 
     renderInitial();
   </script>
