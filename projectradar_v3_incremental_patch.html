@@ -2898,6 +2898,19 @@ body::before{
     align-items:flex-start;
   }
 }
+/* 임시 안정화: 기존 구형 우측 레일 숨김 */
+.intel-rail{
+  display:none !important;
+}
+
+/* 구 레일 제거 시 4열 → 3열로 환원 */
+.workspace-body.app-shell{
+  grid-template-columns:84px 280px minmax(0,1fr) !important;
+}
+
+.workspace-frame.sidebar-expanded .workspace-body.app-shell{
+  grid-template-columns:228px 280px minmax(0,1fr) !important;
+}
 
   </style>
 
@@ -2929,16 +2942,15 @@ body::before{
         <span class="site-nav-center-title">AI Project Radar</span>
       </div>
 
-      <div class="site-nav-right nav-actions
+      <div class="site-nav-right nav-actions nav-actions-minimal">
+  <button class="icon-btn" type="button" aria-label="알림">
+    <span>🔔</span><em>3</em>
+  </button>
+  <button class="icon-btn auth-icon-btn" type="button" aria-label="로그인 또는 회원가입" data-open-auth="login">
+    <span>👤</span>
+  </button>
+</div>
 
-                <button class="icon-btn" type="button" aria-label="알림"><span>🔔</span><em>3</em></button>
-        <button class="icon-btn auth-icon-btn" type="button" aria-label="로그인 또는 회원가입" data-open-auth="login">
-          <span>👤</span>
-        </button>
-
-      </div>
-
-    </div>
 
   </header>
 
@@ -3625,44 +3637,81 @@ body::before{
   projectScope:'all'
 };
 
-const resetFiltersBtn = document.getElementById('resetFiltersBtn');
-
-if (resetFiltersBtn) {
-  resetFiltersBtn.addEventListener('click', () => {
-    if (industrySelect) industrySelect.value = '';
-    if (priceSelect) priceSelect.value = '';
-    if (deadlineSelect) deadlineSelect.value = '';
-    if (globalSearchInput) globalSearchInput.value = '';
-    applyFilters();
-  });
-}
 
 
     const els = {
-      projectListEl : document.getElementById('projectGrid'),
-      kpiStripEl : document.getElementById('kpiStrip'),
-      detailPanelEl : document.getElementById('detailPanel'),
-      projectDetail:document.getElementById('projectDetail'),
-      resultCount:document.getElementById('resultCount'),
-      recommendationNotes:document.getElementById('recommendationNotes'),
-      savedProjectList:document.getElementById('savedProjectList'),
-      recentViewedList:document.getElementById('recentViewedList'),
-      recentViewedText:document.getElementById('recentViewedText'),
-      savedCount:document.getElementById('savedCount'),
-      recentCount:document.getElementById('recentCount'),
-      liveLog:document.getElementById('liveLog'),
-      searchInput:document.getElementById('searchInput'),
-      globalSearchInput:document.getElementById('globalSearchInput'),
-      regionFilter:document.getElementById('regionFilter'),
-      statusFilter:document.getElementById('statusFilter'),
-      sortFilter:document.getElementById('sortFilter'),
-      catSearchInput:document.getElementById('catSearchInput'),
-      activeCatList:document.getElementById('activeCatList'),
-      industryTree:document.getElementById('industryTree'),
-      myInterestList:document.getElementById('myInterestList'),
-      recentCategoryList:document.getElementById('recentCategoryList'),
-      favoriteCategoryList:document.getElementById('favoriteCategoryList')
-    };
+  projectListEl: document.getElementById('projectGrid'),
+  kpiStripEl: document.getElementById('kpiStrip'),
+  detailPanelEl: document.getElementById('detailPanel'),
+
+  resultCount: document.getElementById('resultCount'),
+  recommendationNotes: document.getElementById('recommendationNotes'),
+
+  savedProjectList: document.getElementById('savedProjectList'),
+  recentViewedList: document.getElementById('recentViewedList'),
+  recentViewedText: document.getElementById('recentViewedText'),
+  liveLog: document.getElementById('liveLog'),
+
+  recentProjectsPanel: document.getElementById('recentProjects'),
+  savedProjectsPanel: document.getElementById('savedProjects'),
+  liveActivityPanel: document.getElementById('liveActivity'),
+
+  savedCount: document.getElementById('savedCount'),
+  recentCount: document.getElementById('recentCount'),
+
+  searchInput: document.getElementById('searchInput'),
+  globalSearchInput: document.getElementById('globalSearchInput'),
+  regionFilter: document.getElementById('regionFilter'),
+  statusFilter: document.getElementById('statusFilter'),
+  sortFilter: document.getElementById('sortFilter'),
+  catSearchInput: document.getElementById('catSearchInput'),
+
+  activeCatList: document.getElementById('activeCatList'),
+  industryTree: document.getElementById('industryTree'),
+  myInterestList: document.getElementById('myInterestList'),
+  recentCategoryList: document.getElementById('recentCategoryList'),
+  favoriteCategoryList: document.getElementById('favoriteCategoryList')
+};
+function normalizeProjectId(projectOrId) {
+  if (projectOrId && typeof projectOrId === 'object') return Number(projectOrId.id);
+  const id = Number(projectOrId);
+  return Number.isFinite(id) ? id : null;
+}
+
+function getCurrentSelectedProject(list = projects) {
+  return list.find(item => item.id === state.selectedId) || null;
+}
+
+function projectSummaryText(project) {
+  if (typeof project.summary === 'string' && project.summary.trim()) {
+    return project.summary.trim();
+  }
+
+  if (Array.isArray(project.explanation)) {
+    return project.explanation
+      .map(item => Array.isArray(item) ? item[1] : String(item))
+      .filter(Boolean)
+      .slice(0, 2)
+      .join(' · ');
+  }
+
+  if (typeof project.explanation === 'string' && project.explanation.trim()) {
+    return project.explanation.trim();
+  }
+
+  return 'AI-curated opportunity with strong matching signals and verified sourcing.';
+}
+
+function projectAmountText(project) {
+  if (project.amountLabel) return project.amountLabel;
+  if (project.amount !== null && project.amount !== undefined) return `${project.amount}`;
+  return '금액 미공개';
+}
+
+function setHTML(el, html) {
+  if (el) el.innerHTML = html;
+}
+
 
     function getCatLabel(code){
       for(const group of industryGroups){
@@ -3881,30 +3930,31 @@ function projectTheme(project) {
 }
 
 function daysLeftLabel(project) {
-  const raw = project.daysLeft ?? project.deadlineDays ?? project.remainingDays;
+  const raw = project.dueDays ?? project.daysLeft ?? project.deadlineDays ?? project.remainingDays;
   const days = safeNumber(raw, null);
 
-  if (days === null) return 'Open timeline';
-  if (days <= 7) return `${days}d left`;
-  if (days <= 21) return `${days}d window`;
-  return `${days}d remaining`;
+  if (days === null) return '일정 확인 필요';
+  if (days <= 7) return `${days}일 남음`;
+  if (days <= 21) return `${days}일 윈도우`;
+  return `${days}일 남음`;
 }
 
+
 function projectSourceLabel(project) {
-  return project.source || project.origin || project.publisher || 'Verified source';
+  return project.sourceLabel || project.source || project.origin || project.publisher || 'Verified source';
 }
 
 function renderKPIStats(items = []) {
-  if (!kpiStripEl) return;
+  if (!els.kpiStripEl) return;
 
   const list = Array.isArray(items) ? items : [];
   const total = list.length;
   const avgFit = total ? Math.round(list.reduce((sum, p) => sum + safeNumber(p.fit), 0) / total) : 0;
   const avgTrust = total ? Math.round(list.reduce((sum, p) => sum + safeNumber(p.trust), 0) / total) : 0;
   const countries = new Set(list.map(p => p.country).filter(Boolean)).size;
-  const urgent = list.filter(p => safeNumber(p.daysLeft ?? p.deadlineDays ?? p.remainingDays, 999) <= 14).length;
+  const urgent = list.filter(p => safeNumber(p.dueDays ?? p.daysLeft ?? p.deadlineDays ?? p.remainingDays, 999) <= 14).length;
 
-  kpiStripEl.innerHTML = `
+  els.kpiStripEl.innerHTML = `
     <article class="kpi-card">
       <div class="kpi-label">Opportunities</div>
       <div class="kpi-value">${total}</div>
@@ -3952,6 +4002,7 @@ function renderKPIStats(items = []) {
   `;
 }
 
+
     function renderProjectList(items = filteredProjects) {
   if (!projectListEl) return;
 
@@ -3969,28 +4020,34 @@ function renderKPIStats(items = []) {
     return;
   }
   renderKPIStats(filteredProjects);
-renderProjectList(filteredProjects);
+function renderProjectList(items) {
+  if (!els.projectListEl) return;
 
-if (!selectedProject || !filteredProjects.some(p => p.id === selectedProject.id)) {
-  selectedProject = filteredProjects[0] || null;
-}
+  const list = Array.isArray(items) ? items : applyFilters();
 
-renderDetail(selectedProject);
-renderRecent();
-renderSaved();
-renderLiveLogs();
+  if (!list.length) {
+    els.projectListEl.innerHTML = `
+      <div class="empty-projects">
+        <div>
+          <strong style="display:block; margin-bottom:8px; color:var(--text-1);">No projects match the current filters</strong>
+          <span>Adjust Industry, Region, Status, or Search to reopen the live opportunity stream.</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
 
-
-  projectListEl.innerHTML = list.map(project => {
+  els.projectListEl.innerHTML = list.map(project => {
     const fit = safeNumber(project.fit);
     const trust = safeNumber(project.trust);
-    const amount = project.amount || project.budget || 'Budget pending';
+    const amountText = projectAmountText(project);
     const theme = projectTheme(project);
-    const isSaved = savedProjects?.some(p => p.id === project.id);
-    const activeClass = selectedProject && selectedProject.id === project.id ? 'active' : '';
+    const isSaved = state.saved.has(project.id);
+    const activeClass = state.selectedId === project.id ? 'active' : '';
+    const summaryText = projectSummaryText(project);
 
     return `
-      <article class="project-card ${activeClass}" data-project-id="${project.id}" style="--visual-bg:${theme.bg};">
+      <article class="project-card ${activeClass}" data-project-id="${project.id}">
         <div class="project-card-visual" style="background:${theme.bg};">
           <div class="visual-grid-lines"></div>
 
@@ -4019,14 +4076,12 @@ renderLiveLogs();
             </button>
           </div>
 
-          <p class="project-card-summary">
-            ${project.summary || project.explanation || 'AI-curated opportunity with strong matching signals and verified sourcing.'}
-          </p>
+          <p class="project-card-summary">${summaryText}</p>
 
           <div class="project-stat-row">
             <div class="project-stat">
               <div class="project-stat-label">Budget</div>
-              <div class="project-stat-value">${amount}</div>
+              <div class="project-stat-value">${amountText}</div>
             </div>
             <div class="project-stat">
               <div class="project-stat-label">Stage</div>
@@ -4047,47 +4102,53 @@ renderLiveLogs();
     `;
   }).join('');
 
-  projectListEl.querySelectorAll('.project-card').forEach(card => {
+  els.projectListEl.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.closest('[data-save-id]')) return;
-      const id = card.getAttribute('data-project-id');
-      const project = list.find(item => String(item.id) === String(id));
-      if (project) {
-        selectProject(project);
-      }
+      const id = Number(card.getAttribute('data-project-id'));
+      selectProject(id);
     });
   });
 
-  projectListEl.querySelectorAll('[data-save-id]').forEach(btn => {
+  els.projectListEl.querySelectorAll('[data-save-id]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const id = btn.getAttribute('data-save-id');
-      const project = list.find(item => String(item.id) === String(id));
-      if (project) {
-        toggleSave(project);
-        renderProjectList(filteredProjects);
-      }
+      const id = Number(btn.getAttribute('data-save-id'));
+      toggleSave(id);
     });
   });
 }
 
+}
 
-    function selectProject(id){
-      state.selectedId = id;
-      const project = projects.find(item => item.id === id);
-      if(!project) return;
-      state.recent = [id, ...state.recent.filter(item => item !== id)].slice(0, 4);
-      renderDetail(project);
-      renderProjectList(applyFilters());
-      renderRecent();
-      renderSaved();
-    }
 
-    function renderDetail(project = selectedProject) {
-  if (!detailPanelEl) return;
+    function selectProject(projectOrId) {
+  const id = normalizeProjectId(projectOrId);
+  if (id === null) return;
 
-  if (!project) {
-    detailPanelEl.innerHTML = `
+  state.selectedId = id;
+  const project = projects.find(item => item.id === id);
+  if (!project) return;
+
+  state.recent = [id, ...state.recent.filter(item => item !== id)].slice(0, 4);
+
+  const filtered = applyFilters();
+  renderKPIStats(filtered);
+  renderProjectList(filtered);
+  renderDetail(project);
+  renderRecent();
+  renderSaved();
+  renderLiveLogs();
+}
+
+
+    function renderDetail(project) {
+  if (!els.detailPanelEl) return;
+
+  const target = project || getCurrentSelectedProject();
+
+  if (!target) {
+    els.detailPanelEl.innerHTML = `
       <div class="panel-title">
         <h4>AI Insight Panel</h4>
       </div>
@@ -4101,14 +4162,14 @@ renderLiveLogs();
     return;
   }
 
-  const fit = safeNumber(project.fit);
-  const trust = safeNumber(project.trust);
-  const amount = project.amount || project.budget || 'Budget pending';
-  const summary = project.summary || project.explanation || 'No additional explanation available.';
-  const stage = project.stage || 'Discovery';
-  const timeline = project.timeline || project.deadline || daysLeftLabel(project);
+  const fit = safeNumber(target.fit);
+  const trust = safeNumber(target.trust);
+  const amountText = projectAmountText(target);
+  const summary = projectSummaryText(target);
+  const stage = target.stage || 'Discovery';
+  const timeline = target.deadline || daysLeftLabel(target);
 
-  detailPanelEl.innerHTML = `
+  els.detailPanelEl.innerHTML = `
     <div class="panel-title" style="margin-bottom:14px;">
       <h4>AI Project Insight</h4>
     </div>
@@ -4122,7 +4183,7 @@ renderLiveLogs();
       </div>
 
       <div class="insight-meta">
-        <h3>${project.title || 'Untitled Project'}</h3>
+        <h3>${target.title || 'Untitled Project'}</h3>
         <p>${summary}</p>
       </div>
     </div>
@@ -4138,11 +4199,11 @@ renderLiveLogs();
       </div>
       <div class="insight-metric">
         <span class="label">Budget</span>
-        <strong>${amount}</strong>
+        <strong>${amountText}</strong>
       </div>
       <div class="insight-metric">
         <span class="label">Market</span>
-        <strong>${project.country || 'Global'}</strong>
+        <strong>${target.country || 'Global'}</strong>
       </div>
     </div>
 
@@ -4159,7 +4220,7 @@ renderLiveLogs();
     <div class="insight-notes">
       <div class="insight-note">
         <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Source</strong>
-        ${projectSourceLabel(project)}
+        ${projectSourceLabel(target)}
       </div>
 
       <div class="insight-note">
@@ -4169,18 +4230,19 @@ renderLiveLogs();
 
       <div class="insight-note">
         <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Why this ranks high</strong>
-        ${project.explanation || 'The system detected strong alignment between project scope, budget potential, timing, and source quality.'}
+        ${summary}
       </div>
 
-      ${project.link ? `
+      ${target.link ? `
         <div class="insight-note">
           <strong style="display:block; margin-bottom:6px; color:var(--text-1);">External Source</strong>
-          <a href="${project.link}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan); text-decoration:none;">Open source document ↗</a>
+          <a href="${target.link}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan); text-decoration:none;">Open source document ↗</a>
         </div>
       ` : ''}
     </div>
   `;
 }
+
 
 
     function toggleSave(id){
@@ -4194,46 +4256,78 @@ renderLiveLogs();
       }
     }
 
-    function renderSaved(){
-      const savedProjects = projects.filter(project => state.saved.has(project.id));
-      els.savedCount.textContent = savedProjects.length;
-      els.savedProjectList.innerHTML = savedProjects.length ? savedProjects.slice(0,4).map(project => `
+    function renderSaved() {
+  const savedProjects = projects.filter(project => state.saved.has(project.id));
+  if (els.savedCount) els.savedCount.textContent = savedProjects.length;
+
+  const html = savedProjects.length
+    ? savedProjects.slice(0, 4).map(project => `
         <div class="intel-item">
           <div>
             <strong class="line-clamp-1 break" style="display:block;font-size:14px">${project.title}</strong>
             <span class="small">${project.client} · ${project.catCode} · ${project.fit}%</span>
           </div>
           <button class="btn secondary sm" data-open-id="${project.id}">보기</button>
-        </div>`).join('') : '<div class="note-box">아직 저장한 프로젝트가 없습니다. 목록에서 ★를 눌러 저장해보세요.</div>';
+        </div>
+      `).join('')
+    : '<div class="note-box">아직 저장한 프로젝트가 없습니다. 목록에서 ★를 눌러 저장해보세요.</div>';
 
-      document.querySelectorAll('[data-open-id]').forEach(button => {
-        button.addEventListener('click', () => selectProject(Number(button.dataset.openId)));
-      });
+  setHTML(els.savedProjectList, html);
+  setHTML(els.savedProjectsPanel, html);
+
+  document.querySelectorAll('[data-open-id]').forEach(button => {
+    button.addEventListener('click', () => selectProject(Number(button.dataset.openId)));
+  });
+
     }
 
-    function renderRecent(){
-      els.recentCount.textContent = state.recent.length;
-      const recentProjects = state.recent.map(id => projects.find(project => project.id === id)).filter(Boolean);
-      els.recentViewedList.innerHTML = recentProjects.length ? recentProjects.map(project => `
+    function renderRecent() {
+  if (els.recentCount) els.recentCount.textContent = state.recent.length;
+
+  const recentProjects = state.recent
+    .map(id => projects.find(project => project.id === id))
+    .filter(Boolean);
+
+  const html = recentProjects.length
+    ? recentProjects.map(project => `
         <div class="intel-item">
           <div>
             <strong class="line-clamp-1 break" style="display:block;font-size:14px">${project.title}</strong>
             <span class="small">${project.updatedAgo} · ${project.stage}</span>
           </div>
           <span class="badge blue">${project.fit}%</span>
-        </div>`).join('') : '<div class="note-box">아직 본 프로젝트가 없습니다. 목록을 클릭하면 이 영역에 최근 본 항목이 쌓입니다.</div>';
-    }
+        </div>
+      `).join('')
+    : '<div class="note-box">아직 본 프로젝트가 없습니다. 목록을 클릭하면 이 영역에 최근 본 항목이 쌓입니다.</div>';
 
-    function renderLiveLogs(){
-      els.liveLog.innerHTML = liveLogs.map(log => `
-        <div class="live-item">
-          <span class="live-dot"></span>
-          <div><strong style="display:block;font-size:14px">${log}</strong><span class="small">최근 동기화 기준 반영</span></div>
-        </div>`).join('');
-    }
+  setHTML(els.recentViewedList, html);
+  setHTML(els.recentProjectsPanel, html);
 
-    function activateQuickFilter(value){
+  if (els.recentViewedText) {
+    els.recentViewedText.textContent = recentProjects.length ? `${recentProjects.length}건` : '없음';
+  }
+}
+
+
+    function renderLiveLogs() {
+  const html = liveLogs.map(log => `
+    <div class="live-item">
+      <span class="live-dot"></span>
+      <div>
+        <strong style="display:block;font-size:14px">${log}</strong>
+        <span class="small">최근 동기화 기준 반영</span>
+      </div>
+    </div>
+  `).join('');
+
+  setHTML(els.liveLog, html);
+  setHTML(els.liveActivityPanel, html);
+}
+
+
+    function activateQuickFilter(value) {
   state.currentQuick = value;
+
   document.querySelectorAll('[data-quick]').forEach(button => {
     button.classList.toggle('active', button.dataset.quick === value);
   });
@@ -4241,17 +4335,15 @@ renderLiveLogs();
   const list = applyFilters();
   const activeProject = resolveSelectedProject(list);
 
-  renderProjectList(list);
   renderActiveCats();
-
-  if(activeProject){
-    renderDetail(activeProject);
-  } else {
-    els.projectDetail.innerHTML = '<div class="note-box">조건에 맞는 프로젝트가 없습니다. 지역·상태·CAT 선택을 완화해보세요.</div>';
-    els.recommendationNotes.innerHTML = '<div class="mini-item"><span class="score-pill">--</span><div>선택 조건을 조정하면 추천 근거가 다시 표시됩니다.</div></div>';
-    els.recentViewedText.textContent = '없음';
-  }
+  renderKPIStats(list);
+  renderProjectList(list);
+  renderDetail(activeProject);
+  renderRecent();
+  renderSaved();
+  renderLiveLogs();
 }
+
 
 
     function refreshWorkspace(){
@@ -4321,19 +4413,22 @@ renderLiveLogs();
     }
 
     function renderInitial() {
-  filteredProjects = [...projects];
+  renderCounts();
+  renderInterestCollections();
+  renderIndustryTree();
+  renderActiveCats();
 
-  if (!selectedProject) {
-    selectedProject = filteredProjects[0] || null;
-  }
+  const list = applyFilters();
+  const activeProject = resolveSelectedProject(list);
 
-  renderKPIStats(filteredProjects);
-  renderProjectList(filteredProjects);
-  renderDetail(selectedProject);
+  renderKPIStats(list);
+  renderProjectList(list);
+  renderDetail(activeProject);
   renderRecent();
   renderSaved();
   renderLiveLogs();
 }
+
 
 
 
@@ -4359,7 +4454,8 @@ renderLiveLogs();
       state.selectedCats.clear();
       refreshWorkspace();
     });
-    document.getElementById('resetFilterBtn').addEventListener('click', resetFilters);
+    document.getElementById('resetFilterBtn')?.addEventListener('click', resetFilters);
+    document.getElementById('resetFiltersBtn')?.addEventListener('click', resetFilters);
     document.querySelectorAll('[data-quick]').forEach(button => button.addEventListener('click', () => activateQuickFilter(button.dataset.quick)));
     document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => applyPreset(button.dataset.preset)));
     document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => button.parentElement.classList.toggle('open')));
