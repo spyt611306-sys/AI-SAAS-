@@ -9,49 +9,51 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
   <style>
     /* PART 6 — Design Tokens / 8px Grid / Typography */
     :root{
-  --bg:#f4f7fb;
-  --surface:#ffffff;
-  --surface-2:#f8fafc;
-  --surface-3:#eef2f7;
-  --surface-4:#e7eef8;
-  --line:#dde5f0;
-  --line-strong:#c6d3e4;
-  --text:#0f172a;
-  --text-2:#334155;
-  --text-3:#64748b;
-  --text-4:#94a3b8;
-  --brand:#2563eb;
-  --brand-strong:#1d4ed8;
-  --brand-soft:#eaf2ff;
-  --green:#059669;
-  --green-soft:#ecfdf5;
-  --amber:#b45309;
-  --amber-soft:#fff7ed;
-  --red:#dc2626;
-  --red-soft:#fef2f2;
-  --ink:#020617;
-
-  /* [수정 추가] 용도 및 카테고리별 다채로운 엔터프라이즈 전용 컬러 토큰 */
-  --domestic-brand: #0d9488;       /* 국내 프로젝트: 딥 민트 틸 */
-  --domestic-soft: #f0fdfa;
-  --intl-brand: #d97706;           /* 국제 프로젝트: 사막 웜 골드 */
-  --intl-soft: #fffbeb;
-  --my-brand: #4f46e5;             /* 내 프로젝트: 로열 인디고 */
-  --my-soft: #f5f3ff;
-  --about-brand: #0284c7;          /* 회사 소개: 마일드 블루 */
-  --about-soft: #f0f9ff;
-
-  --shadow-sm:0 1px 2px rgba(15,23,42,.05);
-      --shadow-md:0 12px 30px rgba(15,23,42,.06);
-      --shadow-lg:0 26px 80px rgba(15,23,42,.09);
-      --radius-xs:10px;
-      --radius-sm:14px;
-      --radius-md:18px;
-      --radius-lg:24px;
-      --radius-xl:32px;
+      /* Palantir & Bloomberg 스타일의 프리미엄 다크 네이비 기조 변수 세팅 */
+      --bg:#08131E;
+      --surface:rgba(8, 25, 45, 0.45);        /* 글래스모피즘 반투명 플레이트 */
+      --surface-2:rgba(15, 37, 66, 0.35);      /* 조금 더 밝은 카드형 배경 */
+      --surface-3:rgba(255, 255, 255, 0.04);
+      --surface-4:rgba(37, 99, 235, 0.12);
+      --line:rgba(255, 255, 255, 0.08);        /* 극도로 얇은 반투명 경계선 */
+      --line-strong:rgba(37, 99, 235, 0.25);
+      --text:#f8fafc;                           /* 밝은 화이트 그레이 기본 텍스트 */
+      --text-2:#94a3b8;                         /* 세컨더리 슬레이트 블루 텍스트 */
+      --text-3:#64748b;
+      --text-4:#475569;
+      --brand:#3b82f6;                          /* 일렉트릭 블루 메인 */
+      --brand-strong:#60a5fa;
+      --brand-soft:rgba(59, 130, 246, 0.12);
+      --green:#10b981;
+      --green-soft:rgba(16, 185, 129, 0.12);
+      --amber:#f59e0b;
+      --amber-soft:rgba(245, 158, 11, 0.12);
+      --red:#ef4444;
+      --red-soft:rgba(239, 68, 68, 0.12);
+      --ink:#020617;
+      
+      /* 용도 및 카테고리별 다채로운 엔터프라이즈 전용 컬러 토큰 */
+      --domestic-brand: #0d9488;       /* 국내 프로젝트: 딥 틸/민트 */
+      --domestic-soft: rgba(13, 148, 136, 0.12);
+      --intl-brand: #d97706;           /* 국제 프로젝트: 사막 웜 골드 */
+      --intl-soft: rgba(217, 119, 6, 0.12);
+      --my-brand: #6366f1;             /* 내 프로젝트: 로열 인디고 */
+      --my-soft: rgba(99, 102, 241, 0.12);
+      --about-brand: #0284c7;          /* 회사 소개: 마일드 블루 */
+      --about-soft: rgba(2, 132, 199, 0.12);
+      
+      --shadow-sm:0 2px 8px rgba(0,0,0,0.5);
+      --shadow-md:0 12px 30px rgba(0,0,0,0.6);
+      --shadow-lg:0 26px 80px rgba(0,0,0,0.8), 0 0 40px rgba(37, 99, 235, 0.08); /* 마이크로 글로우 섀도우 */
+      --radius-xs:6px;
+      --radius-sm:10px;
+      --radius-md:14px;
+      --radius-lg:18px;
+      --radius-xl:24px;
       --space-1:4px;
       --space-2:8px;
       --space-3:12px;
@@ -74,9 +76,11 @@
       margin:0;
       font-family:var(--font-ui);
       color:var(--text);
+      /* 글로벌 맵 백그라운드 아우라를 재현하기 위한 다중 레이어 라디얼 그라데이션 광원 적용 */
       background:
-        radial-gradient(circle at top right, rgba(37,99,235,.07), transparent 22%),
-        linear-gradient(180deg,#fbfdff 0%, var(--bg) 100%);
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent 45%),
+        radial-gradient(circle at bottom left, rgba(13, 148, 136, 0.08), transparent 40%),
+        linear-gradient(180deg, #040914 0%, var(--bg) 100%) !important;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
@@ -97,10 +101,7 @@
     .line-clamp-1,.line-clamp-2{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
     .line-clamp-1{-webkit-line-clamp:1}
     .line-clamp-2{-webkit-line-clamp:2}
-    .nowrap{white-space:nowrap}
     .break{overflow-wrap:anywhere;word-break:keep-all}
-    .hide-mobile{display:block}
-    .show-mobile{display:none}
     .stack{display:grid;gap:var(--space-4)}
     .card{
       background:var(--surface);
@@ -109,7 +110,13 @@
       box-shadow:var(--shadow-sm);
       min-width:0;
     }
-    .soft-card{background:linear-gradient(180deg,#fff 0%, #f8fbff 100%)}
+    .soft-card{
+  background:rgba(255,255,255,0.07) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+
     .badge{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
     .badge.blue{background:var(--brand-soft);color:var(--brand-strong)}
 .badge.green{background:var(--green-soft);color:var(--green)}
@@ -177,26 +184,115 @@
     .workspace-status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .workspace-body{display:grid;grid-template-columns:280px minmax(0,1fr) 340px;gap:0;min-width:0}
     .control-rail,.result-rail,.intel-rail{min-width:0}
-    .control-rail{padding:20px;border-right:1px solid var(--line);background:rgba(248,250,252,.78)}
-    .result-rail{padding:20px;border-right:1px solid var(--line);background:#fff}
-    .intel-rail{padding:20px;background:rgba(251,253,255,.92)}
+    /* [Step 4] 좌측 제어 바 및 고밀도 제어 패널 스타일 개편 */
+    .control-rail{
+      padding:20px;
+      border-right:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(6, 15, 30, 0.4) !important; /* 투명 글래스 레일 구조화 */
+      backdrop-filter:blur(12px);
+    }
+    .result-rail{
+      padding:20px;
+      border-right:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(4, 9, 20, 0.25) !important;
+    }
+    .intel-rail{
+      padding:20px;
+      background:rgba(6, 15, 30, 0.35) !important;
+    }
     .panel-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-    .panel-title h3,.panel-title h4{margin:0;font-size:15px;letter-spacing:-.02em}
-    .subtle-box{padding:14px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .panel-title h3,.panel-title h4{
+      margin:0;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      color:var(--text) !important;
+      text-transform:uppercase;
+    }
+    .subtle-box{
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.02) !important; /* 어두운 패널 내부 */
+    }
     .control-section{display:grid;gap:12px;margin-bottom:16px}
-    .control-label{font-size:12px;font-weight:800;color:var(--text-3);letter-spacing:-.01em}
+    .control-label{
+      font-size:11px;
+      font-weight:800;
+      color:var(--text-2) !important;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      margin-bottom: 4px;
+    }
     .field, .field input, .field select, .field textarea{width:100%}
-    .field input,.field select,.field textarea{padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text)}
+    .field input,.field select,.field textarea{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      background:rgba(4, 9, 20, 0.5) !important;
+      color:var(--text) !important;
+      font-size:13px;
+    }
     .field textarea{min-height:92px;resize:vertical}
-    .chip-group{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700;color:var(--text-2)}
-    .chip.active{background:var(--text);border-color:var(--text);color:#fff}
-    .saved-search{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:13px}
+    .chip-group{display:flex;flex-wrap:wrap;gap:6px}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:6px;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+      font-size:11px;
+      font-weight:700;
+      color:var(--text-2) !important;
+      transition:all 0.18s ease;
+    }
+    .chip:hover{
+      background:rgba(255,255,255,0.06) !important;
+      border-color:rgba(255,255,255,0.15) !important;
+      color:var(--text) !important;
+    }
+    .chip.active{
+      background:var(--brand-soft) !important;
+      border-color:rgba(59, 130, 246, 0.3) !important;
+      color:var(--brand-strong) !important;
+      box-shadow:0 0 10px rgba(59, 130, 246, 0.1);
+    }
+    .saved-search{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255, 255, 255, 0.04) !important;
+      background:rgba(255, 255, 255, 0.01) !important;
+      font-size:13px;
+      color:var(--text) !important;
+      transition:all 0.18s;
+      text-align:left;
+    }
+    .saved-search:hover{
+      background:rgba(255,255,255,0.04) !important;
+      border-color:rgba(255,255,255,0.12) !important;
+      transform:translateX(2px);
+    }
     .saved-search strong{display:block;font-size:13px}
     .pipeline{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
     .pipeline-card{padding:14px;border-radius:16px;border:1px solid var(--line);background:#fff}
     .pipeline-card strong{display:block;font-size:24px;letter-spacing:-.04em;margin-bottom:4px}
-    .sticky-filter-bar{position:sticky;top:calc(var(--header-h) + 38px + 12px);z-index:20;background:#fff;padding-bottom:16px;margin-bottom:16px}
+    .sticky-filter-bar{
+  position:sticky;
+  top:calc(var(--header-h) + 38px + 12px);
+  z-index:20;
+  background:rgba(8,18,31,0.72) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding-bottom:16px;
+  margin-bottom:18px;
+}
+
     .search-row{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
     .search-input{position:relative}
     .search-input span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-4)}
@@ -209,12 +305,16 @@
     .list-shell{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:16px;min-width:0}
     /* [수정 적용] 가로 찌러짐 해소를 위해 스크롤 컨테이너 분리 */
 .list-card{
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:#fff;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04)) !important;
   min-width:0;
-  overflow-x:auto; /* 가로 너비 부족 시 스크롤바 제공 */
+  overflow-x:auto;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.20);
 }
+
 .detail-card{
   border:1px solid var(--line);
   border-radius:22px;
@@ -243,7 +343,6 @@
     .project-row:hover{background:#f9fbff}
     .project-row.active{background:linear-gradient(180deg,#f9fbff,#f4f8ff)}
     .project-main{min-width:0}
-    .project-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
     .project-title{margin:0 0 8px;font-size:15px;line-height:1.5;font-weight:800;letter-spacing:-.02em}
     .project-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--text-3)}
     .project-meta span{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
@@ -287,7 +386,17 @@
     .xai-item,.timeline-item,.mini-item{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px;border-radius:14px;border:1px solid var(--line);background:#fff;min-width:0}
     .score-pill{min-width:50px;height:30px;padding:0 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;font-size:12px;font-weight:900}
     .timeline-dot{width:10px;height:10px;border-radius:999px;background:var(--green);margin-top:6px;box-shadow:0 0 0 7px rgba(5,150,105,.12)}
-    .intel-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff;margin-bottom:14px}
+    .intel-card{
+  padding:18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05)) !important;
+  margin-bottom:14px;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 14px 38px rgba(0,0,0,0.18);
+}
+
     .intel-card:last-child{margin-bottom:0}
     .intel-list{display:grid;gap:10px}
     .intel-item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
@@ -357,10 +466,6 @@
     .form-field label{font-size:12px;font-weight:800;color:var(--text-3)}
     .form-field input,.form-field select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff}
     .note-box{padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);line-height:1.75;color:var(--text-2);font-size:13px}
-    .skeleton{position:relative;overflow:hidden;background:#ebf1f7;border-radius:12px}
-    .skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.78) 50%, transparent 100%);transform:translateX(-100%);animation:shimmer 1.3s infinite}
-    @keyframes shimmer{100%{transform:translateX(100%)}}
-    /* PART 8 — Incremental UX patch (keep structure, improve readability/filters/nav) */
     html,body{width:100%;overflow-x:hidden}
     body{
       background:#f6f8fb;
@@ -391,35 +496,142 @@
     .project-title{font-size:22px;line-height:1.36;font-weight:800;letter-spacing:-.03em;margin:0}
     .detail-header h3{font-size:24px;line-height:1.35;letter-spacing:-.03em}
     .module-card h3,.price-plan h3{font-size:18px}
-    .site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:none;border-bottom:1px solid #e6ebf2;box-shadow:0 1px 0 rgba(15,23,42,.03)}
-    .live-strip{background:#f8fafc;border-bottom:1px solid #eef2f7}
-    .live-strip-inner{height:36px}
+    /* [Step 2] Palantir & Fabric 스타일의 초정밀 반투명 글래스 헤더 개편 */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background:rgba(8, 20, 36, 0.65) !important; /* 극도로 조율된 심해 네이비 투명도 */
+      backdrop-filter:blur(18px) saturate(1.4) !important;
+      -webkit-backdrop-filter:blur(18px) saturate(1.4) !important;
+      border-bottom:1px solid rgba(255, 255, 255, 0.06) !important;
+      box-shadow:0 8px 32px 0 rgba(0, 0, 0, 0.35) !important;
+    }
+    .live-strip{
+      background:rgba(4, 9, 18, 0.85) !important;
+      border-bottom:1px solid rgba(255, 255, 255, 0.04) !important;
+    }
+    .live-strip-inner{
+      height:36px;
+      color:var(--text-2) !important;
+    }
+    /* 상태 수치 강조용 일렉트릭 블루/사이안 글로우 텍스트 적용 */
+    .live-strip-inner strong {
+      color:#60a5fa !important;
+      text-shadow:0 0 8px rgba(96, 165, 250, 0.25);
+    }
     .site-nav{height:72px;gap:18px}
     .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:18px;min-width:0}
     .site-nav-left{flex:1 1 auto}
     .site-nav-right{flex:0 0 auto}
     .brand{padding-right:8px}
-    .brand-mark{box-shadow:none}
-    .brand-copy strong{font-size:17px;font-weight:800}
+    .brand-mark{
+      box-shadow:none;
+      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.45)); /* 심볼 아우라 발산 */
+    }
+    .brand-copy strong{
+      font-size:17px;
+      font-weight:800;
+      color:var(--text) !important;
+    }
+    .brand-copy span {
+      color: var(--text-2) !important;
+    }
     .nav-links{gap:8px;font-size:14px;font-weight:700;color:var(--text-2)}
-    .nav-links a{padding:10px 12px;border-radius:10px;color:#334155}
-    .nav-links a:hover{background:#f1f5f9;color:var(--text)}
+    .nav-links a{
+      padding:10px 12px;
+      border-radius:8px;
+      color:var(--text-2) !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links a:hover{
+      background:rgba(255, 255, 255, 0.05) !important;
+      color:var(--text) !important;
+    }
+    /* 액티브 메뉴 탭 하이라이트 튜닝 */
+    .nav-links a.active-tab {
+      background:var(--brand-soft) !important;
+      color:var(--brand-strong) !important;
+      border: 1px solid rgba(59, 130, 246, 0.15) !important;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.08);
+    }
     .nav-actions{gap:10px}
-    .icon-btn{position:relative;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text-2);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
-    .icon-btn:hover{background:#f8fafc}
-    .icon-btn em{position:absolute;top:6px;right:6px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:#2563eb;color:#fff;font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}
+    .icon-btn{
+      position:relative;
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+      color:var(--text-2) !important;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      transition:all 0.18s;
+    }
+    .icon-btn:hover{
+      background:rgba(255, 255, 255, 0.05) !important;
+      border-color:rgba(255, 255, 255, 0.15) !important;
+      color:var(--text) !important;
+    }
+    .icon-btn em{
+      position:absolute;
+      top:4px;
+      right:4px;
+      min-width:16px;
+      height:16px;
+      padding:0 4px;
+      border-radius:999px;
+      background:#2563eb;
+      color:#fff;
+      font-style:normal;
+      font-size:10px;
+      font-weight:800;
+      display:grid;
+      place-items:center;
+      box-shadow:0 0 8px rgba(37, 99, 235, 0.6);
+    }
     .header-search{position:relative;width:240px;flex:0 0 240px}
-    .header-search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px}
-    .header-search input{width:100%;height:40px;padding:0 14px 0 36px;border-radius:12px;border:1px solid var(--line);background:#f8fafc;color:var(--text)}
-    .header-search input:focus{background:#fff;border-color:#bfd5ff}
+    .header-search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px}
+    .header-search input{
+      width:100%;
+      height:40px;
+      padding:0 14px 0 36px;
+      border-radius:10px;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+      color:var(--text) !important;
+      transition:all 0.18s;
+    }
+    .header-search input:focus{
+      background:rgba(8, 25, 45, 0.8) !important;
+      border-color:rgba(59, 130, 246, 0.3) !important;
+      box-shadow:0 0 12px rgba(59, 130, 246, 0.1);
+    }
     .menu-btn{display:none}
     .mobile-nav{display:none;padding:8px 0 16px;border-top:1px solid var(--line)}
     .mobile-nav a,.mobile-nav button{display:block;width:100%;padding:14px 0;border:none;background:none;text-align:left;border-bottom:1px solid #edf2f7;font-weight:700;color:var(--text-2)}
-    .workspace-frame,.soft-card,.footer,.plan-highlight{background:#fff}
-    .workspace-frame{box-shadow:0 14px 34px rgba(15,23,42,.06);border-radius:24px}
-    .control-rail{background:#fbfcfe}
-    .intel-rail{background:#fcfdff}
-    .saved-search,.chip,.subtle-box,.note-box,.metric,.release-row,.intel-item,.pipeline-card,.detail-kpi{background:#fff}
+    /* [Step 4] PART 8 강제 백그라운드 색상 고정 해제 및 글래스 텍스처 오버라이드 */
+    .workspace-frame {
+      background:rgba(8, 20, 36, 0.5) !important; /* 메인 프레임을 우주선 관제 콘솔 재질로 격상 */
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      box-shadow:var(--shadow-lg) !important;
+      border-radius:24px;
+    }
+    .soft-card,.footer,.plan-highlight{background:#fff}
+    .control-rail{background:rgba(6, 15, 30, 0.4) !important}
+    .intel-rail{background:rgba(6, 15, 30, 0.3) !important}
+    
+    /* 흩어져 있는 작은 가젯들의 다크 모드 전용 배경으로 일괄 연동 */
+    .saved-search,.chip,.subtle-box,.note-box,.release-row,.intel-item {
+      background:rgba(255, 255, 255, 0.02) !important;
+      color:var(--text) !important;
+    }
+    .metric,.pipeline-card,.detail-kpi{
+      background:rgba(15, 37, 66, 0.25) !important;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+    }
     .industry-summary{display:grid;gap:10px;margin-bottom:16px}
     .summary-pills{display:flex;flex-wrap:wrap;gap:8px}
     .summary-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700;color:var(--text-2)}
@@ -429,21 +641,88 @@
     .tree-wrap{display:grid;gap:10px;max-height:520px;overflow:auto;padding-right:4px}
     .tree-wrap::-webkit-scrollbar{width:8px}
     .tree-wrap::-webkit-scrollbar-thumb{background:#d9e3ef;border-radius:999px}
-    .industry-group{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
-    .industry-group-head{width:100%;padding:14px 14px 12px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left}
-    .industry-group-head strong{display:block;font-size:14px;line-height:1.45;letter-spacing:-.02em}
-    .industry-group-head span{font-size:12px;color:var(--text-3)}
-    .industry-group-head b{font-size:14px;color:var(--text-3)}
-    .industry-cat-list{display:grid;gap:8px;padding:0 12px 12px}
-    .cat-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 10px 10px 12px;border-radius:14px;border:1px solid var(--line);background:#f8fafc}
-    .cat-item.active{background:#eff6ff;border-color:#bfdbfe}
-    .cat-main{display:flex;align-items:flex-start;gap:10px;min-width:0;text-align:left;border:none;background:transparent;padding:0}
-    .cat-check{width:18px;height:18px;border-radius:6px;border:1.5px solid #cbd5e1;background:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:12px;color:#2563eb}
-    .cat-item.active .cat-check{border-color:#2563eb;background:#dbeafe}
-    .cat-copy strong{display:block;font-size:13px;line-height:1.45;color:var(--text)}
-    .cat-copy span{display:block;font-size:12px;line-height:1.45;color:var(--text-3)}
-    .cat-favorite{width:32px;height:32px;border:none;border-radius:10px;background:#fff;color:#94a3b8}
-    .cat-favorite.active{color:#2563eb;background:#eff6ff}
+    /* [Step 4] CAT 코드 트리 노드 인터페이스 고밀도화 */
+    .industry-group{
+      border:1px solid rgba(255, 255, 255, 0.04) !important;
+      border-radius:12px;
+      background:rgba(255, 255, 255, 0.01) !important;
+      overflow:hidden;
+      margin-bottom: 8px;
+    }
+    .industry-group-head{
+      width:100%;
+      padding:12px 14px;
+      border:none;
+      background:transparent !important;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      text-align:left;
+      color: var(--text) !important;
+      transition: background 0.18s;
+    }
+    .industry-group-head:hover {
+      background: rgba(255, 255, 255, 0.02) !important;
+    }
+    .industry-group-head strong{display:block;font-size:13px;line-height:1.45;letter-spacing:-.02em}
+    .industry-group-head span{font-size:11px;color:var(--text-2)}
+    .industry-group-head b{font-size:12px;color:var(--text-2)}
+    .industry-cat-list{display:grid;gap:6px;padding:0 10px 10px}
+    .cat-item{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+      padding:8px 8px 8px 10px;
+      border-radius:8px;
+      border:1px solid rgba(255, 255, 255, 0.03) !important;
+      background:rgba(255, 255, 255, 0.01) !important;
+      transition: all 0.15s;
+    }
+    .cat-item:hover {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    .cat-item.active{
+      background:var(--brand-soft) !important;
+      border-color:rgba(59, 130, 246, 0.25) !important;
+    }
+    .cat-main{display:flex;align-items:flex-start;gap:8px;min-width:0;text-align:left;border:none;background:transparent;padding:0}
+    .cat-check{
+      width:16px;
+      height:16px;
+      border-radius:4px;
+      border:1px solid rgba(255, 255, 255, 0.15) !important;
+      background:rgba(0, 0, 0, 0.2) !important;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-size:10px;
+      color:var(--brand-strong);
+    }
+    .cat-item.active .cat-check{
+      border-color:var(--brand-strong) !important;
+      background:rgba(59, 130, 246, 0.2) !important;
+    }
+    .cat-copy strong{display:block;font-size:12px;line-height:1.4;color:var(--text)}
+    .cat-copy span{display:block;font-size:10px;line-height:1.4;color:var(--text-2)}
+    .cat-favorite{
+      width:28px;
+      height:28px;
+      border:none;
+      border-radius:6px;
+      background:transparent !important;
+      color:var(--text-2);
+      transition: all 0.15s;
+    }
+    .cat-favorite:hover {
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: var(--amber) !important;
+    }
+    .cat-favorite.active{
+      color:var(--amber) !important;
+    }
     .active-cat-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#f8fafc}
     .active-cat-list{display:flex;flex-wrap:wrap;gap:8px}
     .active-cat-tag{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--text-2)}
@@ -587,8 +866,6 @@
       .control-rail,.result-rail,.intel-rail{padding:16px}
       .site-nav-right{gap:10px}
       .footer-grid{grid-template-columns:1fr 1fr}
-      .hide-mobile{display:none}
-      .show-mobile{display:block}
     }
     @media (max-width:520px){
       .footer-grid{grid-template-columns:1fr}
@@ -598,382 +875,2221 @@
       *,*::before,*::after{scroll-behavior:auto !important;animation:none !important;transition:none !important}
     }
     :focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
-  /* =========================
-   PATCH A — 텍스트 안정성 강화
-   위치: </style> 바로 위
+/* =========================
+   STEP 1 — Primary Icon Sidebar
 ========================= */
-
-/* 1. 브라우저 확대/축소/모바일 폰트 자동확대 방지 */
-html{
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
+.workspace-body.app-shell{
+  grid-template-columns:84px 280px minmax(0,1fr) 340px !important;
+  align-items:stretch;
+  min-height:900px;
 }
 
-/* 2. 전체 텍스트 기본 안정화 */
-body{
-  word-break:keep-all;
-  overflow-wrap:break-word;
-  line-height:1.6;
+.app-sidebar{
+  position:relative;
+  min-width:0;
+  padding:16px 10px;
+  border-right:1px solid rgba(255,255,255,.06);
+  background:
+    linear-gradient(180deg, rgba(4,12,24,.92) 0%, rgba(5,16,29,.82) 100%);
+  backdrop-filter:blur(18px) saturate(1.06);
+  -webkit-backdrop-filter:blur(18px) saturate(1.06);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  overflow:hidden;
+  transition:padding .2s ease, background .2s ease;
 }
 
-body, button, input, select, textarea, a, span, strong, small, p, div, h1, h2, h3, h4, h5, h6, label{
-  writing-mode:horizontal-tb;
-  text-orientation:mixed;
+.workspace-frame.sidebar-expanded .workspace-body.app-shell{
+  grid-template-columns:228px 280px minmax(0,1fr) 340px !important;
 }
 
-/* 3. 중요 텍스트는 clamp/ellipsis로 숨기지 않기 */
-.line-clamp-1,
-.line-clamp-2{
-  display:block !important;
-  overflow:visible !important;
-  -webkit-line-clamp:unset !important;
-  -webkit-box-orient:unset !important;
+.workspace-frame.sidebar-expanded .app-sidebar{
+  padding:16px 14px;
 }
 
-.project-title,
-.project-client strong,
-.detail-header h3,
-.detail-info span,
-.detail-kpi strong,
-.metric strong,
-.metric span,
-.metric p,
-.release-row strong,
-.faq-q span,
-.brand-copy strong,
-.brand-copy span,
-.note-box,
-.small,
-.caption{
-  white-space:normal !important;
-  overflow:visible !important;
-  text-overflow:clip !important;
-  word-break:keep-all !important;
-  overflow-wrap:break-word !important;
+.app-sidebar-top{
+  display:grid;
+  gap:12px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-/* 4. flex/grid 내부에서 글자 잘림 방지 */
-.project-main,
-.project-client,
-.project-stage,
-.project-update,
-.project-ai,
-.detail-card,
-.intel-card,
-.metric,
-.release-row,
-.faq-item,
-.footer-grid > div,
-.workspace-top > div,
-.workspace-status,
-.results-meta{
+.sidebar-toggle-btn{
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  color:#dbeafe;
+  display:grid;
+  place-items:center;
+  transition:all .18s ease;
+}
+
+.sidebar-toggle-btn:hover{
+  background:rgba(59,130,246,.14);
+  color:#eff6ff;
+  box-shadow:0 0 18px rgba(59,130,246,.14);
+}
+
+.sidebar-toggle-btn svg{
+  width:18px;
+  height:18px;
+}
+
+.sidebar-brand-mini{
+  display:flex;
+  align-items:center;
+  gap:12px;
   min-width:0;
 }
 
-/* 5. 표 형태 영역은 PC에서는 스크롤 허용, 모바일에서는 카드형 전환 */
-.list-card{
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
+.sidebar-brand-mark{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.08em;
+  color:#e0f2fe;
+  background:
+    linear-gradient(135deg, rgba(34,211,238,.24), rgba(59,130,246,.28));
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 24px rgba(34,211,238,.12);
+  flex:0 0 auto;
 }
 
-/* 6. 프로젝트 목록 최소폭 안정화 */
-.project-list-head,
-.project-row{
-  min-width:980px !important;
+.sidebar-brand-copy{
+  display:none;
+  min-width:0;
 }
 
-/* 7. KPI/상세 정보는 줄바꿈 우선 */
-.detail-kpi strong,
-.detail-info span{
-  white-space:normal !important;
+.workspace-frame.sidebar-expanded .sidebar-brand-copy{
+  display:grid;
 }
 
-/* 8. 상단 라이브 스트립도 줄바꿈 허용 */
-.live-strip-inner{
-  min-height:38px;
-  height:auto;
-  padding:8px 0;
+.sidebar-brand-copy strong{
+  font-size:14px;
+  letter-spacing:-.02em;
+  color:#f8fbff;
 }
 
-.live-strip-list span{
-  white-space:normal;
+.sidebar-brand-copy span{
+  font-size:11px;
+  color:rgba(203,213,225,.74);
 }
 
-/* 9. 모바일/태블릿에서 글씨 누락 없이 1열 재배치 */
-@media (max-width: 920px){
-  .project-list-head,
-  .project-row{
-    min-width:0 !important;
+.app-sidebar-nav{
+  display:grid;
+  gap:6px;
+}
+
+.sidebar-item{
+  position:relative;
+  width:100%;
+  min-height:48px;
+  border:none;
+  border-radius:14px;
+  background:transparent;
+  color:rgba(203,213,225,.78);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  text-align:left;
+  transition:all .18s ease;
+}
+
+.sidebar-item:hover{
+  background:rgba(255,255,255,.05);
+  color:#f8fbff;
+  transform:translateX(2px);
+}
+
+.sidebar-item.active{
+  background:linear-gradient(180deg, rgba(34,211,238,.12), rgba(59,130,246,.14));
+  color:#e0f2fe;
+  border:1px solid rgba(96,165,250,.2);
+  box-shadow:0 0 18px rgba(59,130,246,.08);
+}
+
+.sidebar-icon{
+  width:20px;
+  height:20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+
+.sidebar-icon svg{
+  width:20px;
+  height:20px;
+}
+
+.sidebar-label{
+  display:none;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+.workspace-frame.sidebar-expanded .sidebar-label{
+  display:inline-flex;
+}
+
+.sidebar-tooltip{
+  position:absolute;
+  left:calc(100% + 12px);
+  top:50%;
+  transform:translateY(-50%);
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(2,6,23,.94);
+  color:#e2e8f0;
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+  opacity:0;
+  pointer-events:none;
+  white-space:nowrap;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+  transition:opacity .16s ease, transform .16s ease;
+}
+
+.workspace-frame:not(.sidebar-expanded) .sidebar-item:hover .sidebar-tooltip{
+  opacity:1;
+  transform:translateY(-50%) translateX(0);
+}
+
+.workspace-frame.sidebar-expanded .sidebar-tooltip{
+  display:none;
+}
+
+@media (max-width:1480px){
+  .workspace-body.app-shell{
+    grid-template-columns:76px 264px minmax(0,1fr) 304px !important;
   }
 
-  .project-row{
+  .workspace-frame.sidebar-expanded .workspace-body.app-shell{
+    grid-template-columns:220px 264px minmax(0,1fr) 304px !important;
+  }
+}
+
+@media (max-width:1120px){
+  .workspace-body.app-shell{
     grid-template-columns:1fr !important;
-    gap:12px !important;
   }
 
-  .project-meta,
-  .workspace-status,
-  .results-meta,
-  .hero-actions,
-  .chip-group,
-  .summary-pills,
-  .active-cat-list{
-    row-gap:8px;
+  .app-sidebar{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:14px;
   }
 
-  .detail-grid,
-  .detail-info-grid,
-  .hero-metrics,
-  .proof-metrics,
-  .pipeline,
-  .form-grid{
+  .workspace-frame.sidebar-expanded .workspace-body.app-shell{
     grid-template-columns:1fr !important;
+  }
+
+  .sidebar-brand-copy,
+  .sidebar-label{
+    display:inline-flex !important;
+  }
+
+  .app-sidebar-nav{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
+
+  .sidebar-tooltip{
+    display:none !important;
   }
 }
 
-/* 10. 매우 작은 화면에서 폰트와 패딩 축소 */
-@media (max-width: 640px){
-  .hero-copy h1{
-    font-size:clamp(28px, 8vw, 36px) !important;
-    line-height:1.28 !important;
-  }
-
-  .hero-copy p{
-    font-size:14px !important;
-    line-height:1.75 !important;
-  }
-
-  .workspace-top h2,
-  .section-head h2{
-    font-size:22px !important;
-    line-height:1.35 !important;
-  }
-
-  .project-title{
-    font-size:18px !important;
-    line-height:1.42 !important;
-  }
-
-  .detail-header h3{
-    font-size:20px !important;
-    line-height:1.4 !important;
-  }
-
-  .metric strong{
-    font-size:24px !important;
-  }
-
-  .detail-kpi strong{
-    font-size:15px !important;
-  }
-
-  .control-rail,
-  .result-rail,
-  .intel-rail,
-  .workspace-top{
-    padding:14px !important;
+@media (max-width:680px){
+  .app-sidebar-nav{
+    grid-template-columns:1fr;
   }
 }
 /* =========================
-   PATCH B — Hero 배경 영상
-   위치: </style> 바로 위
+   Emergency Dark Theme Stabilizer
+   가장 마지막에 둬야 함
 ========================= */
+:root{
+  --text:#eef6ff;
+  --text-2:#b8c7db;
+  --text-3:#7e92aa;
+  --text-4:#58708d;
+}
+
+/* 메인 프레임/레일 */
+.workspace-frame{
+  background:rgba(8,20,36,.56) !important;
+  border:1px solid rgba(255,255,255,.06) !important;
+}
+
+.control-rail,
+.result-rail,
+.intel-rail{
+  background:rgba(7,16,28,.62) !important;
+  border-color:rgba(255,255,255,.06) !important;
+}
+
+/* 흰 카드로 남아 있는 핵심 박스들 강제 다크화 */
+.list-card,
+.detail-card,
+.intel-card,
+.pipeline-card,
+.metric,
+.subtle-box,
+.note-box,
+.saved-search,
+.detail-info,
+.detail-summary,
+.detail-kpi,
+.xai-item,
+.timeline-item,
+.mini-item,
+.intel-item,
+.release-row,
+.summary-pill,
+.active-cat-bar,
+.project-meta span,
+.quick-pill,
+.save-btn,
+.field input,
+.field select,
+.field textarea{
+  background:rgba(255,255,255,.03) !important;
+  color:var(--text) !important;
+  border-color:rgba(255,255,255,.08) !important;
+}
+
+/* 리스트/상세 카드 자체는 조금 더 진하게 */
+.list-card,
+.detail-card,
+.intel-card{
+  background:
+    linear-gradient(180deg, rgba(11,21,37,.94), rgba(8,16,28,.96)) !important;
+}
+
+/* 테이블 헤더 */
+.project-list-head{
+  background:rgba(255,255,255,.04) !important;
+  color:var(--text-3) !important;
+  border-color:rgba(255,255,255,.08) !important;
+}
+
+/* row hover / active */
+.project-row:hover{
+  background:rgba(255,255,255,.04) !important;
+}
+
+.project-row.active{
+  background:
+    linear-gradient(180deg, rgba(96,165,250,.08), rgba(34,211,238,.05)) !important;
+}
+
+/* 주요 제목/본문 컬러 재고정 */
+.project-title,
+.detail-header h3,
+.project-client strong,
+.project-stage strong,
+.project-update strong,
+.detail-info span,
+.detail-kpi strong,
+.panel-title h3,
+.panel-title h4,
+.workspace-top h2,
+.small strong,
+.muted strong{
+  color:var(--text) !important;
+}
+
+/* 보조 텍스트 */
+.small,
+.caption,
+.project-client span,
+.detail-kpi span,
+.detail-info strong,
+.workspace-top p,
+.control-label{
+  color:var(--text-3) !important;
+}
+
+/* 플레이스홀더/입력 */
+.field input::placeholder,
+.field textarea::placeholder,
+.header-search input::placeholder{
+  color:var(--text-4) !important;
+}
+
+.field input,
+.field select,
+.field textarea,
+.header-search input{
+  color:var(--text) !important;
+}
+
+/* select 드롭다운 옵션 색 */
+select option{
+  background:#08131E;
+  color:#eef6ff;
+}
+
+/* 배지/칩 가독성 */
+.chip{
+  background:rgba(255,255,255,.03) !important;
+  color:var(--text-2) !important;
+  border-color:rgba(255,255,255,.06) !important;
+}
+
+.chip.active{
+  background:rgba(59,130,246,.12) !important;
+  color:#b9dbff !important;
+  border-color:rgba(96,165,250,.22) !important;
+}
+/* =========================================================
+   PREMIUM REDESIGN — STEP 1
+   Foundation / Color System / Background / Atmosphere
+   반드시 <style> 맨 마지막에 추가
+========================================================= */
+:root{
+  --bg:#07111F;
+  --bg-2:#0B1726;
+  --bg-3:#0D1B2A;
+  --surface:rgba(255,255,255,0.08);
+  --surface-2:rgba(255,255,255,0.06);
+  --surface-3:rgba(255,255,255,0.04);
+  --line:rgba(255,255,255,0.12);
+  --line-strong:rgba(0,229,255,0.28);
+
+  --text:#F4FBFF;
+  --text-2:#B7C9D8;
+  --text-3:#7D93A7;
+  --text-4:#5E7388;
+
+  --brand:#00E5FF;
+  --brand-2:#00D1B2;
+  --brand-3:#4FC3F7;
+
+  --brand-soft:rgba(0,229,255,0.14);
+  --brand-soft-2:rgba(0,209,178,0.12);
+  --brand-soft-3:rgba(79,195,247,0.14);
+
+  --green:#29E7A8;
+  --green-soft:rgba(41,231,168,0.14);
+  --amber:#FFC857;
+  --amber-soft:rgba(255,200,87,0.14);
+  --red:#FF7C8A;
+  --red-soft:rgba(255,124,138,0.14);
+
+  --shadow-sm:0 10px 28px rgba(0,0,0,0.18);
+  --shadow-md:0 18px 48px rgba(0,0,0,0.26);
+  --shadow-lg:0 30px 90px rgba(0,0,0,0.36), 0 0 40px rgba(0,229,255,0.05);
+
+  --radius-sm:12px;
+  --radius-md:16px;
+  --radius-lg:20px;
+  --radius-xl:26px;
+}
+
+html,body{
+  background:none !important;
+}
+
+body{
+  position:relative;
+  background:
+    radial-gradient(circle at 15% 18%, rgba(0,229,255,0.10), transparent 20%),
+    radial-gradient(circle at 82% 12%, rgba(79,195,247,0.10), transparent 24%),
+    radial-gradient(circle at 70% 82%, rgba(0,209,178,0.08), transparent 24%),
+    linear-gradient(180deg, #04101C 0%, #07111F 36%, #0B1726 100%) !important;
+  color:var(--text) !important;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.42;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,.05) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 80% 72%, rgba(255,255,255,.05) 0 1px, transparent 1.5px),
+    linear-gradient(120deg, transparent 0 42%, rgba(0,229,255,.06) 49%, transparent 56%),
+    linear-gradient(65deg, transparent 0 46%, rgba(79,195,247,.05) 50%, transparent 55%);
+  background-size: 220px 220px, 280px 280px, 320px 320px, 100% 100%, 100% 100%;
+  mix-blend-mode:screen;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 45%, #000 28%, transparent 88%);
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 28%, transparent 88%);
+  opacity:.24;
+}
+
+main, .site-header, .footer, .modal-overlay{
+  position:relative;
+  z-index:1;
+}
+
+.container{
+  width:min(1480px, calc(100% - 40px)) !important;
+}
+
+.section{
+  padding:72px 0 !important;
+}
+
+.section-tight{
+  padding:52px 0 !important;
+}
+/* =========================================================
+   PREMIUM REDESIGN — STEP 2
+   Header / Hero / Workspace Frame
+========================================================= */
+.site-header{
+  background:rgba(7,17,31,0.54) !important;
+  border-bottom:1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter:blur(22px) saturate(1.28) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(1.28) !important;
+  box-shadow:0 10px 34px rgba(0,0,0,0.24) !important;
+}
+
+.live-strip{
+  background:rgba(7,17,31,0.42) !important;
+  border-bottom:1px solid rgba(255,255,255,0.06) !important;
+}
+
+.live-strip-inner,
+.brand-copy span,
+.nav-links,
+.nav-links a,
+.header-search span{
+  color:var(--text-3) !important;
+}
+
+.live-strip-inner strong,
+.brand-copy strong{
+  color:var(--text) !important;
+}
+
+.brand-mark{
+  filter:
+    drop-shadow(0 0 12px rgba(0,229,255,0.26))
+    drop-shadow(0 0 24px rgba(79,195,247,0.12)) !important;
+}
+
+.header-search input{
+  background:rgba(255,255,255,0.05) !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+  color:var(--text) !important;
+  border-radius:14px !important;
+}
+
+.header-search input:focus{
+  border-color:rgba(0,229,255,0.28) !important;
+  box-shadow:0 0 0 4px rgba(0,229,255,0.08), 0 0 20px rgba(0,229,255,0.08) !important;
+  background:rgba(255,255,255,0.07) !important;
+}
+
+.nav-links a,
+.nav-link-tab{
+  border-radius:12px !important;
+}
+
+.nav-links a:hover,
+.nav-link-tab:hover{
+  background:rgba(255,255,255,0.06) !important;
+  color:var(--text) !important;
+}
+
+.nav-link-tab.active-tab,
+.nav-links a.active-tab{
+  background:linear-gradient(135deg, rgba(0,229,255,0.14), rgba(79,195,247,0.12)) !important;
+  border:1px solid rgba(0,229,255,0.16) !important;
+  color:#DDFBFF !important;
+  box-shadow:0 0 16px rgba(0,229,255,0.06) !important;
+}
+
+.icon-btn{
+  background:rgba(255,255,255,0.05) !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+  border-radius:14px !important;
+  color:var(--text-2) !important;
+}
+
+.icon-btn:hover{
+  background:rgba(255,255,255,0.08) !important;
+  color:var(--text) !important;
+  box-shadow:0 0 18px rgba(0,229,255,0.08) !important;
+}
 
 .workspace-hero{
+  padding:48px 0 64px !important;
+}
+
+.hero-head{
+  gap:40px !important;
+  margin-bottom:36px !important;
+}
+
+.hero-copy h1{
+  color:var(--text) !important;
+  font-size:clamp(46px, 4.8vw, 62px) !important;
+  line-height:1.06 !important;
+  letter-spacing:-.06em !important;
+}
+
+.hero-copy p{
+  color:var(--text-2) !important;
+  font-size:17px !important;
+  max-width:760px !important;
+}
+
+.eyebrow{
+  background:rgba(0,229,255,0.12) !important;
+  color:#CFFBFF !important;
+  border:1px solid rgba(0,229,255,0.14);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.eyebrow-dot{
+  background:var(--brand-2) !important;
+  box-shadow:0 0 0 6px rgba(0,209,178,.10), 0 0 14px rgba(0,229,255,.20) !important;
+}
+
+.btn.primary{
+  background:linear-gradient(135deg, #00E5FF, #00D1B2) !important;
+  color:#04101C !important;
+  border:none !important;
+  box-shadow:0 14px 28px rgba(0,209,178,0.18), 0 0 22px rgba(0,229,255,0.08) !important;
+}
+
+.btn.primary:hover{
+  transform:translateY(-2px) scale(1.02);
+}
+
+.btn.secondary,
+.btn.ghost{
+  background:rgba(255,255,255,0.06) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  backdrop-filter:blur(14px);
+}
+
+.btn.secondary:hover,
+.btn.ghost:hover{
+  background:rgba(255,255,255,0.10) !important;
+  box-shadow:0 0 20px rgba(79,195,247,0.08);
+}
+
+.workspace-frame{
   position:relative;
   overflow:hidden;
-  isolation:isolate;
-  min-height:clamp(720px, 78vh, 980px);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  border-radius:28px !important;
+  box-shadow:
+    0 24px 70px rgba(0,0,0,0.30),
+    0 0 40px rgba(0,229,255,0.04) !important;
+  backdrop-filter:blur(26px) saturate(1.08);
+  -webkit-backdrop-filter:blur(26px) saturate(1.08);
 }
 
-.workspace-hero > .container{
-  position:relative;
-  z-index:2;
-}
-
-.hero-video-bg{
+.workspace-frame::before{
+  content:"";
   position:absolute;
   inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(0,229,255,0.10), transparent 28%),
+    radial-gradient(circle at 88% 0%, rgba(79,195,247,0.08), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 28%);
   z-index:0;
+}
+
+.workspace-top,
+.workspace-body{
+  position:relative;
+  z-index:1;
+}
+
+.workspace-top{
+  padding:22px 24px !important;
+  border-bottom:1px solid rgba(255,255,255,0.08) !important;
+  background:rgba(255,255,255,0.02) !important;
+}
+
+.workspace-top h2{
+  color:var(--text) !important;
+  font-size:30px !important;
+}
+
+.workspace-top p{
+  color:var(--text-2) !important;
+}
+
+.kicker{
+  color:#A5F5FF !important;
+  letter-spacing:.03em !important;
+}
+/* =========================================================
+   PREMIUM REDESIGN — STEP 3
+   Glass Card System / Workspace Panels / Readability
+========================================================= */
+.card,
+.metric,
+.subtle-box,
+.pipeline-card,
+.list-card,
+.detail-card,
+.intel-card,
+.release-row,
+.module-card,
+.compare-card,
+.price-plan,
+.faq-item,
+.modal,
+.saved-search,
+.note-box,
+.detail-info,
+.detail-summary,
+.detail-kpi,
+.xai-item,
+.timeline-item,
+.mini-item,
+.intel-item{
+  background:rgba(255,255,255,0.07) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  border-radius:20px !important;
+  backdrop-filter:blur(20px) saturate(1.06);
+  -webkit-backdrop-filter:blur(20px) saturate(1.06);
+  box-shadow:0 12px 38px rgba(0,0,0,0.18) !important;
+}
+
+.control-rail,
+.result-rail,
+.intel-rail{
+  padding:24px !important;
+  background:rgba(255,255,255,0.03) !important;
+  border-color:rgba(255,255,255,0.08) !important;
+}
+
+.panel-title h3,
+.panel-title h4,
+.project-title,
+.detail-header h3,
+.project-client strong,
+.project-stage strong,
+.project-update strong,
+.detail-info span,
+.detail-kpi strong,
+.module-card h3,
+.price-plan h3,
+.section-head h2{
+  color:var(--text) !important;
+}
+
+.muted,
+.small,
+.caption,
+.project-client span,
+.detail-kpi span,
+.detail-info strong,
+.section-head p,
+.project-ai span,
+.results-meta,
+.control-label{
+  color:var(--text-3) !important;
+}
+
+.metric strong,
+.project-ai strong,
+.price-line{
+  color:#F0FCFF !important;
+  text-shadow:0 0 16px rgba(79,195,247,0.08);
+}
+
+.list-card,
+.detail-card,
+.intel-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.045)) !important;
+}
+
+.project-list-head{
+  background:rgba(255,255,255,0.05) !important;
+  color:var(--text-3) !important;
+  border-bottom:1px solid rgba(255,255,255,0.08) !important;
+}
+
+.project-row{
+  border-bottom:1px solid rgba(255,255,255,0.06) !important;
+}
+
+.project-row:hover{
+  background:rgba(255,255,255,0.05) !important;
+}
+
+.project-row.active{
+  background:
+    linear-gradient(135deg, rgba(0,229,255,0.08), rgba(79,195,247,0.06)) !important;
+}
+
+.project-meta span,
+.detail-tags span,
+.summary-pill,
+.active-cat-tag,
+.quick-pill,
+.chip,
+.save-btn{
+  background:rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  color:var(--text-2) !important;
+}
+
+.quick-pill.active,
+.chip.active{
+  background:linear-gradient(135deg, rgba(0,229,255,0.14), rgba(0,209,178,0.10)) !important;
+  color:#D7FBFF !important;
+  border-color:rgba(0,229,255,0.18) !important;
+  box-shadow:0 0 18px rgba(0,229,255,0.06);
+}
+
+.save-btn.saved{
+  color:#9AF6FF !important;
+  background:rgba(0,229,255,0.12) !important;
+  border-color:rgba(0,229,255,0.18) !important;
+}
+
+.field input,
+.field select,
+.field textarea,
+.form-field input,
+.form-field select,
+.cat-search input{
+  background:rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  color:var(--text) !important;
+  border-radius:12px !important;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.form-field input:focus,
+.form-field select:focus,
+.cat-search input:focus{
+  border-color:rgba(0,229,255,0.28) !important;
+  box-shadow:0 0 0 4px rgba(0,229,255,0.06), 0 0 16px rgba(0,229,255,0.06) !important;
+}
+
+.project-meta span,
+.intel-item,
+.mini-item,
+.timeline-item,
+.xai-item,
+.detail-info,
+.detail-summary{
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.badge.blue{
+  background:rgba(0,229,255,0.14) !important;
+  color:#D8FBFF !important;
+}
+.badge.green{
+  background:rgba(0,209,178,0.14) !important;
+  color:#BDF8EB !important;
+}
+.badge.amber{
+  background:rgba(255,200,87,0.14) !important;
+  color:#FFE7AE !important;
+}
+.badge.red{
+  background:rgba(255,124,138,0.14) !important;
+  color:#FFD1D6 !important;
+}
+
+.score-pill{
+  background:linear-gradient(135deg, rgba(0,229,255,0.18), rgba(79,195,247,0.14)) !important;
+  color:#D8FBFF !important;
+  border:1px solid rgba(0,229,255,0.12);
+}
+
+.timeline-dot,
+.live-dot{
+  box-shadow:0 0 0 7px rgba(0,229,255,0.08) !important;
+}
+
+.pipeline-card strong,
+.detail-kpi strong,
+.metric strong{
+  letter-spacing:-.05em !important;
+}
+/* =========================================================
+   PREMIUM REDESIGN — STEP 4
+   Layout Breathing / Hover / Motion / Premium Polish
+========================================================= */
+.hero-metrics,
+.proof-metrics,
+.module-grid,
+.benchmark-grid,
+.trust-layout,
+.pricing-grid,
+.faq-grid,
+.list-shell{
+  gap:20px !important;
+}
+
+.workspace-body{
+  gap:0 !important;
+}
+
+.search-row{
+  gap:14px !important;
+  margin-bottom:14px !important;
+}
+
+.quick-filter-row{
+  gap:14px !important;
+}
+
+.active-cat-bar{
+  margin-bottom:14px !important;
+  padding:14px 16px !important;
+}
+
+.project-row,
+.intel-card,
+.card,
+.metric,
+.module-card,
+.compare-card,
+.price-plan,
+.saved-search,
+.sidebar-item,
+.pipeline-card,
+.detail-kpi,
+.detail-info{
+  transition:
+    transform .28s cubic-bezier(.22,.61,.36,1),
+    box-shadow .28s cubic-bezier(.22,.61,.36,1),
+    background .24s ease,
+    border-color .24s ease !important;
+}
+
+.card:hover,
+.metric:hover,
+.module-card:hover,
+.compare-card:hover,
+.price-plan:hover,
+.intel-card:hover,
+.pipeline-card:hover,
+.detail-kpi:hover,
+.detail-info:hover,
+.saved-search:hover{
+  transform:translateY(-4px) scale(1.012);
+  box-shadow:
+    0 20px 44px rgba(0,0,0,0.24),
+    0 0 24px rgba(0,229,255,0.05) !important;
+  border-color:rgba(0,229,255,0.14) !important;
+}
+
+.project-row:hover{
+  transform:translateY(-1px) scale(1.004);
+  border-color:rgba(0,229,255,0.10) !important;
+}
+
+.sidebar-item:hover{
+  box-shadow:0 0 20px rgba(79,195,247,0.05);
+}
+
+.workspace-frame,
+.card,
+.metric,
+.list-card,
+.detail-card,
+.intel-card{
+  animation:premiumFadeUp .75s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes premiumFadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* CTA 가독성 강화 */
+.hero-actions .btn{
+  min-height:48px !important;
+  padding-inline:18px !important;
+}
+
+/* 메트릭 카드에 광원 포인트 */
+.metric{
+  position:relative;
+  overflow:hidden;
+}
+
+.metric::before{
+  content:"";
+  position:absolute;
+  inset:auto -20% 55% auto;
+  width:120px;
+  height:120px;
+  border-radius:999px;
+  background:radial-gradient(circle, rgba(0,229,255,0.10), transparent 65%);
   pointer-events:none;
 }
 
-.hero-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.42) saturate(.9) contrast(1.05);
-}
-
-.hero-video-overlay{
-  position:absolute;
-  inset:0;
+/* 우측 패널 더 가볍게 */
+.intel-card{
   background:
-    linear-gradient(180deg, rgba(8,15,32,.55) 0%, rgba(8,15,32,.35) 22%, rgba(246,248,251,.16) 52%, rgba(246,248,251,.88) 100%),
-    radial-gradient(circle at 20% 20%, rgba(37,99,235,.18), transparent 35%);
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05)) !important;
 }
 
-.hero-copy,
-.hero-metrics,
+/* 푸터도 다크 프리미엄화 */
+.footer{
+  background:
+    linear-gradient(180deg, rgba(7,17,31,.78) 0%, rgba(6,13,24,.94) 100%) !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+
+.footer-links,
+.footer-copy,
+.footer h4,
+.footer .muted{
+  color:var(--text-3) !important;
+}
+
+.footer .brand-copy strong{
+  color:var(--text) !important;
+}
+
+/* FAQ / Pricing / Compare 영역까지 올드한 흰 카드 제거 */
+.soft-card,
+.plan-highlight,
+.compare-card,
+.faq-item,
+.price-plan{
+  background:rgba(255,255,255,0.07) !important;
+  border-color:rgba(255,255,255,0.10) !important;
+}
+
+/* 모달도 동일 톤으로 */
+.modal{
+  background:linear-gradient(180deg, rgba(10,22,37,.96), rgba(8,18,31,.98)) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+}
+
+.auth-tabs{
+  background:rgba(255,255,255,0.05) !important;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.auth-tab.active{
+  background:rgba(255,255,255,0.08) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+}
+/* =========================================================
+   STEP 1 — Remove useless top UI / Move workspace up
+========================================================= */
+
+/* 헤더를 앱형 미니 바처럼 축소 */
+.site-header{
+  background:rgba(7,17,31,0.58) !important;
+  border-bottom:1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter:blur(18px) saturate(1.2) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.2) !important;
+}
+
+.site-nav{
+  height:64px !important;
+  min-height:64px !important;
+}
+
+.site-nav-left{
+  gap:12px !important;
+}
+
+.site-nav-right.nav-actions-minimal{
+  gap:0 !important;
+}
+
+/* 로고 텍스트 제거 대응 */
+.brand-minimal{
+  gap:0 !important;
+}
+
+.brand-minimal .brand-copy{
+  display:none !important;
+}
+
+/* 로고를 더 미래형 글로우 심볼로 */
+.brand-mark-future{
+  width:42px !important;
+  height:42px !important;
+  border-radius:14px !important;
+  filter:
+    drop-shadow(0 0 10px rgba(0,229,255,0.24))
+    drop-shadow(0 0 22px rgba(79,195,247,0.12)) !important;
+}
+
+/* 모바일 메뉴 버튼도 숨김 */
+.menu-btn,
+.mobile-nav{
+  display:none !important;
+}
+
+/* Hero 상단 여백 대폭 축소 */
+.workspace-hero{
+  padding:20px 0 36px !important;
+}
+
+/* hero-head 제거 후 첫 화면이 바로 workspace가 되도록 */
 .workspace-frame{
+  margin-top:0 !important;
+}
+
+/* workspace top을 첫 화면 헤더답게 더 밀도 높게 */
+.workspace-top.workspace-top-compact{
+  padding:20px 22px !important;
+}
+
+.workspace-top.workspace-top-compact h2{
+  font-size:30px !important;
+  line-height:1.18 !important;
+  letter-spacing:-.045em !important;
+}
+
+.workspace-top.workspace-top-compact p{
+  max-width:760px !important;
+  color:var(--text-2) !important;
+}
+
+/* status 뱃지 간소화 */
+.workspace-top.workspace-top-compact .workspace-status{
+  gap:8px !important;
+}
+
+/* 페이지 첫 화면을 더 앱처럼 */
+main#top{
+  padding-top:0 !important;
+}
+/* =========================================================
+   STEP 1-A
+   실제 워크스페이스를 상단으로 당기기
+========================================================= */
+.hero-video-bg,
+.hero-video,
+.hero-video-overlay{
+  display:none !important;
+}
+
+.workspace-hero{
+  padding:8px 0 24px !important;
+}
+
+.workspace-hero > .container{
+  margin-top:0 !important;
+}
+
+.workspace-frame{
+  margin-top:0 !important;
+}
+
+.workspace-top.workspace-top-compact,
+.workspace-top{
+  padding-top:18px !important;
+  padding-bottom:18px !important;
+}
+
+main#top{
+  padding-top:0 !important;
+}
+/* =========================================================
+   STEP 1-B
+   헤더 중앙 타이틀
+========================================================= */
+.site-nav{
   position:relative;
-  z-index:2;
 }
 
-.hero-copy h1,
-.hero-copy p,
-.workspace-top h2,
-.workspace-top p{
-  color:#fff;
+.site-nav-center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
 }
 
-.workspace-frame{
-  margin-top:16px;
-  backdrop-filter:blur(6px);
-  background:rgba(255,255,255,.92);
+.site-nav-center-title{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#E6FBFF;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 0 18px rgba(0,229,255,0.04);
+}
+
+@media (max-width: 980px){
+  .site-nav-center{
+    display:none;
+  }
+}
+/* =========================================================
+   STEP 1-C
+   인증 아이콘 버튼
+========================================================= */
+.auth-icon-btn{
+  margin-left:8px;
+}
+
+.auth-icon-btn:hover{
+  box-shadow:0 0 18px rgba(0,229,255,0.08) !important;
+}
+/* =========================================================
+   STEP 1-D
+   필터 바 UI 리디자인
+========================================================= */
+.sticky-filter-bar{
+  background:rgba(8,18,31,0.72) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding-bottom:18px !important;
+  margin-bottom:18px !important;
+}
+
+.search-toolbar-shell{
+  display:grid;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.search-toolbar-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.search-toolbar-copy{
+  display:grid;
+  gap:4px;
+}
+
+.search-toolbar-copy strong{
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--text) !important;
+}
+
+.search-toolbar-copy span{
+  font-size:12px;
+  line-height:1.55;
+  color:var(--text-3) !important;
+}
+
+.refined-search-row{
+  grid-template-columns:minmax(0,1.9fr) repeat(3, minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+
+.btn-reset-filter{
+  background:rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  color:var(--text) !important;
+}
+
+.btn-reset-filter:hover{
+  background:rgba(255,255,255,0.10) !important;
+  box-shadow:0 0 18px rgba(79,195,247,0.06);
 }
 
 @media (max-width: 920px){
-  .workspace-hero{
-    min-height:auto;
-  }
-
-  .hero-video{
-    object-position:center center;
-  }
-
-  .hero-copy h1{
-    color:#fff !important;
-  }
-
-  .hero-copy p{
-    color:rgba(255,255,255,.9) !important;
+  .refined-search-row{
+    grid-template-columns:1fr 1fr !important;
   }
 }
 
-@media (prefers-reduced-motion: reduce){
-  .hero-video{
-    display:none;
+@media (max-width: 680px){
+  .refined-search-row{
+    grid-template-columns:1fr !important;
+  }
+}
+/* =========================================================
+   FUTURISTIC DASHBOARD TOKENS — FINAL SYSTEM BASE
+   반드시 <style> 맨 마지막에 추가
+========================================================= */
+:root{
+  --bg-0:#07111F;
+  --bg-1:#0B1726;
+  --bg-2:#102033;
+  --bg-3:#132238;
+
+  --glass-1:rgba(255,255,255,0.06);
+  --glass-2:rgba(255,255,255,0.08);
+  --glass-3:rgba(255,255,255,0.12);
+
+  --stroke-1:rgba(255,255,255,0.08);
+  --stroke-2:rgba(255,255,255,0.14);
+
+  --text-1:#F4FBFF;
+  --text-2:#B8CBDA;
+  --text-3:#7E95AA;
+  --text-4:#5A7087;
+
+  --cyan:#00E5FF;
+  --teal:#00D1B2;
+  --sky:#4FC3F7;
+  --mint:#7CF7D4;
+
+  --warn:#FFB84D;
+  --danger:#FF6B6B;
+  --success:#29E7A8;
+
+  --glow-cyan:0 0 24px rgba(0,229,255,0.16);
+  --glow-teal:0 0 24px rgba(0,209,178,0.14);
+
+  --shadow-card:0 10px 30px rgba(0,0,0,0.30);
+  --shadow-card-hover:0 18px 40px rgba(0,0,0,0.34), 0 0 24px rgba(0,229,255,0.10);
+
+  --blur-xl:20px;
+  --radius-card:24px;
+  --radius-md:18px;
+  --radius-sm:14px;
+
+  --panel-pad:20px;
+  --grid-gap:18px;
+}
+
+body{
+  background:
+    radial-gradient(circle at 18% 20%, rgba(0,229,255,0.10), transparent 18%),
+    radial-gradient(circle at 82% 12%, rgba(79,195,247,0.10), transparent 24%),
+    radial-gradient(circle at 74% 78%, rgba(0,209,178,0.08), transparent 22%),
+    linear-gradient(180deg, #07111F 0%, #0B1726 52%, #132238 100%) !important;
+  color:var(--text-1) !important;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.34;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 76% 18%, rgba(255,255,255,.05) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 84% 72%, rgba(255,255,255,.04) 0 1px, transparent 1.5px),
+    linear-gradient(125deg, transparent 0 42%, rgba(0,229,255,.06) 49%, transparent 56%);
+  background-size:220px 220px, 280px 280px, 320px 320px, 100% 100%;
+  mix-blend-mode:screen;
+}
+
+.workspace-frame,
+.card,
+.metric,
+.list-card,
+.detail-card,
+.intel-card,
+.pipeline-card,
+.subtle-box,
+.note-box,
+.saved-search,
+.detail-info,
+.detail-summary,
+.detail-kpi,
+.xai-item,
+.timeline-item,
+.mini-item,
+.intel-item{
+  border-radius:var(--radius-card) !important;
+  background:var(--glass-1) !important;
+  border:1px solid var(--stroke-1) !important;
+  backdrop-filter:blur(var(--blur-xl)) !important;
+  -webkit-backdrop-filter:blur(var(--blur-xl)) !important;
+  box-shadow:var(--shadow-card) !important;
+}
+
+.project-row,
+.metric,
+.intel-card,
+.saved-search,
+.detail-kpi,
+.detail-info,
+.sidebar-item{
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease,
+    background .35s ease !important;
+}
+
+.project-row:hover,
+.metric:hover,
+.intel-card:hover,
+.saved-search:hover,
+.detail-kpi:hover,
+.detail-info:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-card-hover) !important;
+  border-color:rgba(0,229,255,0.18) !important;
+}
+
+.panel-title h3,
+.panel-title h4,
+.workspace-top h2,
+.project-title,
+.detail-header h3{
+  color:var(--text-1) !important;
+}
+
+.small,
+.caption,
+.muted,
+.workspace-top p,
+.detail-kpi span,
+.detail-info strong{
+  color:var(--text-3) !important;
+}
+/* =========================================================
+   STEP 4-B — LAYOUT RE-ARCHITECTURE
+   KPI STRIP + PROJECT GRID + INSIGHT RAIL
+========================================================= */
+
+.dashboard-main{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  min-height:0;
+}
+
+.kpi-strip{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:16px;
+}
+
+.kpi-card{
+  position:relative;
+  overflow:hidden;
+  padding:18px 18px 16px;
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border:1px solid rgba(255,255,255,0.10);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.26);
+}
+
+.kpi-card::before{
+  content:"";
+  position:absolute;
+  inset:auto -20% -40% auto;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,229,255,0.18), transparent 70%);
+  pointer-events:none;
+}
+
+.kpi-label{
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-3);
+  margin-bottom:10px;
+}
+
+.kpi-value{
+  font-size:30px;
+  line-height:1;
+  font-weight:800;
+  color:var(--text-1);
+  margin-bottom:8px;
+}
+
+.kpi-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  color:var(--text-3);
+}
+
+.kpi-delta{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,229,255,0.10);
+  color:var(--cyan);
+  border:1px solid rgba(0,229,255,0.16);
+  font-weight:700;
+}
+
+.dashboard-content-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.7fr) minmax(320px, .88fr);
+  gap:18px;
+  align-items:start;
+  min-height:0;
+}
+
+.glass-board{
+  padding:20px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 14px 32px rgba(0,0,0,0.30);
+}
+
+.project-board{
+  min-height:640px;
+}
+
+.project-board-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.board-title-wrap h3{
+  margin:4px 0 0;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:var(--text-1);
+}
+
+.eyebrow-label{
+  margin:0;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-3);
+}
+
+.board-head-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.finder-reset-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.08);
+  color:var(--text-1);
+  border:1px solid rgba(255,255,255,0.12);
+  cursor:pointer;
+  transition:all .28s ease;
+}
+
+.finder-reset-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(0,229,255,0.24);
+  box-shadow:0 0 22px rgba(0,229,255,0.12);
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+}
+
+.project-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border:1px solid rgba(255,255,255,0.09);
+  box-shadow:0 12px 28px rgba(0,0,0,0.24);
+  cursor:pointer;
+  transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+}
+
+.project-card:hover{
+  transform:translateY(-4px) scale(1.015);
+  border-color:rgba(0,229,255,0.20);
+  box-shadow:0 18px 40px rgba(0,0,0,0.32), 0 0 24px rgba(0,229,255,0.10);
+}
+
+.project-card.active{
+  border-color:rgba(0,229,255,0.28);
+  box-shadow:0 18px 42px rgba(0,0,0,0.34), 0 0 30px rgba(0,229,255,0.14);
+}
+
+.project-card-visual{
+  position:relative;
+  height:150px;
+  padding:18px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.15), transparent 28%),
+    linear-gradient(135deg, rgba(0,229,255,0.26), rgba(0,209,178,0.18) 50%, rgba(7,17,31,0.12));
+}
+
+.visual-grid-lines{
+  position:absolute;
+  inset:0;
+  opacity:.14;
+  background-image:
+    linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+  background-size:24px 24px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.9), transparent);
+  pointer-events:none;
+}
+
+.project-card-badge-row{
+  position:absolute;
+  top:14px;
+  left:14px;
+  right:14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  z-index:2;
+}
+
+.project-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(7,17,31,0.28);
+  color:#F4FBFF;
+  backdrop-filter:blur(10px);
+}
+
+.project-chip.cyan{
+  color:var(--cyan);
+  border-color:rgba(0,229,255,0.18);
+  background:rgba(0,229,255,0.10);
+}
+
+.project-chip.teal{
+  color:var(--mint);
+  border-color:rgba(0,209,178,0.18);
+  background:rgba(0,209,178,0.10);
+}
+
+.project-chip.warn{
+  color:#FFD28C;
+  border-color:rgba(255,184,77,0.18);
+  background:rgba(255,184,77,0.10);
+}
+
+.project-symbol{
+  position:relative;
+  z-index:2;
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.18);
+  color:#fff;
+  font-size:18px;
+  font-weight:800;
+  backdrop-filter:blur(10px);
+}
+
+.project-mini-score{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
+  color:#fff;
+}
+
+.project-mini-score strong{
+  font-size:28px;
+  line-height:1;
+}
+
+.project-mini-score span{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.72;
+}
+
+.project-card-body{
+  padding:18px 18px 16px;
+}
+
+.project-card-topline{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.project-card-title{
+  margin:0;
+  font-size:18px;
+  font-weight:800;
+  line-height:1.28;
+  color:var(--text-1);
+}
+
+.project-card-client{
+  margin-top:4px;
+  font-size:13px;
+  color:var(--text-3);
+}
+
+.project-save-btn{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  color:var(--text-2);
+  cursor:pointer;
+  transition:all .24s ease;
+}
+
+.project-save-btn:hover{
+  color:var(--cyan);
+  border-color:rgba(0,229,255,0.18);
+  box-shadow:0 0 16px rgba(0,229,255,0.10);
+}
+
+.project-save-btn.saved{
+  color:var(--mint);
+  border-color:rgba(0,209,178,0.20);
+  background:rgba(0,209,178,0.10);
+}
+
+.project-card-summary{
+  min-height:42px;
+  margin:0 0 14px;
+  font-size:13px;
+  line-height:1.58;
+  color:var(--text-2);
+}
+
+.project-stat-row{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.project-stat{
+  padding:12px 12px 10px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.project-stat-label{
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-4);
+  margin-bottom:6px;
+}
+
+.project-stat-value{
+  font-size:15px;
+  font-weight:800;
+  color:var(--text-1);
+}
+
+.project-card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.project-source{
+  font-size:12px;
+  color:var(--text-3);
+}
+
+.project-link-mini{
+  font-size:12px;
+  font-weight:700;
+  color:var(--cyan);
+  text-decoration:none;
+}
+
+.insight-rail{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  min-height:0;
+}
+
+.insight-panel{
+  padding:18px;
+}
+
+.insight-stack{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.insight-score-hero{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:16px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.score-orb{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), transparent 30%),
+    conic-gradient(from 180deg, rgba(0,229,255,0.95), rgba(0,209,178,0.72), rgba(255,255,255,0.10), rgba(0,229,255,0.95));
+  padding:10px;
+  box-shadow:0 0 28px rgba(0,229,255,0.16);
+}
+
+.score-orb-inner{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:rgba(7,17,31,0.92);
+  border:1px solid rgba(255,255,255,0.10);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.score-orb-value{
+  font-size:34px;
+  font-weight:800;
+  color:#fff;
+  line-height:1;
+}
+
+.score-orb-label{
+  margin-top:6px;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-3);
+}
+
+.insight-meta h3{
+  margin:0 0 8px;
+  font-size:20px;
+  line-height:1.3;
+  color:var(--text-1);
+}
+
+.insight-meta p{
+  margin:0;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--text-2);
+}
+
+.insight-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.insight-metric{
+  padding:14px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.insight-metric .label{
+  display:block;
+  margin-bottom:8px;
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-4);
+}
+
+.insight-metric strong{
+  font-size:18px;
+  color:var(--text-1);
+}
+
+.insight-meter{
+  margin:14px 0;
+}
+
+.insight-meter-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--text-3);
+  margin-bottom:8px;
+}
+
+.insight-meter-track{
+  height:10px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,0.08);
+}
+
+.insight-meter-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg, var(--cyan), var(--teal));
+  box-shadow:0 0 14px rgba(0,229,255,0.14);
+}
+
+.insight-notes{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:14px;
+}
+
+.insight-note{
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  font-size:13px;
+  line-height:1.55;
+  color:var(--text-2);
+}
+
+.empty-projects{
+  display:grid;
+  place-items:center;
+  min-height:280px;
+  border-radius:22px;
+  border:1px dashed rgba(255,255,255,0.14);
+  color:var(--text-3);
+  text-align:center;
+  padding:24px;
+}
+
+@media (max-width: 1400px){
+  .kpi-strip{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
   }
 
-  .workspace-hero{
-    background:
-      radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 24%),
-      linear-gradient(180deg,#0f172a 0%, #1e293b 35%, #f6f8fb 100%);
+  .project-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 1180px){
+  .dashboard-content-grid{
+    grid-template-columns:1fr;
+  }
+
+  .insight-rail{
+    grid-template-columns:1fr 1fr;
+    display:grid;
+  }
+}
+
+@media (max-width: 900px){
+  .kpi-strip{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .insight-rail{
+    display:flex;
+  }
+
+  .insight-score-hero{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .kpi-strip{
+    grid-template-columns:1fr;
+  }
+
+  .project-stat-row,
+  .insight-grid{
+    grid-template-columns:1fr;
+  }
+
+  .project-board-head{
+    flex-direction:column;
+    align-items:flex-start;
   }
 }
 
   </style>
+
 </head>
 <body>
   <!-- PART 5 — Rebuilt information architecture / operating SaaS first fold -->
   <header class="site-header" id="siteHeader">
-    <div class="live-strip">
-      <div class="container live-strip-inner">
-        <div class="live-strip-list">
-          <span><strong>최근 동기화</strong> 2026-07-04 08:40 UTC</span>
-          <span>오늘 신규 감지 <strong>43건</strong></span>
-          <span>상태 변경 <strong>218건</strong></span>
-          <span>AI 우선 검토 <strong>16건</strong></span>
-        </div>
-        <span class="caption">운영형 데모 · 실제 업무 흐름 재현용</span>
-      </div>
-    </div>
     <div class="container site-nav">
       <div class="site-nav-left">
-        <a href="#top" class="brand" aria-label="ProjectRadar 홈으로 이동">
-          <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="8" y="8" width="48" height="48" rx="15" fill="#2563EB"/>
-            <path d="M24 20H38C44.0751 20 49 24.9249 49 31C49 37.0751 44.0751 42 38 42H31.5V50H24V20Z" fill="white"/>
-            <path d="M31.5 27.5H37.5C39.433 27.5 41 29.067 41 31C41 32.933 39.433 34.5 37.5 34.5H31.5V27.5Z" fill="#BFDBFE"/>
+                <a href="#workspace" class="brand brand-minimal" aria-label="ProjectRadar 워크스페이스로 이동">
+          <svg class="brand-mark brand-mark-future" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="prFutureGradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00E5FF"/>
+                <stop offset="0.55" stop-color="#4FC3F7"/>
+                <stop offset="1" stop-color="#00D1B2"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="8" width="48" height="48" rx="16" fill="url(#prFutureGradient)"/>
+            <circle cx="32" cy="32" r="14" fill="rgba(255,255,255,0.18)"/>
+            <path d="M24 21H34.5C40.299 21 45 25.701 45 31.5C45 37.299 40.299 42 34.5 42H29.5V49H24V21Z" fill="#07111F"/>
+            <path d="M29.5 27.5H34C36.485 27.5 38.5 29.515 38.5 32C38.5 34.485 36.485 36.5 34 36.5H29.5V27.5Z" fill="white" fill-opacity="0.86"/>
           </svg>
-          <span class="brand-copy"><strong>ProjectRadar</strong><span>운영형 B2B 프로젝트 인텔리전스</span></span>
         </a>
-        <nav class="nav-links" id="topNavLinks" aria-label="주요 메뉴">
-  <a href="#top" class="nav-link-tab active-tab" data-nav="home">전체 홈</a>
-  <a href="#proof" class="nav-link-tab" data-nav="about">회사 소개</a>
-  <a href="#workspace" class="nav-link-tab" data-nav="projects">프로젝트</a>
-  <a href="#savedProjectList" class="nav-link-tab" data-nav="myprojects">내 프로젝트</a>
-</nav>
+
+            </div>
+
+      <div class="site-nav-center" aria-hidden="true">
+        <span class="site-nav-center-title">AI Project Radar</span>
+      </div>
+
+      <div class="site-nav-right nav-actions
+
+                <button class="icon-btn" type="button" aria-label="알림"><span>🔔</span><em>3</em></button>
+        <button class="icon-btn auth-icon-btn" type="button" aria-label="로그인 또는 회원가입" data-open-auth="login">
+          <span>👤</span>
+        </button>
 
       </div>
-      <div class="site-nav-right nav-actions">
-        <button class="icon-btn" type="button" aria-label="알림"><span>🔔</span><em>3</em></button>
-        <label class="header-search" aria-label="상단 검색">
-          <span>⌕</span>
-          <input id="globalSearchInput" type="text" placeholder="프로젝트 검색">
-        </label>
-        <button class="btn ghost sm" data-open-auth="login">로그인</button>
-        <button class="btn secondary sm" data-open-auth="register">회원가입</button>
-        <button class="btn primary sm" data-open-auth="register">무료 체험</button>
-        <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">☰</button>
-      </div>
-    </div>
-    <div class="container mobile-nav" id="mobileNav">
-  <a href="#top">전체 홈</a>
-  <a href="#proof">회사 소개</a>
-  <a href="#workspace">프로젝트</a>
-  <a href="#savedProjectList">내 프로젝트</a>
 
-      <button data-open-auth="login">로그인</button>
-      <button data-open-auth="register">회원가입</button>
-      <button data-open-auth="register">무료 체험</button>
     </div>
+
   </header>
 
   <main id="top">
     <section class="workspace-hero" id="workspace">
   <div class="hero-video-bg" aria-hidden="true">
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="assets/projectradar-ai-collect-poster.jpg">
-      <source src="assets/projectradar-ai-collect.mp4" type="video/mp4">
-    </video>
-    <div class="hero-video-overlay"></div>
-  </div>
+  <video
+    id="heroVideo"
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto">
+    <source src="assets/dashboard-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+</div>
+
 
   <div class="container">
 
-        <div class="hero-head">
-          <div class="hero-copy">
-            <span class="eyebrow"><span class="eyebrow-dot"></span> 3초 안에 프로젝트를 판단하는 홈 화면</span>
-            <h1>광고형 랜딩이 아니라,<br>실제 영업팀이 여는 작업 첫 화면으로 다시 설계했습니다</h1>
-            <p>프로젝트명·발주처·예상 금액·진행 단계·업데이트 날짜·AI 신뢰 점수를 첫 화면에서 바로 확인하도록 정보 구조를 재정렬했습니다. 이제 사용자는 스크롤보다 판단을 먼저 하게 됩니다.</p>
-            <div class="hero-actions">
-              <button class="btn primary" data-open-auth="register">14일 무료 체험 시작</button>
-              <a href="#pricing" class="btn secondary">가격 정책 보기</a>
-            </div>
-          </div>
-          <div class="hero-metrics">
-            <div class="metric"><strong>10,482</strong><span>활성 추적 프로젝트</span><p>공공 발주, 대기업 조달, EPC·플랜트 관련 소스를 중심으로 누적 관리</p></div>
-            <div class="metric"><strong>97.8%</strong><span>추천 정확도</span><p>이번 주 추천 결과 중 실제 검토 지속 비율 기반 지표</p></div>
-            <div class="metric"><strong>85개국</strong><span>커버리지</span><p>국내외 플랜트·전력·해양 프로젝트를 동일 화면 구조로 정리</p></div>
-            <div class="metric"><strong>08:40</strong><span>오늘 마지막 동기화</span><p>실시간 운영 느낌을 위해 업데이트 시각과 변경 로그를 전면 노출</p></div>
-          </div>
-        </div>
-
         <div class="workspace-frame">
-          <div class="workspace-top">
+                    <div class="workspace-top workspace-top-compact">
             <div>
-              <span class="kicker">Workspace Home</span>
-              <h2>상단 요약 → 고정 필터 → 리스트 → 우측 판단 패널</h2>
-              <p>참고한 작업형 UI의 장점을 반영해, ProjectRadar도 “찾기 → 검토 → 저장 → 공유” 흐름이 자연스럽게 이어지는 구조로 바꿨습니다.</p>
+              <span class="kicker">PROJECT WORKSPACE</span>
+              <h2>실시간 프로젝트 탐색 및 AI 매칭 대시보드</h2>
+              <p>산업군 필터링, 프로젝트 리스트 검토, 출처 확인, 추천 점수 분석을 한 화면에서 수행합니다.</p>
             </div>
             <div class="workspace-status">
               <span class="badge blue">최근 릴리즈 2026.07</span>
               <span class="badge green">AI 추천 정상</span>
               <span class="badge amber">역매칭 베타</span>
-              <span class="badge blue">감사 로그 활성</span>
             </div>
           </div>
 
-          <div class="workspace-body">
-            <aside class="control-rail" aria-label="팀 기준 및 산업 카테고리 필터">
+
+                    <div class="workspace-body app-shell">
+  <aside class="app-sidebar" id="appSidebar" aria-label="주요 애플리케이션 메뉴" aria-expanded="false">
+    <div class="app-sidebar-top">
+      <button
+        class="sidebar-toggle-btn"
+        id="sidebarToggleBtn"
+        type="button"
+        aria-label="사이드바 확장 토글"
+        aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="sidebar-brand-mini">
+        <div class="sidebar-brand-mark">PR</div>
+        <div class="sidebar-brand-copy">
+          <strong>Radar OS</strong>
+          <span>Enterprise Console</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="app-sidebar-nav" aria-label="Dashboard Primary Navigation">
+      <button class="sidebar-item active" type="button" data-sidebar-item="project-data">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Project Data</span>
+        <span class="sidebar-tooltip">Project Data</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="tender">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M7 3h7l5 5v13H7z"/>
+            <path d="M14 3v5h5M10 13h6M10 17h6M10 9h2"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Tender</span>
+        <span class="sidebar-tooltip">Tender</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="procurement">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Procurement</span>
+        <span class="sidebar-tooltip">Procurement</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="ai">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"/>
+            <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">AI Score</span>
+        <span class="sidebar-tooltip">AI Score</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="analytics">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M5 19V9M12 19V5M19 19v-7"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Analytics</span>
+        <span class="sidebar-tooltip">Analytics</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="saved">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 4h12v16l-6-4-6 4z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Saved</span>
+        <span class="sidebar-tooltip">Saved</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="recent">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 8v5l3 2"/>
+            <path d="M12 3a9 9 0 1 0 9 9"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Recent</span>
+        <span class="sidebar-tooltip">Recent</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="settings">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 8.5A3.5 3.5 0 1 0 12 15.5A3.5 3.5 0 1 0 12 8.5z"/>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.4 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8L4.3 7A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1A2 2 0 1 1 19.7 7l-.1.1a1.7 1.7 0 0 0-.3 1.8v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Settings</span>
+        <span class="sidebar-tooltip">Settings</span>
+      </button>
+    </nav>
+  </aside>
+
+  <aside class="control-rail" aria-label="팀 기준 및 산업 카테고리 필터">
+
+
               <div class="panel-title"><h3>회사 기준 프로필</h3><span class="badge blue">현재 적용</span></div>
               <div class="subtle-box control-section">
                 <div><div class="control-label">주력 품목</div><div class="chip-group"><span class="chip active">220kV Transformer</span><span class="chip">GIS</span><span class="chip">Power Cable</span></div></div>
@@ -1013,16 +3129,52 @@ body, button, input, select, textarea, a, span, strong, small, p, div, h1, h2, h
 
             <section class="result-rail" aria-label="프로젝트 결과 목록">
               <div class="sticky-filter-bar">
-                <div class="search-row">
-                  <label class="field search-input">
-                    <span>⌕</span>
-                    <input id="searchInput" type="text" placeholder="프로젝트명, 발주처, CAT 코드, 키워드로 검색" aria-label="프로젝트 검색">
-                  </label>
-                  <label class="field"><select id="regionFilter" aria-label="지역 필터"><option value="all">전체 지역</option><option value="국내">국내</option><option value="중동">중동</option><option value="전국">전국</option><option value="경기">경기</option><option value="대전/충청">대전/충청</option></select></label>
-                  <label class="field"><select id="statusFilter" aria-label="상태 필터"><option value="all">전체 상태</option><option value="신규">신규</option><option value="변경">변경</option><option value="마감임박">마감임박</option><option value="협력사등록">협력사등록</option><option value="기본설계 진행중">기본설계 진행중</option></select></label>
-                  <label class="field"><select id="sortFilter" aria-label="정렬 기준"><option value="priority">AI 추천순</option><option value="deadline">마감 임박순</option><option value="trust">신뢰도순</option><option value="amount">금액순</option><option value="updated">최근 업데이트순</option></select></label>
-                  <button class="btn secondary sm" type="button" id="resetFilterBtn">필터 초기화</button>
+                                <div class="search-toolbar-shell">
+                  <div class="search-toolbar-head">
+                    <div class="search-toolbar-copy">
+                      <strong>Project Finder</strong>
+                      <span>검색 조건을 바꾸면 프로젝트 목록과 우측 분석 패널이 즉시 갱신됩니다.</span>
+                    </div>
+                    <button class="btn secondary sm btn-reset-filter" type="button" id="resetFilterBtn">필터 초기화</button>
+                  </div>
+
+                  <div class="search-row refined-search-row">
+                    <label class="field search-input">
+                      <span>⌕</span>
+                      <input id="searchInput" type="text" placeholder="프로젝트명, 발주처, CAT 코드, 키워드로 검색" aria-label="프로젝트 검색">
+                    </label>
+                    <label class="field">
+                      <select id="regionFilter" aria-label="지역 필터">
+                        <option value="all">전체 지역</option>
+                        <option value="국내">국내</option>
+                        <option value="중동">중동</option>
+                        <option value="전국">전국</option>
+                        <option value="경기">경기</option>
+                        <option value="대전/충청">대전/충청</option>
+                      </select>
+                    </label>
+                    <label class="field">
+                      <select id="statusFilter" aria-label="상태 필터">
+                        <option value="all">전체 상태</option>
+                        <option value="신규">신규</option>
+                        <option value="변경">변경</option>
+                        <option value="마감임박">마감임박</option>
+                        <option value="협력사등록">협력사등록</option>
+                        <option value="기본설계 진행중">기본설계 진행중</option>
+                      </select>
+                    </label>
+                    <label class="field">
+                      <select id="sortFilter" aria-label="정렬 기준">
+                        <option value="priority">AI 추천순</option>
+                        <option value="deadline">마감 임박순</option>
+                        <option value="trust">신뢰도순</option>
+                        <option value="amount">금액순</option>
+                        <option value="updated">최근 업데이트순</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
+
                 <div class="active-cat-bar">
                   <div>
                     <div class="control-label">선택된 산업 CAT</div>
@@ -1053,16 +3205,59 @@ body, button, input, select, textarea, a, span, strong, small, p, div, h1, h2, h
                 </div>
               </div>
 
-              <div class="list-shell" id="projectListShell">
-                <div class="list-card">
-                  <div class="project-list-head">
-                    <span>프로젝트 / 카테고리</span><span>발주처 / 국가</span><span>예상 규모</span><span>프로젝트 단계</span><span>업데이트</span><span>AI 적합도</span>
-                  </div>
-                  <div class="project-list" id="projectList"></div>
-                </div>
-                <div class="detail-card" id="projectDetail"></div>
-              </div>
-            </section>
+              <!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE START -->
+<section class="dashboard-main">
+  <div class="kpi-strip" id="kpiStrip"></div>
+
+  <div class="dashboard-content-grid">
+    <section class="project-board glass-board">
+      <div class="project-board-head">
+        <div class="board-title-wrap">
+          <p class="eyebrow-label">PROJECT INTELLIGENCE</p>
+          <h3>Live Opportunity Board</h3>
+        </div>
+
+        <div class="board-head-actions">
+          <button class="finder-reset-btn" id="resetFiltersBtn" type="button">
+            <span>↺</span>
+            <span>Reset Filters</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="project-grid" id="projectGrid"></div>
+    </section>
+
+    <aside class="insight-rail">
+      <section class="insight-panel glass-board" id="detailPanel">
+        <!-- renderDetail() inject -->
+      </section>
+
+      <section class="insight-panel glass-board">
+        <div class="panel-title">
+          <h4>Recently Viewed</h4>
+        </div>
+        <div id="recentProjects" class="insight-stack"></div>
+      </section>
+
+      <section class="insight-panel glass-board">
+        <div class="panel-title">
+          <h4>Saved Projects</h4>
+        </div>
+        <div id="savedProjects" class="insight-stack"></div>
+      </section>
+
+      <section class="insight-panel glass-board">
+        <div class="panel-title">
+          <h4>Live Activity</h4>
+        </div>
+        <div id="liveActivity" class="insight-stack"></div>
+      </section>
+    </aside>
+  </div>
+</section>
+<!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE END -->
+
 
             <aside class="intel-rail" aria-label="최근 본 프로젝트 및 AI 인사이트">
               <div class="intel-card">
@@ -1424,16 +3619,29 @@ body, button, input, select, textarea, a, span, strong, small, p, div, h1, h2, h
   recent:[],
   recentCats:['CAT-14','CAT-05'],
   favoriteCats:new Set(['CAT-05','CAT-11','CAT-14']),
-  selectedCats:new Set(), // 초기에 빈 Set으로 지정하여 첫 로딩 시 전체 프로젝트 리스트가 즉시 렌더링되도록 수정합니다.
+  selectedCats:new Set(),
   openGroups:new Set(allGroupIds),
   saved:initialSaved,
-  currentView: 'all', // [추가] 상단 카테고리 뷰 상태값 동기화용 변수
-projectScope: 'all'
+  projectScope:'all'
 };
+
+const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+
+if (resetFiltersBtn) {
+  resetFiltersBtn.addEventListener('click', () => {
+    if (industrySelect) industrySelect.value = '';
+    if (priceSelect) priceSelect.value = '';
+    if (deadlineSelect) deadlineSelect.value = '';
+    if (globalSearchInput) globalSearchInput.value = '';
+    applyFilters();
+  });
+}
 
 
     const els = {
-      projectList:document.getElementById('projectList'),
+      projectListEl : document.getElementById('projectGrid'),
+      kpiStripEl : document.getElementById('kpiStrip'),
+      detailPanelEl : document.getElementById('detailPanel'),
       projectDetail:document.getElementById('projectDetail'),
       resultCount:document.getElementById('resultCount'),
       recommendationNotes:document.getElementById('recommendationNotes'),
@@ -1500,6 +3708,17 @@ projectScope: 'all'
       if(state.currentSort === 'priority') sorted.sort((a,b)=>(b.fit + b.trust/10) - (a.fit + a.trust/10));
       return sorted;
     }
+    function resolveSelectedProject(list){
+  if(!list.length){
+    state.selectedId = null;
+    return null;
+  }
+
+  const activeProject = list.find(item => item.id === state.selectedId) || list[0];
+  state.selectedId = activeProject.id;
+  return activeProject;
+}
+
 
     function applyFilters(){
   const query = state.query.trim().toLowerCase();
@@ -1616,57 +3835,242 @@ projectScope: 'all'
       renderIndustryTree();
       renderInterestCollections();
     }
+function safeNumber(value, fallback = 0) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
 
-    function renderProjectList(list){
-      els.resultCount.textContent = `${list.length}건 표시 중`;
-      els.projectList.innerHTML = list.map(project => {
-        const isSaved = state.saved.has(project.id);
-        const isActive = state.selectedId === project.id;
-        return `
-          <article class="project-row ${isActive ? 'active' : ''}" data-id="${project.id}" tabindex="0" role="button" aria-label="${project.title} 상세 보기">
-            <div class="project-main">
-              <div class="project-main-top">
-                <div>
-                  <h3 class="project-title line-clamp-2 break">${project.title}</h3>
-                  <div class="project-priority" style="margin-top:8px">
-                    <span class="badge blue">${project.catCode}</span>
-                    <span class="badge ${getStatusBadge(project.status)}">${project.status}</span>
-                    <span class="badge blue">${project.catLabel}</span>
-                  </div>
-                </div>
-                <button class="save-btn ${isSaved ? 'saved' : ''}" data-save-id="${project.id}" aria-label="저장 토글">★</button>
-              </div>
-              <div class="project-meta">
-                <span>${project.keywords.join(' · ')}</span>
-                <span>관련 기업 ${project.relatedCompanies.join(', ')}</span>
-                <span>${project.sourceLabel}</span>
-              </div>
+function projectInitials(title = '') {
+  return String(title)
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(word => word[0])
+    .join('')
+    .toUpperCase() || 'AI';
+}
+
+function projectTheme(project) {
+  const text = `${project.title || ''} ${project.client || ''} ${project.country || ''}`.toLowerCase();
+
+  if (text.includes('energy') || text.includes('solar') || text.includes('grid')) {
+    return {
+      bg: 'linear-gradient(135deg, rgba(0,229,255,0.28), rgba(0,209,178,0.16) 52%, rgba(7,17,31,0.14))',
+      chip: 'teal'
+    };
+  }
+
+  if (text.includes('health') || text.includes('medical') || text.includes('hospital')) {
+    return {
+      bg: 'linear-gradient(135deg, rgba(79,195,247,0.28), rgba(0,229,255,0.15) 52%, rgba(7,17,31,0.14))',
+      chip: 'cyan'
+    };
+  }
+
+  if (text.includes('infra') || text.includes('transport') || text.includes('rail')) {
+    return {
+      bg: 'linear-gradient(135deg, rgba(255,184,77,0.22), rgba(0,229,255,0.14) 52%, rgba(7,17,31,0.14))',
+      chip: 'warn'
+    };
+  }
+
+  return {
+    bg: 'linear-gradient(135deg, rgba(0,229,255,0.26), rgba(0,209,178,0.18) 50%, rgba(7,17,31,0.12))',
+    chip: 'cyan'
+  };
+}
+
+function daysLeftLabel(project) {
+  const raw = project.daysLeft ?? project.deadlineDays ?? project.remainingDays;
+  const days = safeNumber(raw, null);
+
+  if (days === null) return 'Open timeline';
+  if (days <= 7) return `${days}d left`;
+  if (days <= 21) return `${days}d window`;
+  return `${days}d remaining`;
+}
+
+function projectSourceLabel(project) {
+  return project.source || project.origin || project.publisher || 'Verified source';
+}
+
+function renderKPIStats(items = []) {
+  if (!kpiStripEl) return;
+
+  const list = Array.isArray(items) ? items : [];
+  const total = list.length;
+  const avgFit = total ? Math.round(list.reduce((sum, p) => sum + safeNumber(p.fit), 0) / total) : 0;
+  const avgTrust = total ? Math.round(list.reduce((sum, p) => sum + safeNumber(p.trust), 0) / total) : 0;
+  const countries = new Set(list.map(p => p.country).filter(Boolean)).size;
+  const urgent = list.filter(p => safeNumber(p.daysLeft ?? p.deadlineDays ?? p.remainingDays, 999) <= 14).length;
+
+  kpiStripEl.innerHTML = `
+    <article class="kpi-card">
+      <div class="kpi-label">Opportunities</div>
+      <div class="kpi-value">${total}</div>
+      <div class="kpi-meta">
+        <span>Visible pipeline</span>
+        <span class="kpi-delta">LIVE</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Average Fit</div>
+      <div class="kpi-value">${avgFit}<small>%</small></div>
+      <div class="kpi-meta">
+        <span>AI relevance score</span>
+        <span class="kpi-delta">+${Math.max(1, Math.round(avgFit / 12))}%</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Confidence</div>
+      <div class="kpi-value">${avgTrust}<small>%</small></div>
+      <div class="kpi-meta">
+        <span>Source trust blend</span>
+        <span class="kpi-delta">Stable</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Markets</div>
+      <div class="kpi-value">${countries}</div>
+      <div class="kpi-meta">
+        <span>Country coverage</span>
+        <span class="kpi-delta">Global</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Urgent Closures</div>
+      <div class="kpi-value">${urgent}</div>
+      <div class="kpi-meta">
+        <span>≤ 14 day windows</span>
+        <span class="kpi-delta">${urgent ? 'Watch' : 'Clear'}</span>
+      </div>
+    </article>
+  `;
+}
+
+    function renderProjectList(items = filteredProjects) {
+  if (!projectListEl) return;
+
+  const list = Array.isArray(items) ? items : [];
+
+  if (!list.length) {
+    projectListEl.innerHTML = `
+      <div class="empty-projects">
+        <div>
+          <strong style="display:block; margin-bottom:8px; color:var(--text-1);">No projects match the current filters</strong>
+          <span>Adjust Industry, Price, Deadline, or Search to reopen the live opportunity stream.</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  renderKPIStats(filteredProjects);
+renderProjectList(filteredProjects);
+
+if (!selectedProject || !filteredProjects.some(p => p.id === selectedProject.id)) {
+  selectedProject = filteredProjects[0] || null;
+}
+
+renderDetail(selectedProject);
+renderRecent();
+renderSaved();
+renderLiveLogs();
+
+
+  projectListEl.innerHTML = list.map(project => {
+    const fit = safeNumber(project.fit);
+    const trust = safeNumber(project.trust);
+    const amount = project.amount || project.budget || 'Budget pending';
+    const theme = projectTheme(project);
+    const isSaved = savedProjects?.some(p => p.id === project.id);
+    const activeClass = selectedProject && selectedProject.id === project.id ? 'active' : '';
+
+    return `
+      <article class="project-card ${activeClass}" data-project-id="${project.id}" style="--visual-bg:${theme.bg};">
+        <div class="project-card-visual" style="background:${theme.bg};">
+          <div class="visual-grid-lines"></div>
+
+          <div class="project-card-badge-row">
+            <span class="project-chip ${theme.chip}">Fit ${fit}%</span>
+            <span class="project-chip">${daysLeftLabel(project)}</span>
+          </div>
+
+          <div class="project-symbol">${projectInitials(project.title)}</div>
+
+          <div class="project-mini-score">
+            <strong>${trust}%</strong>
+            <span>Confidence</span>
+          </div>
+        </div>
+
+        <div class="project-card-body">
+          <div class="project-card-topline">
+            <div>
+              <h4 class="project-card-title">${project.title || 'Untitled Project'}</h4>
+              <div class="project-card-client">${project.client || 'Unknown Client'} · ${project.country || 'Global'}</div>
             </div>
-            <div class="project-client break"><strong>${project.client}</strong><span class="small">${project.country} · ${project.region}</span></div>
-            <div class="col-strong">${project.amountLabel}<br><span class="small">공식 출처 ${project.officialSources}개</span></div>
-            <div class="project-stage"><strong>${project.stage}</strong><span class="small">${project.scope}</span></div>
-            <div class="project-update"><strong>${project.updatedAgo}</strong><span class="small">마감 ${project.deadline}</span></div>
-            <div class="project-ai"><strong>${project.fit}%</strong><span>AI 적합도 · Trust ${project.trust}</span></div>
-          </article>`;
-      }).join('');
 
-      document.querySelectorAll('.project-row').forEach(row => {
-        row.addEventListener('click', () => selectProject(Number(row.dataset.id)));
-        row.addEventListener('keydown', event => {
-          if(event.key === 'Enter' || event.key === ' '){
-            event.preventDefault();
-            selectProject(Number(row.dataset.id));
-          }
-        });
-      });
+            <button class="project-save-btn ${isSaved ? 'saved' : ''}" type="button" data-save-id="${project.id}" aria-label="Save project">
+              ${isSaved ? '★' : '☆'}
+            </button>
+          </div>
 
-      document.querySelectorAll('[data-save-id]').forEach(button => {
-        button.addEventListener('click', event => {
-          event.stopPropagation();
-          toggleSave(Number(button.dataset.saveId));
-        });
-      });
-    }
+          <p class="project-card-summary">
+            ${project.summary || project.explanation || 'AI-curated opportunity with strong matching signals and verified sourcing.'}
+          </p>
+
+          <div class="project-stat-row">
+            <div class="project-stat">
+              <div class="project-stat-label">Budget</div>
+              <div class="project-stat-value">${amount}</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-label">Stage</div>
+              <div class="project-stat-value">${project.stage || 'Discovery'}</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-label">Deadline</div>
+              <div class="project-stat-value">${project.deadline || daysLeftLabel(project)}</div>
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <span class="project-source">${projectSourceLabel(project)}</span>
+            ${project.link ? `<a class="project-link-mini" href="${project.link}" target="_blank" rel="noopener noreferrer">Source ↗</a>` : `<span class="project-link-mini">Analyzed</span>`}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  projectListEl.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-save-id]')) return;
+      const id = card.getAttribute('data-project-id');
+      const project = list.find(item => String(item.id) === String(id));
+      if (project) {
+        selectProject(project);
+      }
+    });
+  });
+
+  projectListEl.querySelectorAll('[data-save-id]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.getAttribute('data-save-id');
+      const project = list.find(item => String(item.id) === String(id));
+      if (project) {
+        toggleSave(project);
+        renderProjectList(filteredProjects);
+      }
+    });
+  });
+}
+
 
     function selectProject(id){
       state.selectedId = id;
@@ -1679,51 +4083,105 @@ projectScope: 'all'
       renderSaved();
     }
 
-    function renderDetail(project){
-      els.projectDetail.innerHTML = `
-        <div class="detail-header">
-          <div>
-            <div class="project-priority">
-              <span class="badge blue">${project.catCode}</span>
-              <span class="badge ${getStatusBadge(project.status)}">${project.status}</span>
-              <span class="badge green">AI 적합도 ${project.fit}%</span>
-            </div>
-            <h3 class="break">${project.title}</h3>
-            <div class="small break">${project.client} · ${project.country} · ${project.region}</div>
-          </div>
-          <button class="btn secondary sm" id="detailSaveBtn">${state.saved.has(project.id) ? '저장됨' : '관심 저장'}</button>
-        </div>
-        <div class="detail-summary">${project.reason}</div>
-        <div class="detail-grid">
-          <div class="detail-kpi"><strong>${project.fit}%</strong><span>AI 적합도</span></div>
-          <div class="detail-kpi"><strong>${project.amountLabel}</strong><span>예상 규모</span></div>
-          <div class="detail-kpi"><strong>${project.stage}</strong><span>프로젝트 단계</span></div>
-          <div class="detail-kpi"><strong>${project.updatedAgo}</strong><span>최근 업데이트</span></div>
-        </div>
-        <div class="detail-info-grid">
-          <div class="detail-info"><strong>카테고리</strong><span>${project.catCode} ${project.catLabel}</span></div>
-          <div class="detail-info"><strong>발주처</strong><span>${project.client}</span></div>
-          <div class="detail-info"><strong>관련 기업</strong><span>${project.relatedCompanies.join(', ')}</span></div>
-          <div class="detail-info"><strong>마감 일정</strong><span>${project.deadline} · ${getDaysLabel(project.dueDays)}</span></div>
-        </div>
-        <div class="detail-tags">${project.keywords.map(keyword => `<span>${keyword}</span>`).join('')}</div>
-        <div class="detail-block">
-          <div class="panel-title"><h4>AI 추천 근거</h4><span class="small">설명 가능한 점수</span></div>
-          <div class="xai-list">${project.explanation.map(([score,text]) => `<div class="xai-item"><span class="score-pill">${score}</span><div>${text}</div></div>`).join('')}</div>
-        </div>
-        <div class="detail-block">
-          <div class="panel-title"><h4>최근 상태 변경</h4><span class="small">${project.sourceLabel}</span></div>
-          <div class="timeline-list">${project.timeline.map(item => `<div class="timeline-item"><span class="timeline-dot"></span><div><strong style="display:block;font-size:14px">${item}</strong><span class="small">${project.updatedAgo}</span></div></div>`).join('')}</div>
-        </div>
-        <div class="detail-block">
-          <div class="panel-title"><h4>세부 설명 및 다음 액션</h4><span class="badge green">Team Ready</span></div>
-          <div class="note-box">${project.notes}<br><br><strong>권장 액션:</strong> ${project.action}</div>
-        </div>`;
+    function renderDetail(project = selectedProject) {
+  if (!detailPanelEl) return;
 
-      document.getElementById('detailSaveBtn').addEventListener('click', () => toggleSave(project.id));
-      els.recommendationNotes.innerHTML = project.explanation.map(([score,text]) => `<div class="mini-item"><span class="score-pill">${score}</span><div>${text}</div></div>`).join('');
-      els.recentViewedText.textContent = project.title.length > 22 ? `${project.title.slice(0,22)}…` : project.title;
-    }
+  if (!project) {
+    detailPanelEl.innerHTML = `
+      <div class="panel-title">
+        <h4>AI Insight Panel</h4>
+      </div>
+      <div class="empty-projects" style="min-height:220px;">
+        <div>
+          <strong style="display:block; margin-bottom:8px; color:var(--text-1);">No project selected</strong>
+          <span>Select a project card to inspect AI score, confidence, stage, source, and recommendation logic.</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const fit = safeNumber(project.fit);
+  const trust = safeNumber(project.trust);
+  const amount = project.amount || project.budget || 'Budget pending';
+  const summary = project.summary || project.explanation || 'No additional explanation available.';
+  const stage = project.stage || 'Discovery';
+  const timeline = project.timeline || project.deadline || daysLeftLabel(project);
+
+  detailPanelEl.innerHTML = `
+    <div class="panel-title" style="margin-bottom:14px;">
+      <h4>AI Project Insight</h4>
+    </div>
+
+    <div class="insight-score-hero">
+      <div class="score-orb">
+        <div class="score-orb-inner">
+          <div class="score-orb-value">${fit}</div>
+          <div class="score-orb-label">Match Score</div>
+        </div>
+      </div>
+
+      <div class="insight-meta">
+        <h3>${project.title || 'Untitled Project'}</h3>
+        <p>${summary}</p>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-metric">
+        <span class="label">Confidence</span>
+        <strong>${trust}%</strong>
+      </div>
+      <div class="insight-metric">
+        <span class="label">Stage</span>
+        <strong>${stage}</strong>
+      </div>
+      <div class="insight-metric">
+        <span class="label">Budget</span>
+        <strong>${amount}</strong>
+      </div>
+      <div class="insight-metric">
+        <span class="label">Market</span>
+        <strong>${project.country || 'Global'}</strong>
+      </div>
+    </div>
+
+    <div class="insight-meter">
+      <div class="insight-meter-label">
+        <span>AI Confidence Meter</span>
+        <strong style="color:var(--text-1);">${trust}%</strong>
+      </div>
+      <div class="insight-meter-track">
+        <div class="insight-meter-fill" style="width:${Math.max(4, Math.min(trust, 100))}%;"></div>
+      </div>
+    </div>
+
+    <div class="insight-notes">
+      <div class="insight-note">
+        <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Source</strong>
+        ${projectSourceLabel(project)}
+      </div>
+
+      <div class="insight-note">
+        <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Timeline</strong>
+        ${timeline}
+      </div>
+
+      <div class="insight-note">
+        <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Why this ranks high</strong>
+        ${project.explanation || 'The system detected strong alignment between project scope, budget potential, timing, and source quality.'}
+      </div>
+
+      ${project.link ? `
+        <div class="insight-note">
+          <strong style="display:block; margin-bottom:6px; color:var(--text-1);">External Source</strong>
+          <a href="${project.link}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan); text-decoration:none;">Open source document ↗</a>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
 
     function toggleSave(id){
       if(state.saved.has(id)) state.saved.delete(id);
@@ -1775,19 +4233,26 @@ projectScope: 'all'
     }
 
     function activateQuickFilter(value){
-      state.currentQuick = value;
-      document.querySelectorAll('[data-quick]').forEach(button => button.classList.toggle('active', button.dataset.quick === value));
-      const list = applyFilters();
-      renderProjectList(list);
-      renderActiveCats();
-      if(list.length){
-        if(!list.some(item => item.id === state.selectedId)) state.selectedId = list[0].id;
-        renderDetail(projects.find(item => item.id === state.selectedId) || list[0]);
-      } else {
-        els.projectDetail.innerHTML = '<div class="note-box">조건에 맞는 프로젝트가 없습니다. 지역·상태·CAT 선택을 완화해보세요.</div>';
-        els.recommendationNotes.innerHTML = '<div class="mini-item"><span class="score-pill">--</span><div>선택 조건을 조정하면 추천 근거가 다시 표시됩니다.</div></div>';
-      }
-    }
+  state.currentQuick = value;
+  document.querySelectorAll('[data-quick]').forEach(button => {
+    button.classList.toggle('active', button.dataset.quick === value);
+  });
+
+  const list = applyFilters();
+  const activeProject = resolveSelectedProject(list);
+
+  renderProjectList(list);
+  renderActiveCats();
+
+  if(activeProject){
+    renderDetail(activeProject);
+  } else {
+    els.projectDetail.innerHTML = '<div class="note-box">조건에 맞는 프로젝트가 없습니다. 지역·상태·CAT 선택을 완화해보세요.</div>';
+    els.recommendationNotes.innerHTML = '<div class="mini-item"><span class="score-pill">--</span><div>선택 조건을 조정하면 추천 근거가 다시 표시됩니다.</div></div>';
+    els.recentViewedText.textContent = '없음';
+  }
+}
+
 
     function refreshWorkspace(){
       renderInterestCollections();
@@ -1855,23 +4320,22 @@ projectScope: 'all'
       document.body.style.overflow = '';
     }
 
-    function renderInitial(){
-      renderCounts();
-      renderLiveLogs();
-      renderSaved();
-      renderRecent();
-      renderInterestCollections();
-      renderIndustryTree();
-      syncSearchInputs(state.query);
-      const list = applyFilters();
-      renderProjectList(list);
-      renderActiveCats();
-      if(list.length){
-        state.selectedId = list[0].id;
-        renderDetail(list[0]);
-        renderProjectList(list);
-      }
-    }
+    function renderInitial() {
+  filteredProjects = [...projects];
+
+  if (!selectedProject) {
+    selectedProject = filteredProjects[0] || null;
+  }
+
+  renderKPIStats(filteredProjects);
+  renderProjectList(filteredProjects);
+  renderDetail(selectedProject);
+  renderRecent();
+  renderSaved();
+  renderLiveLogs();
+}
+
+
 
     els.searchInput.addEventListener('input', event => {
       state.query = event.target.value;
@@ -1916,7 +4380,12 @@ projectScope: 'all'
     }));
     document.getElementById('demoLoginBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('데모 로그인 완료'); });
     document.getElementById('demoRegisterBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('무료 체험 계정 생성 데모 완료'); });
-    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('siteHeader').classList.toggle('open'));
+        const menuBtnEl = document.getElementById('menuBtn');
+    const siteHeaderEl = document.getElementById('siteHeader');
+    if(menuBtnEl && siteHeaderEl){
+      menuBtnEl.addEventListener('click', () => siteHeaderEl.classList.toggle('open'));
+    }
+
 /* 상단 탭 active 처리 */
 document.querySelectorAll('#topNavLinks .nav-link-tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -1947,8 +4416,99 @@ document.querySelectorAll('[data-scope]').forEach(button => {
   });
 });
 
+(() => {
+  const heroVideoEl = document.getElementById('heroVideo');
+  const heroSection = document.querySelector('.workspace-hero');
 
-    renderInitial();
+  if (!heroVideoEl || !heroSection) return;
+
+  const setHeroVideoState = (nextState) => {
+    heroSection.classList.remove('video-ready', 'video-fallback');
+    heroSection.classList.add(nextState);
+  };
+
+  heroVideoEl.addEventListener('playing', () => {
+    setHeroVideoState('video-ready');
+  }, { once: true });
+
+  heroVideoEl.addEventListener('error', () => {
+    setHeroVideoState('video-fallback');
+  });
+
+  heroVideoEl.querySelectorAll('source').forEach((sourceEl) => {
+    sourceEl.addEventListener('error', () => {
+      setHeroVideoState('video-fallback');
+    });
+  });
+
+  const playPromise = heroVideoEl.play();
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise
+      .then(() => {
+        setHeroVideoState('video-ready');
+      })
+      .catch(() => {
+        setHeroVideoState('video-fallback');
+      });
+  }
+})();
+(() => {
+  const workspaceFrame = document.querySelector('.workspace-frame');
+  const sidebar = document.getElementById('appSidebar');
+  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+  const sidebarItems = document.querySelectorAll('[data-sidebar-item]');
+
+  if (!workspaceFrame || !sidebar || !sidebarToggleBtn || !sidebarItems.length) return;
+
+  const syncSidebarState = () => {
+    const expanded = workspaceFrame.classList.contains('sidebar-expanded');
+    sidebar.setAttribute('aria-expanded', String(expanded));
+    sidebarToggleBtn.setAttribute('aria-pressed', String(expanded));
+  };
+
+  sidebarToggleBtn.addEventListener('click', () => {
+    workspaceFrame.classList.toggle('sidebar-expanded');
+    syncSidebarState();
+  });
+
+  sidebarItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      sidebarItems.forEach((node) => node.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  syncSidebarState();
+})();
+function hydrateWorkspaceBootState(){
+  state.currentQuick = 'all';
+  state.currentRegion = 'all';
+  state.currentStatus = 'all';
+  state.currentSort = 'priority';
+  state.projectScope = 'all';
+  state.query = '';
+  state.catQuery = '';
+  state.selectedCats.clear();
+
+  syncSearchInputs('');
+
+  if(els.regionFilter) els.regionFilter.value = 'all';
+  if(els.statusFilter) els.statusFilter.value = 'all';
+  if(els.sortFilter) els.sortFilter.value = 'priority';
+  if(els.catSearchInput) els.catSearchInput.value = '';
+
+  document.querySelectorAll('[data-quick]').forEach(button => {
+    button.classList.toggle('active', button.dataset.quick === 'all');
+  });
+
+  document.querySelectorAll('[data-scope]').forEach(button => {
+    button.classList.toggle('active', button.dataset.scope === 'all');
+  });
+}
+
+hydrateWorkspaceBootState();
+renderInitial();
+
   </script>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
