@@ -1,0 +1,1581 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProjectRadar v3 — 운영형 B2B 프로젝트 인텔리전스</title>
+  <meta name="description" content="한국 B2B 팀이 실제로 탐색·검토·공유·결제까지 이어갈 수 있도록 재설계한 ProjectRadar 단일 HTML 데모" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* PART 6 — Design Tokens / 8px Grid / Typography */
+    :root{
+  --bg:#f4f7fb;
+  --surface:#ffffff;
+  --surface-2:#f8fafc;
+  --surface-3:#eef2f7;
+  --surface-4:#e7eef8;
+  --line:#dde5f0;
+  --line-strong:#c6d3e4;
+  --text:#0f172a;
+  --text-2:#334155;
+  --text-3:#64748b;
+  --text-4:#94a3b8;
+  --brand:#2563eb;
+  --brand-strong:#1d4ed8;
+  --brand-soft:#eaf2ff;
+  --green:#059669;
+  --green-soft:#ecfdf5;
+  --amber:#b45309;
+  --amber-soft:#fff7ed;
+  --red:#dc2626;
+  --red-soft:#fef2f2;
+  --ink:#020617;
+
+  /* [수정 추가] 용도 및 카테고리별 다채로운 엔터프라이즈 전용 컬러 토큰 */
+  --domestic-brand: #0d9488;       /* 국내 프로젝트: 딥 민트 틸 */
+  --domestic-soft: #f0fdfa;
+  --intl-brand: #d97706;           /* 국제 프로젝트: 사막 웜 골드 */
+  --intl-soft: #fffbeb;
+  --my-brand: #4f46e5;             /* 내 프로젝트: 로열 인디고 */
+  --my-soft: #f5f3ff;
+  --about-brand: #0284c7;          /* 회사 소개: 마일드 블루 */
+  --about-soft: #f0f9ff;
+
+  --shadow-sm:0 1px 2px rgba(15,23,42,.05);
+      --shadow-md:0 12px 30px rgba(15,23,42,.06);
+      --shadow-lg:0 26px 80px rgba(15,23,42,.09);
+      --radius-xs:10px;
+      --radius-sm:14px;
+      --radius-md:18px;
+      --radius-lg:24px;
+      --radius-xl:32px;
+      --space-1:4px;
+      --space-2:8px;
+      --space-3:12px;
+      --space-4:16px;
+      --space-5:20px;
+      --space-6:24px;
+      --space-7:32px;
+      --space-8:40px;
+      --space-9:48px;
+      --space-10:56px;
+      --space-11:64px;
+      --space-12:80px;
+      --header-h:72px;
+      --container:1360px;
+      --font-ui:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font-ui);
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(37,99,235,.07), transparent 22%),
+        linear-gradient(180deg,#fbfdff 0%, var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    img,svg{display:block;max-width:100%}
+    button,input,select,textarea{font:inherit}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer}
+    input,select,textarea,button{outline:none}
+    .container{width:min(var(--container), calc(100% - 32px));margin:0 auto}
+    .section{padding:var(--space-11) 0}
+    .section-tight{padding:var(--space-9) 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);font-size:12px;font-weight:800;letter-spacing:-.02em}
+    .eyebrow-dot{width:8px;height:8px;border-radius:999px;background:var(--green);box-shadow:0 0 0 6px rgba(5,150,105,.1)}
+    .muted{color:var(--text-3)}
+    .small{font-size:13px;color:var(--text-3)}
+    .caption{font-size:12px;color:var(--text-4)}
+    .kicker{font-size:13px;font-weight:800;color:var(--brand-strong);letter-spacing:-.02em;text-transform:uppercase}
+    .line-clamp-1,.line-clamp-2{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+    .line-clamp-1{-webkit-line-clamp:1}
+    .line-clamp-2{-webkit-line-clamp:2}
+    .nowrap{white-space:nowrap}
+    .break{overflow-wrap:anywhere;word-break:keep-all}
+    .hide-mobile{display:block}
+    .show-mobile{display:none}
+    .stack{display:grid;gap:var(--space-4)}
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-sm);
+      min-width:0;
+    }
+    .soft-card{background:linear-gradient(180deg,#fff 0%, #f8fbff 100%)}
+    .badge{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+    .badge.blue{background:var(--brand-soft);color:var(--brand-strong)}
+.badge.green{background:var(--green-soft);color:var(--green)}
+.badge.amber{background:var(--amber-soft);color:var(--amber)}
+.badge.red{background:var(--red-soft);color:var(--red)}
+
+/* [수정 추가] 직관적인 다채로운 역할별 뱃지 스타일 정의 */
+.badge.domestic { background: var(--domestic-soft) !important; color: var(--domestic-brand) !important; border: 1px solid rgba(13, 148, 136, 0.15); }
+.badge.international { background: var(--intl-soft) !important; color: var(--intl-brand) !important; border: 1px solid rgba(217, 119, 6, 0.15); }
+.badge.myproject { background: var(--my-soft) !important; color: var(--my-brand) !important; border: 1px solid rgba(79, 70, 229, 0.15); }
+.badge.about { background: var(--about-soft) !important; color: var(--about-brand) !important; border: 1px solid rgba(2, 132, 199, 0.15); }
+
+/* 상단 네비게이션용 액티브 탭 클래스 */
+.nav-link-tab.active-tab {
+  background: var(--brand-soft) !important;
+  color: var(--brand-strong) !important;
+}
+    .metric{padding:var(--space-5);border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface)}
+    .metric strong{display:block;font-size:30px;line-height:1;letter-spacing:-.05em;margin-bottom:8px}
+    .metric span{display:block;font-size:14px;font-weight:700;color:var(--text-2)}
+    .metric p{margin:8px 0 0;font-size:13px;line-height:1.65;color:var(--text-3)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid transparent;font-weight:800;letter-spacing:-.02em;transition:.18s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:var(--brand);color:#fff;box-shadow:0 10px 20px rgba(37,99,235,.16)}
+    .btn.primary:hover{background:var(--brand-strong)}
+    .btn.secondary{background:#fff;color:var(--text);border-color:var(--line)}
+    .btn.ghost{background:transparent;color:var(--text-2);border-color:transparent}
+    .btn.ghost:hover{background:#fff;border-color:var(--line)}
+    .btn.sm{padding:10px 12px;font-size:14px;border-radius:10px}
+    .btn.block{width:100%}
+    .site-header{position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.2) blur(18px);background:rgba(255,255,255,.86);border-bottom:1px solid rgba(221,229,240,.88)}
+    .live-strip{border-bottom:1px solid rgba(221,229,240,.8);background:rgba(248,250,252,.92)}
+    .live-strip-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:12px;color:var(--text-3)}
+    .live-strip-list{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .site-nav{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:14px;min-width:0}
+    .brand-mark{width:42px;height:42px;border-radius:14px;box-shadow:0 12px 22px rgba(37,99,235,.18)}
+    .brand-copy{display:flex;flex-direction:column;min-width:0}
+    .brand-copy strong{font-size:16px;letter-spacing:-.03em}
+    .brand-copy span{font-size:12px;color:var(--text-3)}
+    .nav-links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:700;color:var(--text-2)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .menu-btn{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .mobile-nav{display:none;padding:0 0 16px;border-top:1px solid var(--line)}
+    .mobile-nav a,.mobile-nav button{display:block;width:100%;padding:14px 0;border:none;background:none;text-align:left;border-bottom:1px solid #edf2f7;font-weight:700;color:var(--text-2)}
+    .workspace-hero{padding:var(--space-7) 0 var(--space-8)}
+    .hero-head{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--space-7);align-items:end;margin-bottom:var(--space-7)}
+    .hero-copy h1{margin:16px 0 14px;font-size:clamp(34px,4.7vw,56px);line-height:1.04;letter-spacing:-.055em;word-break:keep-all}
+    .hero-copy p{margin:0;max-width:760px;font-size:18px;line-height:1.82;color:var(--text-2);letter-spacing:-.02em}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--space-6)}
+    .hero-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
+    .workspace-frame{border:1px solid var(--line);border-radius:var(--radius-xl);background:linear-gradient(180deg,#fff 0%, #f8fbff 100%);box-shadow:var(--shadow-lg);overflow:hidden}
+    .workspace-top{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .workspace-top h2{margin:6px 0 6px;font-size:24px;letter-spacing:-.03em}
+    .workspace-top p{margin:0;line-height:1.7;color:var(--text-3);max-width:760px}
+    .workspace-status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .workspace-body{display:grid;grid-template-columns:280px minmax(0,1fr) 340px;gap:0;min-width:0}
+    .control-rail,.result-rail,.intel-rail{min-width:0}
+    .control-rail{padding:20px;border-right:1px solid var(--line);background:rgba(248,250,252,.78)}
+    .result-rail{padding:20px;border-right:1px solid var(--line);background:#fff}
+    .intel-rail{padding:20px;background:rgba(251,253,255,.92)}
+    .panel-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .panel-title h3,.panel-title h4{margin:0;font-size:15px;letter-spacing:-.02em}
+    .subtle-box{padding:14px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .control-section{display:grid;gap:12px;margin-bottom:16px}
+    .control-label{font-size:12px;font-weight:800;color:var(--text-3);letter-spacing:-.01em}
+    .field, .field input, .field select, .field textarea{width:100%}
+    .field input,.field select,.field textarea{padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text)}
+    .field textarea{min-height:92px;resize:vertical}
+    .chip-group{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700;color:var(--text-2)}
+    .chip.active{background:var(--text);border-color:var(--text);color:#fff}
+    .saved-search{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:13px}
+    .saved-search strong{display:block;font-size:13px}
+    .pipeline{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .pipeline-card{padding:14px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .pipeline-card strong{display:block;font-size:24px;letter-spacing:-.04em;margin-bottom:4px}
+    .sticky-filter-bar{position:sticky;top:calc(var(--header-h) + 38px + 12px);z-index:20;background:#fff;padding-bottom:16px;margin-bottom:16px}
+    .search-row{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+    .search-input{position:relative}
+    .search-input span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-4)}
+    .search-input input{padding-left:42px}
+    .quick-filter-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .quick-filters{display:flex;gap:8px;flex-wrap:wrap}
+    .quick-pill{padding:10px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);font-size:12px;font-weight:800;color:var(--text-2)}
+    .quick-pill.active{background:var(--brand-soft);border-color:#bfd5ff;color:var(--brand-strong)}
+    .results-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--text-3);font-size:13px}
+    .list-shell{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:16px;min-width:0}
+    /* [수정 적용] 가로 찌러짐 해소를 위해 스크롤 컨테이너 분리 */
+.list-card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#fff;
+  min-width:0;
+  overflow-x:auto; /* 가로 너비 부족 시 스크롤바 제공 */
+}
+.detail-card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#fff;
+  min-width:0;
+}
+/* [수정 적용] 컬럼 찌그러짐 방지용 고정 최소 가로폭 강제 */
+  .project-list-head, .project-row{
+    display:grid;
+    /* 각 세부 항목의 명확한 최소 크기 지정 (글씨 세로 쏠림 현상 방지) */
+    grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+    gap:12px;
+    min-width: 900px !important; /* 테이블 형태가 찌그러지지 않는 절대 마지노선 너비 */
+  }
+
+  /* [수정 적용] 상단 헤더 글자 잘림(Clipping) 버그 해결용 패널 세부 보정 */
+  .project-list-head {
+    padding: 20px 18px 14px 18px !important; /* 상단 패딩을 기존 14px에서 20px로 확장하여 브라우저의 상단 깎임 마스크 영역 우회 */
+    align-items: center; /* 행 내부 글자들의 수직 정렬 정밀 세팅 */
+    border-top-left-radius: 20px !important; /* 부모 .list-card의 22px 곡률에 대응하여 배경 잘림 방지 */
+    border-top-right-radius: 20px !important;
+  }
+    .project-list{display:grid}
+    .project-row{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.2fr) 120px 104px 116px 92px;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);cursor:pointer;align-items:start;transition:background .18s ease,border-color .18s ease}
+    .project-row:last-child{border-bottom:none}
+    .project-row:hover{background:#f9fbff}
+    .project-row.active{background:linear-gradient(180deg,#f9fbff,#f4f8ff)}
+    .project-main{min-width:0}
+    .project-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .project-title{margin:0 0 8px;font-size:15px;line-height:1.5;font-weight:800;letter-spacing:-.02em}
+    .project-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--text-3)}
+    .project-meta span{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
+    .col-strong{font-size:14px;font-weight:700;color:var(--text-2);line-height:1.65}
+    .save-btn{border:none;background:transparent;color:var(--text-4);padding:0;font-size:18px;line-height:1}
+    .save-btn.saved{color:var(--brand)}
+    .detail-card{padding:18px}
+    .detail-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .detail-header h3{margin:10px 0 8px;font-size:22px;line-height:1.35;letter-spacing:-.03em}
+    .detail-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr) !important; /* [수정] 4열에서 2열로 변경하여 각 셀의 가로 공간을 2배 이상 확보 */
+  gap:12px;
+  margin:16px 0;
+}
+.detail-kpi{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--surface-2);
+  min-width:0;
+}
+.detail-kpi strong{
+  display:block;
+  font-size:16px; /* [수정] 폰트 크기 최적화로 "기본설계 진행중"이 깨짐 없이 완전하게 가로로 표출됩니다. */
+  font-weight:800;
+  letter-spacing:-.03em;
+  margin-bottom:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+  .detail-kpi span{
+    display: block;
+    font-size: 11px;
+    color: var(--text-3);
+    word-break: keep-all; /* 단어 단위 줄바꿈 강제 */
+  }
+    .detail-block{padding-top:14px;margin-top:14px;border-top:1px solid var(--line)}
+    .xai-list,.timeline-list,.mini-list{display:grid;gap:10px}
+    .xai-item,.timeline-item,.mini-item{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px;border-radius:14px;border:1px solid var(--line);background:#fff;min-width:0}
+    .score-pill{min-width:50px;height:30px;padding:0 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;font-size:12px;font-weight:900}
+    .timeline-dot{width:10px;height:10px;border-radius:999px;background:var(--green);margin-top:6px;box-shadow:0 0 0 7px rgba(5,150,105,.12)}
+    .intel-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff;margin-bottom:14px}
+    .intel-card:last-child{margin-bottom:0}
+    .intel-list{display:grid;gap:10px}
+    .intel-item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+    .live-item{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px 0;border-bottom:1px solid #edf2f7}
+    .live-item:last-child{border-bottom:none;padding-bottom:0}
+    .live-dot{width:8px;height:8px;border-radius:999px;background:var(--brand);margin-top:6px}
+    .release-list{display:grid;gap:12px}
+    .release-row{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:14px;border-radius:18px;border:1px solid var(--line);background:#fff}
+    .release-date{font-size:12px;font-weight:800;color:var(--text-3)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+    .section-head h2{margin:10px 0 0;font-size:34px;line-height:1.18;letter-spacing:-.04em;word-break:keep-all}
+    .section-head p{margin:10px 0 0;max-width:780px;line-height:1.8;color:var(--text-3)}
+    .proof-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+    .proof-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .benchmark-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .compare-card{padding:22px}
+    .compare-list{display:grid;gap:12px;margin-top:18px}
+    .compare-item{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:12px 0;border-bottom:1px solid #edf2f7}
+    .compare-item:last-child{border-bottom:none;padding-bottom:0}
+    .compare-icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-size:13px;font-weight:900}
+    .compare-icon.red{background:var(--red-soft);color:var(--red)}
+    .compare-icon.blue{background:var(--brand-soft);color:var(--brand-strong)}
+    .module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .module-card{padding:22px;display:grid;gap:16px}
+    .module-card h3{margin:0;font-size:19px;letter-spacing:-.02em}
+    .module-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .trust-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+    .logo-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+    .logo-chip{height:56px;border-radius:16px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--surface-2);font-weight:800;color:#536172;font-size:13px}
+    .pricing-grid{display:grid;grid-template-columns:.95fr 1.1fr .95fr;gap:18px;align-items:start}
+    .price-plan{padding:24px;position:relative}
+    .price-plan h3{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
+    .price-plan ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px}
+    .price-plan li{display:grid;grid-template-columns:auto 1fr;gap:10px;line-height:1.7;color:var(--text-2)}
+    .check{width:20px;height:20px;border-radius:999px;background:var(--green-soft);display:grid;place-items:center;color:var(--green);font-weight:900;font-size:12px;margin-top:2px}
+    .price-line{margin:10px 0 12px;font-size:38px;font-weight:900;letter-spacing:-.06em}
+    .price-line small{font-size:15px;font-weight:700;color:var(--text-3)}
+    .plan-highlight{border-color:#caddff;background:linear-gradient(180deg,#fff 0%, #f7fbff 100%);box-shadow:0 18px 42px rgba(37,99,235,.08)}
+    .plan-badge{position:absolute;right:18px;top:18px}
+    .billing-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px;border-radius:999px;border:1px solid var(--line);background:#fff}
+    .billing-toggle button{border:none;background:transparent;padding:10px 14px;border-radius:999px;font-weight:800;color:var(--text-2)}
+    .billing-toggle button.active{background:var(--text);color:#fff}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .faq-list{display:grid;gap:12px}
+    .faq-item{border-radius:18px;border:1px solid var(--line);background:#fff;overflow:hidden}
+    .faq-q{width:100%;padding:18px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font-weight:800;color:var(--text)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .22s ease;padding:0 18px;color:var(--text-3);line-height:1.8;font-size:14px}
+    .faq-item.open .faq-a{padding:0 18px 18px;max-height:220px}
+    .footer{padding:40px 0 56px;border-top:1px solid var(--line);background:linear-gradient(180deg,#fbfdff 0%, #f5f8fc 100%)}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .85fr .85fr .85fr;gap:18px}
+    .footer h4{margin:0 0 12px;font-size:14px}
+    .footer-links{display:grid;gap:10px;color:var(--text-3);font-size:14px}
+    .footer-copy{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--text-3);font-size:13px}
+    .modal-overlay{position:fixed;inset:0;background:rgba(2,6,23,.48);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
+    .modal-overlay.show{display:flex}
+    .modal{width:min(560px,100%);border-radius:28px;border:1px solid var(--line);background:#fff;box-shadow:0 30px 80px rgba(2,6,23,.2);overflow:hidden}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
+    .modal-body{padding:20px}
+    .close-btn{width:36px;height:36px;border:none;border-radius:12px;background:var(--surface-3)}
+    .auth-tabs{display:flex;gap:8px;padding:6px;background:var(--surface-3);border-radius:14px}
+    .auth-tab{flex:1;border:none;background:transparent;padding:11px 12px;border-radius:10px;font-weight:800;color:var(--text-2)}
+    .auth-tab.active{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .auth-panel{display:none}
+    .auth-panel.active{display:block}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-field{display:grid;gap:6px;margin-top:14px}
+    .form-field label{font-size:12px;font-weight:800;color:var(--text-3)}
+    .form-field input,.form-field select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .note-box{padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);line-height:1.75;color:var(--text-2);font-size:13px}
+    .skeleton{position:relative;overflow:hidden;background:#ebf1f7;border-radius:12px}
+    .skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.78) 50%, transparent 100%);transform:translateX(-100%);animation:shimmer 1.3s infinite}
+    @keyframes shimmer{100%{transform:translateX(100%)}}
+    /* PART 8 — Incremental UX patch (keep structure, improve readability/filters/nav) */
+    html,body{width:100%;overflow-x:hidden}
+    body{
+      background:#f6f8fb;
+      color:var(--text);
+      word-break:keep-all;
+      overflow-wrap:break-word;
+      white-space:normal;
+      line-height:1.6;
+    }
+    body,button,input,select,textarea,a,span,strong,small,p,div,h1,h2,h3,h4,h5,h6,label{
+      font-family:var(--font-ui);
+      word-break:keep-all;
+      overflow-wrap:break-word;
+      writing-mode:horizontal-tb;
+      text-orientation:mixed;
+    }
+    main,section,article,aside,header,footer,div,span,a,button,label,input,select,textarea{min-width:0}
+    .card,.subtle-box,.intel-card,.list-card,.detail-card,.pipeline-card,.metric,.release-row,.faq-item,.price-plan{overflow:hidden}
+    .break{overflow-wrap:break-word;word-break:keep-all;white-space:normal}
+    .small{font-size:13px;line-height:1.55}
+    .caption{font-size:12px;line-height:1.45}
+    .badge{font-size:11px;letter-spacing:-.01em}
+    .panel-title h3,.panel-title h4{font-size:17px;font-weight:800;letter-spacing:-.03em}
+    .hero-copy h1{font-size:clamp(48px,4.8vw,56px);line-height:1.14;letter-spacing:-.055em;margin:18px 0 16px}
+    .hero-copy p{font-size:16px;line-height:1.82;color:#475569;max-width:720px}
+    .workspace-top h2{font-size:28px;line-height:1.3;letter-spacing:-.04em}
+    .section-head h2{font-size:36px;line-height:1.24;letter-spacing:-.045em}
+    .project-title{font-size:22px;line-height:1.36;font-weight:800;letter-spacing:-.03em;margin:0}
+    .detail-header h3{font-size:24px;line-height:1.35;letter-spacing:-.03em}
+    .module-card h3,.price-plan h3{font-size:18px}
+    .site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:none;border-bottom:1px solid #e6ebf2;box-shadow:0 1px 0 rgba(15,23,42,.03)}
+    .live-strip{background:#f8fafc;border-bottom:1px solid #eef2f7}
+    .live-strip-inner{height:36px}
+    .site-nav{height:72px;gap:18px}
+    .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:18px;min-width:0}
+    .site-nav-left{flex:1 1 auto}
+    .site-nav-right{flex:0 0 auto}
+    .brand{padding-right:8px}
+    .brand-mark{box-shadow:none}
+    .brand-copy strong{font-size:17px;font-weight:800}
+    .nav-links{gap:8px;font-size:14px;font-weight:700;color:var(--text-2)}
+    .nav-links a{padding:10px 12px;border-radius:10px;color:#334155}
+    .nav-links a:hover{background:#f1f5f9;color:var(--text)}
+    .nav-actions{gap:10px}
+    .icon-btn{position:relative;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text-2);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+    .icon-btn:hover{background:#f8fafc}
+    .icon-btn em{position:absolute;top:6px;right:6px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:#2563eb;color:#fff;font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}
+    .header-search{position:relative;width:240px;flex:0 0 240px}
+    .header-search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px}
+    .header-search input{width:100%;height:40px;padding:0 14px 0 36px;border-radius:12px;border:1px solid var(--line);background:#f8fafc;color:var(--text)}
+    .header-search input:focus{background:#fff;border-color:#bfd5ff}
+    .menu-btn{display:none}
+    .mobile-nav{display:none;padding:8px 0 16px;border-top:1px solid var(--line)}
+    .mobile-nav a,.mobile-nav button{display:block;width:100%;padding:14px 0;border:none;background:none;text-align:left;border-bottom:1px solid #edf2f7;font-weight:700;color:var(--text-2)}
+    .workspace-frame,.soft-card,.footer,.plan-highlight{background:#fff}
+    .workspace-frame{box-shadow:0 14px 34px rgba(15,23,42,.06);border-radius:24px}
+    .control-rail{background:#fbfcfe}
+    .intel-rail{background:#fcfdff}
+    .saved-search,.chip,.subtle-box,.note-box,.metric,.release-row,.intel-item,.pipeline-card,.detail-kpi{background:#fff}
+    .industry-summary{display:grid;gap:10px;margin-bottom:16px}
+    .summary-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .summary-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700;color:var(--text-2)}
+    .summary-pill strong{font-size:12px}
+    .cat-search{margin-bottom:12px}
+    .cat-search input{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .tree-wrap{display:grid;gap:10px;max-height:520px;overflow:auto;padding-right:4px}
+    .tree-wrap::-webkit-scrollbar{width:8px}
+    .tree-wrap::-webkit-scrollbar-thumb{background:#d9e3ef;border-radius:999px}
+    .industry-group{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+    .industry-group-head{width:100%;padding:14px 14px 12px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left}
+    .industry-group-head strong{display:block;font-size:14px;line-height:1.45;letter-spacing:-.02em}
+    .industry-group-head span{font-size:12px;color:var(--text-3)}
+    .industry-group-head b{font-size:14px;color:var(--text-3)}
+    .industry-cat-list{display:grid;gap:8px;padding:0 12px 12px}
+    .cat-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 10px 10px 12px;border-radius:14px;border:1px solid var(--line);background:#f8fafc}
+    .cat-item.active{background:#eff6ff;border-color:#bfdbfe}
+    .cat-main{display:flex;align-items:flex-start;gap:10px;min-width:0;text-align:left;border:none;background:transparent;padding:0}
+    .cat-check{width:18px;height:18px;border-radius:6px;border:1.5px solid #cbd5e1;background:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:12px;color:#2563eb}
+    .cat-item.active .cat-check{border-color:#2563eb;background:#dbeafe}
+    .cat-copy strong{display:block;font-size:13px;line-height:1.45;color:var(--text)}
+    .cat-copy span{display:block;font-size:12px;line-height:1.45;color:var(--text-3)}
+    .cat-favorite{width:32px;height:32px;border:none;border-radius:10px;background:#fff;color:#94a3b8}
+    .cat-favorite.active{color:#2563eb;background:#eff6ff}
+    .active-cat-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#f8fafc}
+    .active-cat-list{display:flex;flex-wrap:wrap;gap:8px}
+    .active-cat-tag{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--text-2)}
+    .active-cat-tag button{border:none;background:none;color:#94a3b8;padding:0}
+    .search-row{grid-template-columns:minmax(0,1.8fr) 130px 130px 140px 140px}
+    .quick-pill{background:#fff}
+    .list-shell{grid-template-columns:minmax(0,1.12fr) minmax(340px,.88fr)}
+    /* 미디어 쿼리 내에서도 찌그러지지 않도록 고정 설정 강제 유지 */
+.project-list-head, .project-row{
+  grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+  min-width: 900px !important;
+}
+    .project-list-head{font-size:12px}
+    .project-row{padding:18px}
+    .project-row.active{background:#f8fbff}
+    .project-main{display:grid;gap:10px}
+    .project-main-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .project-priority{display:flex;flex-wrap:wrap;gap:8px}
+    .project-priority .badge{padding:5px 8px}
+    .project-meta{gap:6px}
+    .project-meta span{padding:5px 8px;font-size:12px;background:#fff}
+    .project-ai{display:grid;gap:6px}
+    .project-ai strong{font-size:22px;line-height:1;font-weight:900;letter-spacing:-.04em;color:var(--text)}
+    .project-ai span{font-size:12px;color:var(--text-3)}
+    .project-stage{display:grid;gap:6px}
+    .project-stage strong{font-size:14px;line-height:1.45;color:var(--text-2)}
+    .project-update{display:grid;gap:4px}
+    .project-update strong{font-size:14px;color:var(--text-2)}
+    .project-client strong{display:block;font-size:15px;line-height:1.45;color:var(--text)}
+    .project-client span{display:block}
+    .save-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:16px;display:grid;place-items:center;flex:0 0 auto}
+    /* [수정 적용] 우측 상세 패널이 항상 좁으므로 KPI 그리드를 4열에서 2열(2x2) 구조로 변경하여 글자 찌그러짐 원천 방지 */
+  .detail-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+    margin: 16px 0;
+  }
+    .detail-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .detail-info{padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+    .detail-info strong{display:block;font-size:13px;margin-bottom:6px;color:var(--text-3)}
+    .detail-info span{display:block;font-size:15px;line-height:1.65;color:var(--text)}
+    .detail-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .detail-tags span{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;background:#f8fafc;border:1px solid var(--line);font-size:12px;color:var(--text-2)}
+    .detail-summary{padding:14px;border:1px solid var(--line);border-radius:16px;background:#f8fafc;line-height:1.8;color:var(--text-2)}
+    .intel-item{align-items:center}
+    .muted strong{color:var(--text)}
+    @media (max-width:1280px){
+      .site-nav{gap:14px}
+      .header-search{width:200px;flex-basis:200px}
+      .workspace-body{grid-template-columns:280px minmax(0,1fr) 312px}
+      .list-shell{grid-template-columns:minmax(0,1fr) minmax(320px,.92fr)}
+      .project-list-head,.project-row{grid-template-columns:minmax(0,2.1fr) minmax(0,1.1fr) 104px 126px 100px 108px}
+    }
+    @media (max-width:1120px){
+      .site-nav{height:auto;min-height:72px;padding:12px 0;flex-wrap:wrap;align-items:center}
+      .site-nav-left,.site-nav-right{width:100%;justify-content:space-between}
+      .nav-links{order:2;width:100%;padding-top:4px}
+      .header-search{flex:1 1 auto;max-width:280px}
+      .hero-head,.proof-grid,.benchmark-grid,.trust-layout,.faq-grid,.footer-grid,.module-grid,.pricing-grid{grid-template-columns:1fr}
+      .workspace-body,.list-shell{grid-template-columns:1fr}
+      .control-rail,.result-rail{border-right:none;border-bottom:1px solid var(--line)}
+      .sticky-filter-bar{position:relative;top:0}
+      /* [수정 적용] 우측 상세 패널이 항상 좁으므로 KPI 그리드를 4열에서 2열(2x2) 구조로 변경하여 글자 찌그러짐 원천 방지 */
+  .detail-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+    margin: 16px 0;
+  }
+      .detail-info-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:920px){
+      .nav-links,.nav-actions .btn.ghost,.nav-actions .btn.secondary,.header-search,.icon-btn{display:none}
+      .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+      .site-header.open .mobile-nav{display:block}
+      /* [수정 적용] 테이블 헤더의 상단 글자 잘림(Clipping) 버그 해결 */
+.project-list-head {
+  display: grid;
+  /* 컬럼 최소 폭 고정 사양 적용 */
+  grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+  gap: 12px;
+  min-width: 900px !important;
+  
+  /* 상단 패딩을 기존 14px에서 22px로 충분히 늘려 텍스트가 테두리 곡선 밑으로 내려오게 유도 */
+  padding: 22px 18px 14px 18px !important; 
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--text-3);
+  letter-spacing: -.01em;
+
+  /* 부모 컨테이너(.list-card)의 22px 둥근 모서리에 자연스럽게 일치하도록 상단 모서리 곡률 상속 */
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+      .project-row{grid-template-columns:1fr;gap:10px}
+      .project-client strong,.project-stage strong,.project-update strong{font-size:14px}
+      .search-row{grid-template-columns:1fr 1fr}
+      .active-cat-bar{align-items:flex-start}
+      .detail-grid,.hero-metrics,.proof-metrics,.pipeline,.form-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:680px){
+      .container{width:min(var(--container), calc(100% - 20px))}
+      .section{padding:var(--space-9) 0}
+      .hero-copy h1{font-size:34px;line-height:1.24}
+      .hero-copy p{font-size:15px}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .hero-actions .btn{width:100%}
+      .section-head h2{font-size:28px}
+      .workspace-top h2{font-size:23px}
+      .project-title{font-size:20px}
+      .search-row,.detail-grid,.hero-metrics,.proof-metrics,.pipeline,.form-grid,.logo-wall{grid-template-columns:1fr}
+      .workspace-top{padding:16px}
+      .control-rail,.result-rail,.intel-rail{padding:16px}
+      .site-nav-right{gap:10px}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .hide-mobile{display:none}
+      .show-mobile{display:block}
+    }
+    @media (max-width:520px){
+      .footer-grid{grid-template-columns:1fr}
+      .active-cat-bar{padding:10px 12px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto !important;animation:none !important;transition:none !important}
+    }
+    :focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
+  </style>
+</head>
+<body>
+  <!-- PART 5 — Rebuilt information architecture / operating SaaS first fold -->
+  <header class="site-header" id="siteHeader">
+    <div class="live-strip">
+      <div class="container live-strip-inner">
+        <div class="live-strip-list">
+          <span><strong>최근 동기화</strong> 2026-07-04 08:40 UTC</span>
+          <span>오늘 신규 감지 <strong>43건</strong></span>
+          <span>상태 변경 <strong>218건</strong></span>
+          <span>AI 우선 검토 <strong>16건</strong></span>
+        </div>
+        <span class="caption">운영형 데모 · 실제 업무 흐름 재현용</span>
+      </div>
+    </div>
+    <div class="container site-nav">
+      <div class="site-nav-left">
+        <a href="#top" class="brand" aria-label="ProjectRadar 홈으로 이동">
+          <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="8" y="8" width="48" height="48" rx="15" fill="#2563EB"/>
+            <path d="M24 20H38C44.0751 20 49 24.9249 49 31C49 37.0751 44.0751 42 38 42H31.5V50H24V20Z" fill="white"/>
+            <path d="M31.5 27.5H37.5C39.433 27.5 41 29.067 41 31C41 32.933 39.433 34.5 37.5 34.5H31.5V27.5Z" fill="#BFDBFE"/>
+          </svg>
+          <span class="brand-copy"><strong>ProjectRadar</strong><span>운영형 B2B 프로젝트 인텔리전스</span></span>
+        </a>
+        <nav class="nav-links" id="topNavLinks" aria-label="주요 메뉴">
+  <a href="javascript:void(0)" class="nav-link-tab active-tab" data-view="all">전체 홈</a>
+  <a href="javascript:void(0)" class="nav-link-tab" data-view="about">회사 소개</a>
+  <a href="javascript:void(0)" class="nav-link-tab" data-view="international">국제 프로젝트</a>
+  <a href="javascript:void(0)" class="nav-link-tab" data-view="domestic">국내 프로젝트</a>
+  <a href="javascript:void(0)" class="nav-link-tab" data-view="myprojects">내 프로젝트</a>
+</nav>
+      </div>
+      <div class="site-nav-right nav-actions">
+        <button class="icon-btn" type="button" aria-label="알림"><span>🔔</span><em>3</em></button>
+        <label class="header-search" aria-label="상단 검색">
+          <span>⌕</span>
+          <input id="globalSearchInput" type="text" placeholder="프로젝트 검색">
+        </label>
+        <button class="btn ghost sm" data-open-auth="login">로그인</button>
+        <button class="btn secondary sm" data-open-auth="register">회원가입</button>
+        <button class="btn primary sm" data-open-auth="register">무료 체험</button>
+        <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">☰</button>
+      </div>
+    </div>
+    <div class="container mobile-nav" id="mobileNav">
+      <a href="#workspace">워크스페이스</a>
+      <a href="#projectListShell">프로젝트</a>
+      <a href="#recommendationNotes">AI 추천</a>
+      <a href="#savedProjectList">저장 목록</a>
+      <button data-open-auth="login">로그인</button>
+      <button data-open-auth="register">회원가입</button>
+      <button data-open-auth="register">무료 체험</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="workspace-hero" id="workspace">
+      <div class="container">
+        <div class="hero-head">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> 3초 안에 프로젝트를 판단하는 홈 화면</span>
+            <h1>광고형 랜딩이 아니라,<br>실제 영업팀이 여는 작업 첫 화면으로 다시 설계했습니다</h1>
+            <p>프로젝트명·발주처·예상 금액·진행 단계·업데이트 날짜·AI 신뢰 점수를 첫 화면에서 바로 확인하도록 정보 구조를 재정렬했습니다. 이제 사용자는 스크롤보다 판단을 먼저 하게 됩니다.</p>
+            <div class="hero-actions">
+              <button class="btn primary" data-open-auth="register">14일 무료 체험 시작</button>
+              <a href="#pricing" class="btn secondary">가격 정책 보기</a>
+            </div>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><strong>10,482</strong><span>활성 추적 프로젝트</span><p>공공 발주, 대기업 조달, EPC·플랜트 관련 소스를 중심으로 누적 관리</p></div>
+            <div class="metric"><strong>97.8%</strong><span>추천 정확도</span><p>이번 주 추천 결과 중 실제 검토 지속 비율 기반 지표</p></div>
+            <div class="metric"><strong>85개국</strong><span>커버리지</span><p>국내외 플랜트·전력·해양 프로젝트를 동일 화면 구조로 정리</p></div>
+            <div class="metric"><strong>08:40</strong><span>오늘 마지막 동기화</span><p>실시간 운영 느낌을 위해 업데이트 시각과 변경 로그를 전면 노출</p></div>
+          </div>
+        </div>
+
+        <div class="workspace-frame">
+          <div class="workspace-top">
+            <div>
+              <span class="kicker">Workspace Home</span>
+              <h2>상단 요약 → 고정 필터 → 리스트 → 우측 판단 패널</h2>
+              <p>참고한 작업형 UI의 장점을 반영해, ProjectRadar도 “찾기 → 검토 → 저장 → 공유” 흐름이 자연스럽게 이어지는 구조로 바꿨습니다.</p>
+            </div>
+            <div class="workspace-status">
+              <span class="badge blue">최근 릴리즈 2026.07</span>
+              <span class="badge green">AI 추천 정상</span>
+              <span class="badge amber">역매칭 베타</span>
+              <span class="badge blue">감사 로그 활성</span>
+            </div>
+          </div>
+
+          <div class="workspace-body">
+            <aside class="control-rail" aria-label="팀 기준 및 산업 카테고리 필터">
+              <div class="panel-title"><h3>회사 기준 프로필</h3><span class="badge blue">현재 적용</span></div>
+              <div class="subtle-box control-section">
+                <div><div class="control-label">주력 품목</div><div class="chip-group"><span class="chip active">220kV Transformer</span><span class="chip">GIS</span><span class="chip">Power Cable</span></div></div>
+                <div><div class="control-label">관심 지역</div><div class="chip-group"><span class="chip active">국내 공공</span><span class="chip active">중동 EPC</span><span class="chip">중남미 수처리</span></div></div>
+                <div><div class="control-label">제외 조건</div><div class="note-box">마감 24시간 미만 · 금액 불명확 · 현지 등록 불가 프로젝트는 우선순위를 낮춥니다.</div></div>
+              </div>
+
+              <div class="panel-title" style="margin-top:18px"><h4>내 관심 산업</h4><span class="small">자동 갱신</span></div>
+              <div class="industry-summary">
+                <div class="summary-pills" id="myInterestList"></div>
+                <div class="summary-pills" id="recentCategoryList"></div>
+                <div class="summary-pills" id="favoriteCategoryList"></div>
+              </div>
+
+              <div class="panel-title"><h4>산업 카테고리</h4><button class="btn ghost sm" type="button" id="clearCatFilterBtn">초기화</button></div>
+              <label class="cat-search">
+                <input id="catSearchInput" type="text" placeholder="CAT 코드 또는 산업명 검색">
+              </label>
+              <div class="tree-wrap" id="industryTree"></div>
+
+              <div class="panel-title" style="margin-top:18px"><h4>저장 검색</h4><span class="small">3개</span></div>
+              <div class="stack" id="savedSearchList">
+                <button class="saved-search" data-preset="domestic-grid"><span><strong>국내 송변전 인프라</strong><span class="caption">CAT-05 · 50억 미만 · 14일 이내</span></span><span class="badge blue">기본</span></button>
+                <button class="saved-search" data-preset="kogas"><span><strong>한국가스공사 추적</strong><span class="caption">CAT-11/13 · 최근 변경 우선</span></span><span class="badge green">활성</span></button>
+                <button class="saved-search" data-preset="epc-middle-east"><span><strong>중동 EPC 신규</strong><span class="caption">CAT-14 · 벤더 등록 가능성 중심</span></span><span class="badge amber">Beta</span></button>
+              </div>
+
+              <div class="panel-title" style="margin-top:18px"><h4>검토 워크스페이스</h4><span class="small">오늘</span></div>
+              <div class="pipeline">
+                <div class="pipeline-card"><strong id="pipelineReview">4</strong><span class="small">검토 전</span></div>
+                <div class="pipeline-card"><strong id="pipelineInterest">3</strong><span class="small">관심</span></div>
+                <div class="pipeline-card"><strong id="pipelineAction">2</strong><span class="small">문의 준비</span></div>
+                <div class="pipeline-card"><strong id="pipelineExclude">1</strong><span class="small">제외</span></div>
+              </div>
+              <div class="note-box" style="margin-top:18px">카테고리는 다중 선택·즐겨찾기·최근 선택을 모두 지원합니다. 한 번 고른 산업 기준이 즉시 목록과 우측 인사이트에 반영됩니다.</div>
+            </aside>
+
+            <section class="result-rail" aria-label="프로젝트 결과 목록">
+              <div class="sticky-filter-bar">
+                <div class="search-row">
+                  <label class="field search-input">
+                    <span>⌕</span>
+                    <input id="searchInput" type="text" placeholder="프로젝트명, 발주처, CAT 코드, 키워드로 검색" aria-label="프로젝트 검색">
+                  </label>
+                  <label class="field"><select id="regionFilter" aria-label="지역 필터"><option value="all">전체 지역</option><option value="국내">국내</option><option value="중동">중동</option><option value="전국">전국</option><option value="경기">경기</option><option value="대전/충청">대전/충청</option></select></label>
+                  <label class="field"><select id="statusFilter" aria-label="상태 필터"><option value="all">전체 상태</option><option value="신규">신규</option><option value="변경">변경</option><option value="마감임박">마감임박</option><option value="협력사등록">협력사등록</option><option value="기본설계 진행중">기본설계 진행중</option></select></label>
+                  <label class="field"><select id="sortFilter" aria-label="정렬 기준"><option value="priority">AI 추천순</option><option value="deadline">마감 임박순</option><option value="trust">신뢰도순</option><option value="amount">금액순</option><option value="updated">최근 업데이트순</option></select></label>
+                  <button class="btn secondary sm" type="button" id="resetFilterBtn">필터 초기화</button>
+                </div>
+                <div class="active-cat-bar">
+                  <div>
+                    <div class="control-label">선택된 산업 CAT</div>
+                    <div class="active-cat-list" id="activeCatList"><span class="caption">선택된 카테고리가 없습니다.</span></div>
+                  </div>
+                  <div class="results-meta">
+                    <span id="resultCount">0건 표시 중</span>
+                    <span>저장됨 <strong id="savedCount">0</strong></span>
+                    <span>최근 본 <strong id="recentCount">0</strong></span>
+                  </div>
+                </div>
+                <div class="quick-filter-row">
+                  <div class="quick-filters" id="quickFilterGroup">
+                    <button class="quick-pill active" data-quick="all">전체 <span id="countAll">0</span></button>
+                    <button class="quick-pill" data-quick="highFit">고득점 <span id="countHighFit">0</span></button>
+                    <button class="quick-pill" data-quick="closingSoon">마감 임박 <span id="countClosingSoon">0</span></button>
+                    <button class="quick-pill" data-quick="amountKnown">금액 공개 <span id="countAmountKnown">0</span></button>
+                    <button class="quick-pill" data-quick="updated">변경 있음 <span id="countUpdated">0</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="list-shell" id="projectListShell">
+                <div class="list-card">
+                  <div class="project-list-head">
+                    <span>프로젝트 / 카테고리</span><span>발주처 / 국가</span><span>예상 규모</span><span>프로젝트 단계</span><span>업데이트</span><span>AI 적합도</span>
+                  </div>
+                  <div class="project-list" id="projectList"></div>
+                </div>
+                <div class="detail-card" id="projectDetail"></div>
+              </div>
+            </section>
+
+            <aside class="intel-rail" aria-label="최근 본 프로젝트 및 AI 인사이트">
+              <div class="intel-card">
+                <div class="panel-title"><h4>최근 본 프로젝트</h4><span class="small" id="recentViewedText">없음</span></div>
+                <div class="intel-list" id="recentViewedList"></div>
+              </div>
+              <div class="intel-card">
+                <div class="panel-title"><h4>AI 추천 이유</h4><span class="badge blue">Explainable</span></div>
+                <div class="mini-list" id="recommendationNotes">
+                  <div class="mini-item"><span class="score-pill">95</span><div>선택된 프로젝트가 없으면 AI 설명 카드가 여기에 표시됩니다.</div></div>
+                </div>
+              </div>
+              <div class="intel-card">
+                <div class="panel-title"><h4>실시간 변경 로그</h4><span class="small">최근 1시간</span></div>
+                <div id="liveLog"></div>
+              </div>
+              <div class="intel-card">
+                <div class="panel-title"><h4>저장한 프로젝트</h4><span class="badge green">Sync</span></div>
+                <div class="intel-list" id="savedProjectList"></div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" id="proof">
+      <div class="container proof-grid">
+        <div class="card soft-card" style="padding:24px">
+          <div class="section-head" style="margin-bottom:18px">
+            <div>
+              <span class="eyebrow">운영 근거</span>
+              <h2>설명보다 먼저 보여주는 신뢰 레이어</h2>
+              <p>한국 B2B SaaS에서 신뢰는 카피가 아니라 숫자, 변경 이력, 운영 로그, 권한 체계, 업데이트 배지로 형성됩니다.</p>
+            </div>
+          </div>
+          <div class="proof-metrics">
+            <div class="metric"><strong>1,204,882</strong><span>분석 데이터 포인트</span><p>공고문, 첨부 문서, 변경 로그, 조직 단위 히스토리를 함께 관리</p></div>
+            <div class="metric"><strong>412</strong><span>추적 기관</span><p>공공·준정부·교육·연구·민간 조달 채널까지 포함</p></div>
+            <div class="metric"><strong>24/7</strong><span>상태 모니터링</span><p>신규 등록, 정정 공고, 마감 연기, 협력사 등록을 별도로 추적</p></div>
+            <div class="metric"><strong>RBAC</strong><span>엔터프라이즈 보안</span><p>팀 권한 분리, 감사 로그, API 제어, SSO 확장 구조를 전면 배치</p></div>
+          </div>
+        </div>
+        <aside class="card" style="padding:24px">
+          <div class="panel-title"><h3>릴리즈 히스토리</h3><span class="badge blue">운영 흔적</span></div>
+          <div class="release-list">
+            <div class="release-row"><div class="release-date">2026.07</div><div><strong>홈 구조 전면 재배치</strong><div class="small">광고형 Hero를 탐색형 Workspace로 대체하고 고정 필터를 상단에 배치</div></div></div>
+            <div class="release-row"><div class="release-date">2026.06</div><div><strong>Trust Score 설명 카드 강화</strong><div class="small">추천 사유, 공식 출처 수, 변경 이력을 한 화면에서 노출</div></div></div>
+            <div class="release-row"><div class="release-date">2026.05</div><div><strong>Project Room 검토 흐름 개선</strong><div class="small">관심/문의/제외 상태를 팀 단위로 바로 이동 가능</div></div></div>
+          </div>
+          <div class="logo-wall">
+            <div class="logo-chip">PUBLIC GRID</div>
+            <div class="logo-chip">KOREA EPC</div>
+            <div class="logo-chip">ENERGY OPS</div>
+            <div class="logo-chip">PLANT DATA</div>
+            <div class="logo-chip">TENDER FLOW</div>
+            <div class="logo-chip">TEAM ROOM</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container benchmark-grid">
+        <div class="card compare-card" style="background:linear-gradient(180deg,#fff 0%, #fff8f8 100%);border-color:#f1dcdc">
+          <span class="eyebrow" style="background:var(--red-soft);color:var(--red)">기존 방식의 병목</span>
+          <div class="compare-list">
+            <div class="compare-item"><div class="compare-icon red">엑</div><div><strong>엑셀 중심 관리</strong><div class="small">기관별로 형식이 달라 최신 상태와 내부 판단이 쉽게 분리됩니다.</div></div></div>
+            <div class="compare-item"><div class="compare-icon red">지</div><div><strong>정보 발견 지연</strong><div class="small">뉴스·정정 공고·협력사 등록 변화를 놓치면 영업 타이밍을 잃습니다.</div></div></div>
+            <div class="compare-item"><div class="compare-icon red">검</div><div><strong>근거 없는 판단</strong><div class="small">왜 추천하는지 설명이 없으면 팀장이 다시 검증해야 합니다.</div></div></div>
+            <div class="compare-item"><div class="compare-icon red">분</div><div><strong>부서 간 분절</strong><div class="small">영업, 설계, 견적, 법무가 같은 프로젝트를 서로 다른 방식으로 추적합니다.</div></div></div>
+          </div>
+        </div>
+        <div class="card compare-card" style="background:linear-gradient(180deg,#fff 0%, #f8fbff 100%);border-color:#dbe8ff">
+          <span class="eyebrow">재설계 후 경험</span>
+          <div class="compare-list">
+            <div class="compare-item"><div class="compare-icon blue">목</div><div><strong>목록만 봐도 판단 가능</strong><div class="small">프로젝트명, 발주처, 금액, 마감, AI 점수, 상태를 한 줄에서 파악합니다.</div></div></div>
+            <div class="compare-item"><div class="compare-icon blue">저</div><div><strong>저장과 후속조치 연결</strong><div class="small">관심 프로젝트를 저장하면 팀 워크스페이스와 최근 본 패널에 즉시 반영됩니다.</div></div></div>
+            <div class="compare-item"><div class="compare-icon blue">설</div><div><strong>설명 가능한 추천</strong><div class="small">Trust Score와 추천 사유가 함께 보여 내부 공유와 보고가 빨라집니다.</div></div></div>
+            <div class="compare-item"><div class="compare-icon blue">운</div><div><strong>운영 중인 제품처럼 보임</strong><div class="small">릴리즈 히스토리, 동기화 시각, 변경 로그, 보안 배지가 화면 전체에 녹아 있습니다.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">기능 구조</span>
+            <h2>하나의 예쁜 페이지가 아니라, 실무 흐름이 이어지는 제품 구조</h2>
+            <p>탐색 → 검토 → 저장 → 팀 공유 → 결제 전환 흐름이 끊기지 않도록 핵심 기능을 업무 단위 모듈로 재구성했습니다.</p>
+          </div>
+        </div>
+        <div class="module-grid">
+          <div class="card module-card">
+            <div class="module-meta"><span class="badge blue">Module 1</span><span class="small">상단 고정</span></div>
+            <h3>탐색 중심 Search Workspace</h3>
+            <p class="muted">Hero를 설명 영역이 아니라 검색·필터·리스트 중심 작업 공간으로 전환했습니다. 첫 3초에 가치가 드러납니다.</p>
+            <div class="note-box">핵심 효과: “사이트가 뭘 하는지”가 아니라 “바로 써볼 수 있겠다”는 인상을 만듭니다.</div>
+          </div>
+          <div class="card module-card">
+            <div class="module-meta"><span class="badge green">Module 2</span><span class="small">운영형</span></div>
+            <h3>Trust Score + XAI Detail Panel</h3>
+            <p class="muted">상세 영역에서 점수만 보여주지 않고, 왜 추천되는지와 어떤 출처가 반영됐는지를 함께 제공합니다.</p>
+            <div class="note-box">핵심 효과: 내부 검토 보고 속도가 빨라지고, AI에 대한 심리적 저항이 낮아집니다.</div>
+          </div>
+          <div class="card module-card">
+            <div class="module-meta"><span class="badge amber">Module 3</span><span class="small">협업 연결</span></div>
+            <h3>Recent / Saved / Live Log Side Rail</h3>
+            <p class="muted">우측 레일에 최근 본 프로젝트, 저장 프로젝트, 실시간 변경 로그를 묶어 후속 행동이 자연스럽게 이어지게 했습니다.</p>
+            <div class="note-box">핵심 효과: 탐색과 협업이 분리되지 않고 한 화면 안에서 이어집니다.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container trust-layout">
+        <div class="card" style="padding:24px">
+          <div class="section-head" style="margin-bottom:18px">
+            <div>
+              <span class="eyebrow">전환 구조</span>
+              <h2>신뢰 → 사용 → 저장 → 무료 체험으로 이어지도록</h2>
+              <p>이전 구조의 CTA는 조금 빨랐습니다. 지금은 먼저 탐색 경험을 체감하고, 저장·관심 표시 이후 무료 체험으로 연결되도록 전환 경로를 조정했습니다.</p>
+            </div>
+          </div>
+          <div class="compare-list">
+            <div class="compare-item"><div class="compare-icon blue">1</div><div><strong>리스트 확인</strong><div class="small">실제 프로젝트 행 구조를 보고 서비스의 업무 적합성을 판단</div></div></div>
+            <div class="compare-item"><div class="compare-icon blue">2</div><div><strong>상세 검토</strong><div class="small">Trust Score, 추천 사유, 마감, 변경 이력 확인</div></div></div>
+            <div class="compare-item"><div class="compare-icon blue">3</div><div><strong>저장 / 최근 본 누적</strong><div class="small">워크스페이스 사용감이 생긴 시점에 가치가 체감됨</div></div></div>
+            <div class="compare-item"><div class="compare-icon blue">4</div><div><strong>무료 체험 CTA</strong><div class="small">그 후에야 회원가입과 데모 요청 버튼이 설득력을 가짐</div></div></div>
+          </div>
+        </div>
+        <div class="card" style="padding:24px">
+          <div class="panel-title"><h3>도입 후 기대 효과</h3><span class="badge green">샘플 KPI</span></div>
+          <div class="stack">
+            <div class="subtle-box"><strong style="display:block;font-size:30px;letter-spacing:-.04em">78%</strong><span class="small">프로젝트 탐색 시간 감소</span></div>
+            <div class="subtle-box"><strong style="display:block;font-size:30px;letter-spacing:-.04em">64%</strong><span class="small">내부 공유 속도 향상</span></div>
+            <div class="subtle-box"><strong style="display:block;font-size:30px;letter-spacing:-.04em">31%</strong><span class="small">AI 우선 검토 프로젝트 전환율 개선</span></div>
+            <div class="note-box">이 영역은 마케팅 슬로건보다 팀장이 바로 이해할 수 있는 숫자형 효익을 보여주기 위해 유지했습니다.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">가격 정책</span>
+            <h2>업무 가치가 보인 다음 결제하게 만드는 구조</h2>
+            <p>탐색과 검토 경험을 먼저 제공한 뒤, 팀 협업과 연동 기능이 필요한 시점에 자연스럽게 플랜을 선택하도록 설계했습니다.</p>
+          </div>
+          <div class="billing-toggle">
+            <button class="active" data-billing="monthly">월간</button>
+            <button data-billing="yearly">연간</button>
+          </div>
+        </div>
+        <div class="pricing-grid">
+          <div class="card price-plan">
+            <h3>Starter</h3>
+            <div class="price-line" data-price-month="49000" data-price-year="39000">₩49,000 <small>/월</small></div>
+            <p class="muted">개인 영업 담당자의 탐색과 알림 중심 시작 플랜</p>
+            <ul>
+              <li><span class="check">✓</span><span>기본 프로젝트 탐색</span></li>
+              <li><span class="check">✓</span><span>저장 검색 3개</span></li>
+              <li><span class="check">✓</span><span>기본 Trust Score</span></li>
+              <li><span class="check">✓</span><span>이메일 알림</span></li>
+            </ul>
+            <button class="btn secondary block" style="margin-top:24px" data-open-auth="register">무료 체험</button>
+          </div>
+          <div class="card price-plan plan-highlight">
+            <span class="badge blue plan-badge">가장 많이 선택</span>
+            <h3>Professional</h3>
+            <div class="price-line" data-price-month="299000" data-price-year="249000">₩299,000 <small>/월</small></div>
+            <p class="muted">팀 협업, 역매칭, AI 추천 분석까지 포함한 핵심 플랜</p>
+            <ul>
+              <li><span class="check">✓</span><span>상단 워크스페이스 전체 기능</span></li>
+              <li><span class="check">✓</span><span>Project Room 협업</span></li>
+              <li><span class="check">✓</span><span>추천 근거 / 경쟁 패턴 분석</span></li>
+              <li><span class="check">✓</span><span>실시간 변경 로그 및 우선 검토</span></li>
+              <li><span class="check">✓</span><span>팀 단위 저장/관심 상태 관리</span></li>
+            </ul>
+            <button class="btn primary block" style="margin-top:24px" data-open-auth="register">14일 무료 체험 시작</button>
+          </div>
+          <div class="card price-plan">
+            <h3>Enterprise</h3>
+            <div class="price-line">Custom</div>
+            <p class="muted">대기업 / EPC 전용 통합, 보안, 권한 관리 확장</p>
+            <ul>
+              <li><span class="check">✓</span><span>SSO / RBAC / 감사 로그</span></li>
+              <li><span class="check">✓</span><span>ERP / CRM / 그룹웨어 연동</span></li>
+              <li><span class="check">✓</span><span>전용 데이터 피드</span></li>
+              <li><span class="check">✓</span><span>계정/조직 분리 배포</span></li>
+            </ul>
+            <button class="btn secondary block" style="margin-top:24px">도입 문의</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container faq-grid">
+        <div>
+          <span class="eyebrow">FAQ</span>
+          <h2 style="margin:14px 0 10px;font-size:34px;line-height:1.18;letter-spacing:-.04em">도입 전에 가장 많이 묻는 질문</h2>
+          <p class="muted" style="line-height:1.8;margin:0">불필요한 장식 대신 구매 전환과 운영 검토에 필요한 질문만 남겼습니다.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item"><button class="faq-q"><span>실제 데이터는 얼마나 자주 반영되나요</span><span>＋</span></button><div class="faq-a">주요 소스는 상시 모니터링하며, 신규 등록·정정 공고·마감 변경 등 상태 변화는 별도 로그로 구분하여 반영합니다.</div></div>
+          <div class="faq-item"><button class="faq-q"><span>우리 회사 품목 기준으로 추천이 바뀌나요</span><span>＋</span></button><div class="faq-a">예. 변압기, 케이블, GIS, 제어 시스템 등 취급 품목과 목표 지역, 예산 밴드를 기준으로 추천 우선순위가 달라집니다.</div></div>
+          <div class="faq-item"><button class="faq-q"><span>무료 체험에서도 협업 기능을 볼 수 있나요</span><span>＋</span></button><div class="faq-a">샘플 Project Room, 저장 상태, 최근 본 프로젝트, 추천 근거 카드 등 핵심 흐름은 체험할 수 있도록 설계할 수 있습니다.</div></div>
+          <div class="faq-item"><button class="faq-q"><span>대기업 보안 요구사항도 대응 가능한가요</span><span>＋</span></button><div class="faq-a">Enterprise 플랜에서 SSO, 세분화 권한관리, 감사 로그, API 제어, 별도 배포 구조까지 확장할 수 있습니다.</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="8" y="8" width="48" height="48" rx="15" fill="#0F172A"/>
+              <path d="M24 20H38C44.0751 20 49 24.9249 49 31C49 37.0751 44.0751 42 38 42H31.5V50H24V20Z" fill="white"/>
+              <path d="M31.5 27.5H37.5C39.433 27.5 41 29.067 41 31C41 32.933 39.433 34.5 37.5 34.5H31.5V27.5Z" fill="#93C5FD"/>
+            </svg>
+            <span class="brand-copy"><strong>ProjectRadar</strong><span>Operating-grade EPC Intelligence</span></span>
+          </div>
+          <p class="muted" style="margin:16px 0 0;line-height:1.8">기술영업, EPC, 조달, 프로젝트 PM이 같은 화면에서 탐색하고 검토할 수 있도록 설계한 프로젝트 인텔리전스 워크스페이스</p>
+        </div>
+        <div><h4>제품</h4><div class="footer-links"><a href="#workspace">워크스페이스</a><a href="#modules">AI 모듈</a><a href="#pricing">가격 정책</a></div></div>
+        <div><h4>운영</h4><div class="footer-links"><a href="#proof">운영 근거</a><a href="#">릴리즈 노트</a><a href="#">상태 페이지</a></div></div>
+        <div><h4>지원</h4><div class="footer-links"><a href="#">도입 문의</a><a href="#">이용약관</a><a href="#">개인정보 처리방침</a></div></div>
+      </div>
+      <div class="footer-copy">
+        <span>© 2026 ProjectRadar. All rights reserved.</span>
+        <span>Single-file demo rebuilt for UX/UI operating-grade review</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PART 7 — Interaction / data / modal -->
+  <div class="modal-overlay" id="authOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="modal-head"><h3 id="authTitle" style="margin:0;font-size:20px;letter-spacing:-.03em">무료 체험 시작</h3><button class="close-btn" data-close-overlay="authOverlay">✕</button></div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="login">로그인</button>
+          <button class="auth-tab" data-auth-tab="register">회원가입</button>
+        </div>
+        <div class="auth-panel active" id="auth-login">
+          <div class="form-field"><label>이메일</label><input type="email" value="sales@company.com"></div>
+          <div class="form-field"><label>비밀번호</label><input type="password" value="demo1234"></div>
+          <button class="btn primary block" style="margin-top:20px" id="demoLoginBtn">로그인</button>
+        </div>
+        <div class="auth-panel" id="auth-register">
+          <div class="form-grid">
+            <div class="form-field"><label>회사명</label><input type="text" placeholder="예: ABC Power Systems"></div>
+            <div class="form-field"><label>담당자명</label><input type="text" placeholder="예: 홍길동"></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field"><label>이메일</label><input type="email" placeholder="sales@company.com"></div>
+            <div class="form-field"><label>직무</label><select><option>기술영업</option><option>프로젝트 관리자</option><option>조달 / 구매</option><option>임원 / 의사결정자</option></select></div>
+          </div>
+          <div class="form-field"><label>비밀번호</label><input type="password" placeholder="8자 이상 입력"></div>
+          <div class="note-box" style="margin-top:14px">이 모달은 실제 가입 대신 전환 흐름과 폼 구조를 검토하기 위한 프론트엔드 데모입니다.</div>
+          <button class="btn primary block" style="margin-top:20px" id="demoRegisterBtn">무료 체험 계정 만들기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const industryGroups = [
+      {
+        id:'energy',
+        label:'에너지 & 신재생 플랜트',
+        cats:[
+          ['CAT-01','원자력 발전 설비'],
+          ['CAT-02','화력 및 열병합 발전'],
+          ['CAT-03','해상 및 육상 풍력'],
+          ['CAT-04','태양광·ESS'],
+          ['CAT-05','송변전·변전소 인프라'],
+          ['CAT-06','연구·시험 전력설비']
+        ]
+      },
+      {
+        id:'oilgas',
+        label:'오일·가스 & 화학 플랜트',
+        cats:[
+          ['CAT-11','LNG 생산'],
+          ['CAT-12','석유화학'],
+          ['CAT-13','가스 저장·배관'],
+          ['CAT-14','수소·암모니아 터미널']
+        ]
+      },
+      {
+        id:'ship',
+        label:'조선 & 특수선',
+        cats:[
+          ['CAT-25','특수 전투함'],
+          ['CAT-26','LNG/LPG 선박'],
+          ['CAT-27','해양플랜트 기자재']
+        ]
+      },
+      {
+        id:'public',
+        label:'공공·교육·연구 인프라',
+        cats:[
+          ['CAT-31','공공주택 전기인프라'],
+          ['CAT-32','교육시설 전기개선'],
+          ['CAT-33','공공조달 협력사 등록'],
+          ['CAT-34','연구기관 전력보강']
+        ]
+      },
+      {
+        id:'digital',
+        label:'디지털·물류 인프라',
+        cats:[
+          ['CAT-37','데이터센터·보안 인프라'],
+          ['CAT-38','공공 ICT 기반시설'],
+          ['CAT-41','스마트 물류·자동화']
+        ]
+      }
+    ];
+
+    const projects = [
+      {id:1,title:'고양창릉 A4BL 민간참여 공공주택건설사업 전력 패키지',client:'한국토지주택공사',region:'경기',country:'대한민국',scope:'220kV 변압기 / GIS / 보호계전',amount:18.0,amountLabel:'약 18억원',deadline:'2026-08-02',category:'전력',status:'신규',stage:'기본설계 진행중',trust:100,fit:92,dueDays:29,officialSources:3,updatedAgo:'3시간 전',updatedHours:3,catCode:'CAT-31',catLabel:'공공주택 전기인프라',industryGroup:'public',keywords:['공공주택','변전','GIS'],relatedCompanies:['LH','설계사','시공사'],reason:'전기·변전 설비 관심 산업과 최근 저장 패턴이 일치',explanation:[['97','공공주택 전력 인프라 스펙이 주력 품목과 일치'],['93','예상 금액이 기존 수주 밴드 안에 위치'],['88','공식 기관 소스와 일정 정보가 일치']],timeline:['오늘 신규 감지','발주처 고시 확인','초기 사양 검토 필요'],notes:'공공 발주 특성상 일정과 제출 형식 준수가 중요합니다.',action:'설계팀과 초기 사양 적합성 확인 후 관심 상태로 이동',sourceLabel:'공식 포털 + 공고문 + 뉴스',saved:true},
+      {id:2,title:'가스 냉열 활용 설비 구축 관련 전기·제어 패키지',client:'한국가스공사',region:'대전/충청',country:'대한민국',scope:'DCS / 전력제어 / 계장',amount:null,amountLabel:'금액 미공개',deadline:'2026-07-09',category:'가스',status:'변경',stage:'기본설계 진행중',trust:82,fit:86,dueDays:5,officialSources:2,updatedAgo:'5시간 전',updatedHours:5,catCode:'CAT-11',catLabel:'LNG 생산',industryGroup:'oilgas',keywords:['냉열','계장','제어'],relatedCompanies:['한국가스공사','설비사'],reason:'가스·제어 패키지 조회 빈도가 높아 우선 검토 대상으로 분류',explanation:[['91','가스공사 추적 저장 검색과 일치'],['84','제어 시스템 적합도 우수'],['71','금액 비공개라 마진 판단은 추가 필요']],timeline:['정정 공고 반영','마감 일정 재확인 필요','협력사 등록 경로 검토'],notes:'금액 비공개지만 기관 신뢰도와 산업 적합성은 높습니다.',action:'영업 담당자에게 우선 검토 알림 발송',sourceLabel:'공식 포털 + 정정 이력',saved:false},
+      {id:3,title:'평택 LNG 인프라 유지보수용 전력 설비 구매',client:'한국가스공사',region:'전국',country:'대한민국',scope:'Power Cable / Switchgear',amount:null,amountLabel:'금액 미공개',deadline:'2026-07-10',category:'가스',status:'마감임박',stage:'구매 검토 단계',trust:74,fit:79,dueDays:6,officialSources:2,updatedAgo:'9시간 전',updatedHours:9,catCode:'CAT-13',catLabel:'가스 저장·배관',industryGroup:'oilgas',keywords:['LNG','케이블','스위치기어'],relatedCompanies:['한국가스공사','유지보수사'],reason:'LNG 설비 유지보수 분야 경험과 공급 가능 품목이 겹칩니다.',explanation:[['88','가스 인프라 공급 이력과 연결 가능'],['76','케이블 패키지 경험 반영'],['68','마감이 촉박해 즉시 판단 필요']],timeline:['마감 6일 전','구매 담당 부서 확인','납기 리스크 검토'],notes:'정보는 제한적이나 시점상 빠른 Go/No-Go 판단이 필요합니다.',action:'마감 전 견적 가능 여부 24시간 내 판단',sourceLabel:'공식 포털 + 기관 게시',saved:true},
+      {id:4,title:'대전제일고등학교 전기 환경 개선 사업',client:'대전광역시교육청 대전제일고등학교',region:'전국',country:'대한민국',scope:'분전반 / 저압 배전 / 안전개선',amount:1.9,amountLabel:'약 1.9억원',deadline:'2026-07-07',category:'교육',status:'마감임박',stage:'입찰 공고 단계',trust:67,fit:61,dueDays:3,officialSources:1,updatedAgo:'1일 전',updatedHours:24,catCode:'CAT-32',catLabel:'교육시설 전기개선',industryGroup:'public',keywords:['학교','저압배전','안전개선'],relatedCompanies:['교육청','학교'],reason:'공공 실적 확보 목적일 때만 선별 가치가 있습니다.',explanation:[['73','소규모 공공 교육 프로젝트로 접근 가능'],['62','주력 고압 품목과는 거리 있음'],['58','마감이 매우 촉박해 우선순위 낮춤']],timeline:['마감 3일 전','소액 패키지 확인','내부 우선순위 하향'],notes:'실적 확보용이 아니라면 선택과 집중이 필요합니다.',action:'제외 또는 보조 실적용 검토',sourceLabel:'교육청 공고',saved:false},
+      {id:5,title:'협력사 등록 — 물류센터 자동화 설비 구축 파트너 모집',client:'CJ대한통운 건설부문',region:'전국',country:'대한민국',scope:'협력사 등록 / 전기공사 / 자동화',amount:null,amountLabel:'협력사 등록',deadline:'2026-11-30',category:'조달',status:'협력사등록',stage:'협력사 등록 진행중',trust:54,fit:72,dueDays:149,officialSources:1,updatedAgo:'2일 전',updatedHours:48,catCode:'CAT-41',catLabel:'스마트 물류·자동화',industryGroup:'digital',keywords:['물류센터','자동화','협력사'],relatedCompanies:['CJ대한통운','자동화 SI'],reason:'직접 매출보다 파이프라인 진입 효과가 큰 장기형 기회입니다.',explanation:[['82','직접 입찰보다 네트워크 확보 관점에서 가치'],['69','장기 파이프라인 관리를 위해 저장 가치 존재'],['55','즉시 매출화보다는 관계 구축 목적']],timeline:['장기 등록 일정','협력사 서류 검토 필요','직접 매출 효과는 중기'],notes:'단기 수주보다 공급망 진입 관점에서 관리할 항목입니다.',action:'파트너십 트랙으로 분리 저장',sourceLabel:'기업 파트너 등록 페이지',saved:false},
+      {id:6,title:'KISA 정보보호 인프라 구축 관련 전력·UPS 지원',client:'한국인터넷진흥원',region:'전국',country:'대한민국',scope:'UPS / 분전 / 전원 품질',amount:1.2,amountLabel:'약 1.2억원',deadline:'2026-07-09',category:'ICT',status:'변경',stage:'기술 검토 단계',trust:27,fit:58,dueDays:5,officialSources:1,updatedAgo:'7시간 전',updatedHours:7,catCode:'CAT-37',catLabel:'데이터센터·보안 인프라',industryGroup:'digital',keywords:['UPS','보안','전원품질'],relatedCompanies:['KISA','전산센터'],reason:'보조전원 경험은 연결되지만 핵심 주력 품목과 직접 일치도는 낮습니다.',explanation:[['66','보조 전원 품목 관점에서 일부 적합'],['53','핵심 주력과 직접 일치하지 않음'],['49','규모와 영역이 제한적이라 선택 우선순위 낮음']],timeline:['정정 이력 확인','첨부 문서 검토 필요','우선순위 낮음'],notes:'브랜드 레퍼런스 목적이 아니라면 집중도는 낮습니다.',action:'조건부 보류',sourceLabel:'공식 기관 공고',saved:false},
+      {id:7,title:'KAIST 연구 인프라 증설 전력공사',client:'한국과학기술원',region:'전국',country:'대한민국',scope:'고압 수배전 / 보호계전 / 연구시설',amount:7.8,amountLabel:'약 7.8억원',deadline:'2026-07-07',category:'전력',status:'마감임박',stage:'입찰 공고 단계',trust:31,fit:83,dueDays:3,officialSources:1,updatedAgo:'2시간 전',updatedHours:2,catCode:'CAT-34',catLabel:'연구기관 전력보강',industryGroup:'public',keywords:['연구시설','보호계전','고압수배전'],relatedCompanies:['KAIST','연구시설 운영사'],reason:'연구시설 전력보강은 최근 관심 산업과 일치하고 기술 적합도가 높습니다.',explanation:[['90','연구 인프라 전력 품목과 적합'],['79','예산 규모가 대응 가능 범위'],['64','마감 임박으로 실행 속도가 중요']],timeline:['마감 3일 전','필수 서류 체크 필요','벤더 등록 여부 재확인'],notes:'기술 적합도는 높으나 시간 리스크가 큽니다.',action:'즉시 Go/No-Go 회의 필요',sourceLabel:'대학 산학/구매 공고',saved:true},
+      {id:8,title:'항공우주연구원 시험설비 전력 보강',client:'한국항공우주연구원',region:'전국',country:'대한민국',scope:'시험설비 전력 / 특수 케이블 / 안전',amount:0.48,amountLabel:'약 4,809만원',deadline:'2026-07-10',category:'전력',status:'신규',stage:'사전 검토 단계',trust:31,fit:65,dueDays:6,officialSources:1,updatedAgo:'11시간 전',updatedHours:11,catCode:'CAT-06',catLabel:'연구·시험 전력설비',industryGroup:'energy',keywords:['시험설비','특수케이블','안전'],relatedCompanies:['항우연','시험설비 업체'],reason:'기술 난이도는 높지만 규모가 작아 전략적 선별이 필요합니다.',explanation:[['72','기술 난이도는 있으나 규모는 작음'],['63','특수 케이블 경험은 플러스'],['58','소액 과제로 전략적 선택 필요']],timeline:['신규 등록','기술 조건 확인 중','내부 우선순위 중간'],notes:'단가보다 레퍼런스와 진입 목적 여부를 함께 봐야 합니다.',action:'저장 후 검토',sourceLabel:'연구원 공고',saved:false},
+      {id:9,title:'중동 수소 수출 터미널 전기·제어 패키지',client:'Gulf Industrial Development',region:'중동',country:'사우디아라비아',scope:'DCS / 고압 수배전 / 케이블',amount:32.0,amountLabel:'약 32억원',deadline:'2026-07-16',category:'가스',status:'변경',stage:'기본설계 진행중',trust:88,fit:90,dueDays:12,officialSources:3,updatedAgo:'3시간 전',updatedHours:3,catCode:'CAT-14',catLabel:'수소·암모니아 터미널',industryGroup:'oilgas',keywords:['중동 EPC','수소터미널','고압수배전'],relatedCompanies:['현지 EPC','벤더사','발주처'],reason:'중동 EPC 프로젝트와 전기·변전 설비 관심 산업이 강하게 겹칩니다.',explanation:[['94','중동 EPC 저장 검색과 직접 일치'],['89','제어·전력 패키지 범위가 넓어 참여 가치 높음'],['82','공식 보도와 발주 업데이트가 교차 확인됨']],timeline:['중동 EPC 소스에서 갱신','컨소시엄 참여사 변경','벤더 등록 경로 확인 중'],notes:'국내 공공과 달리 파트너 전략과 벤더 등록 전략을 함께 봐야 하는 프로젝트입니다.',action:'중동 EPC 전담 영업과 합동 검토',sourceLabel:'공식 발표 + EPC 업데이트 + 산업 뉴스',saved:false}
+    ];
+
+    const liveLogs = [
+      '중동 수소 터미널 프로젝트의 참여사 변경 이력이 반영되었습니다.',
+      '한국가스공사 관련 정정 공고 2건이 자동 동기화되었습니다.',
+      'CAT-05 송변전·변전소 인프라 관심 산업 사용자에게 신규 알림이 발송되었습니다.',
+      'KAIST 전력공사 마감 임박 경고가 워크스페이스에 표시되었습니다.'
+    ];
+
+    const allGroupIds = industryGroups.map(group => group.id);
+    const initialSaved = new Set(projects.filter(project => project.saved).map(project => project.id));
+
+    const state = {
+  currentQuick:'all',
+  currentRegion:'all',
+  currentStatus:'all',
+  currentSort:'priority',
+  query:'',
+  catQuery:'',
+  selectedId:null,
+  recent:[],
+  recentCats:['CAT-14','CAT-05'],
+  favoriteCats:new Set(['CAT-05','CAT-11','CAT-14']),
+  selectedCats:new Set(), // 초기에 빈 Set으로 지정하여 첫 로딩 시 전체 프로젝트 리스트가 즉시 렌더링되도록 수정합니다.
+  openGroups:new Set(allGroupIds),
+  saved:initialSaved,
+  currentView: 'all' // [추가] 상단 카테고리 뷰 상태값 동기화용 변수
+};
+
+    const els = {
+      projectList:document.getElementById('projectList'),
+      projectDetail:document.getElementById('projectDetail'),
+      resultCount:document.getElementById('resultCount'),
+      recommendationNotes:document.getElementById('recommendationNotes'),
+      savedProjectList:document.getElementById('savedProjectList'),
+      recentViewedList:document.getElementById('recentViewedList'),
+      recentViewedText:document.getElementById('recentViewedText'),
+      savedCount:document.getElementById('savedCount'),
+      recentCount:document.getElementById('recentCount'),
+      liveLog:document.getElementById('liveLog'),
+      searchInput:document.getElementById('searchInput'),
+      globalSearchInput:document.getElementById('globalSearchInput'),
+      regionFilter:document.getElementById('regionFilter'),
+      statusFilter:document.getElementById('statusFilter'),
+      sortFilter:document.getElementById('sortFilter'),
+      catSearchInput:document.getElementById('catSearchInput'),
+      activeCatList:document.getElementById('activeCatList'),
+      industryTree:document.getElementById('industryTree'),
+      myInterestList:document.getElementById('myInterestList'),
+      recentCategoryList:document.getElementById('recentCategoryList'),
+      favoriteCategoryList:document.getElementById('favoriteCategoryList')
+    };
+
+    function getCatLabel(code){
+      for(const group of industryGroups){
+        const cat = group.cats.find(item => item[0] === code);
+        if(cat) return cat[1];
+      }
+      return code;
+    }
+
+    function syncSearchInputs(value){
+      els.searchInput.value = value;
+      if(els.globalSearchInput) els.globalSearchInput.value = value;
+    }
+
+    function getDaysLabel(days){
+      if(days <= 3) return 'D-3 이내';
+      if(days <= 7) return 'D-7 이내';
+      if(days <= 30) return 'D-30';
+      return '장기';
+    }
+
+    function getStatusBadge(status){
+      if(status === '신규') return 'green';
+      if(status === '변경') return 'blue';
+      if(status === '마감임박') return 'red';
+      return 'amber';
+    }
+
+    function renderCounts(){
+      document.getElementById('countAll').textContent = projects.length;
+      document.getElementById('countHighFit').textContent = projects.filter(project => project.fit >= 80).length;
+      document.getElementById('countClosingSoon').textContent = projects.filter(project => project.dueDays <= 7).length;
+      document.getElementById('countAmountKnown').textContent = projects.filter(project => project.amount !== null).length;
+      document.getElementById('countUpdated').textContent = projects.filter(project => project.status === '변경').length;
+    }
+
+    function sortProjects(list){
+      const sorted = [...list];
+      if(state.currentSort === 'deadline') sorted.sort((a,b)=>a.dueDays-b.dueDays);
+      if(state.currentSort === 'trust') sorted.sort((a,b)=>b.trust-a.trust);
+      if(state.currentSort === 'amount') sorted.sort((a,b)=>(b.amount ?? -1) - (a.amount ?? -1));
+      if(state.currentSort === 'updated') sorted.sort((a,b)=>a.updatedHours - b.updatedHours);
+      if(state.currentSort === 'priority') sorted.sort((a,b)=>(b.fit + b.trust/10) - (a.fit + a.trust/10));
+      return sorted;
+    }
+
+    function applyFilters(){
+      const query = state.query.trim().toLowerCase();
+      let list = projects.filter(project => {
+        const catMatch = state.selectedCats.size === 0 || state.selectedCats.has(project.catCode);
+        const regionMatch = state.currentRegion === 'all' || project.region === state.currentRegion || (state.currentRegion === '국내' && ['경기','전국','대전/충청'].includes(project.region));
+        const statusMatch = state.currentStatus === 'all' || project.status === state.currentStatus || project.stage === state.currentStatus;
+        const querySource = [project.title, project.client, project.scope, project.region, project.category, project.catCode, project.catLabel, project.country, project.stage, project.keywords.join(' '), project.relatedCompanies.join(' ')].join(' ').toLowerCase();
+        const queryMatch = !query || querySource.includes(query);
+        return catMatch && regionMatch && statusMatch && queryMatch;
+      });
+
+      if(state.currentQuick === 'highFit') list = list.filter(project => project.fit >= 80);
+      if(state.currentQuick === 'closingSoon') list = list.filter(project => project.dueDays <= 7);
+      if(state.currentQuick === 'amountKnown') list = list.filter(project => project.amount !== null);
+      if(state.currentQuick === 'updated') list = list.filter(project => project.status === '변경');
+
+      return sortProjects(list);
+    }
+
+    function renderActiveCats(){
+      const cats = [...state.selectedCats];
+      els.activeCatList.innerHTML = cats.length
+        ? cats.map(code => `<span class="active-cat-tag">${code} ${getCatLabel(code)} <button type="button" data-remove-cat="${code}" aria-label="${code} 제거">✕</button></span>`).join('')
+        : '<span class="caption">선택된 카테고리가 없습니다.</span>';
+
+      document.querySelectorAll('[data-remove-cat]').forEach(button => {
+        button.addEventListener('click', () => {
+          state.selectedCats.delete(button.dataset.removeCat);
+          refreshWorkspace();
+        });
+      });
+    }
+
+    function renderInterestCollections(){
+      const interestCodes = [...new Set([...state.selectedCats, ...state.recentCats, ...state.favoriteCats])].slice(0, 4);
+      els.myInterestList.innerHTML = interestCodes.length
+        ? interestCodes.map(code => `<span class="summary-pill"><strong>${code}</strong> ${getCatLabel(code)}</span>`).join('')
+        : '<span class="caption">아직 선택된 관심 산업이 없습니다.</span>';
+
+      els.recentCategoryList.innerHTML = state.recentCats.length
+        ? state.recentCats.slice(0, 3).map(code => `<span class="summary-pill">최근 ${code}</span>`).join('')
+        : '<span class="caption">최근 선택 없음</span>';
+
+      els.favoriteCategoryList.innerHTML = [...state.favoriteCats].length
+        ? [...state.favoriteCats].slice(0, 3).map(code => `<span class="summary-pill">★ ${code}</span>`).join('')
+        : '<span class="caption">즐겨찾기 없음</span>';
+    }
+
+    function renderIndustryTree(){
+      const query = state.catQuery.trim().toLowerCase();
+      els.industryTree.innerHTML = industryGroups.map(group => {
+        const filteredCats = group.cats.filter(([code,label]) => !query || `${code} ${label} ${group.label}`.toLowerCase().includes(query));
+        if(!filteredCats.length) return '';
+        const open = state.openGroups.has(group.id);
+        return `
+          <div class="industry-group">
+            <button type="button" class="industry-group-head" data-group-toggle="${group.id}">
+              <span><strong>${group.label}</strong><span>${filteredCats.length}개 CAT</span></span>
+              <b>${open ? '▾' : '▸'}</b>
+            </button>
+            ${open ? `<div class="industry-cat-list">${filteredCats.map(([code,label]) => `
+              <div class="cat-item ${state.selectedCats.has(code) ? 'active' : ''}">
+                <button type="button" class="cat-main" data-cat-toggle="${code}">
+                  <span class="cat-check">${state.selectedCats.has(code) ? '✓' : ''}</span>
+                  <span class="cat-copy"><strong>${code} ${label}</strong><span>${group.label}</span></span>
+                </button>
+                <button type="button" class="cat-favorite ${state.favoriteCats.has(code) ? 'active' : ''}" data-cat-favorite="${code}" aria-label="${code} 즐겨찾기">★</button>
+              </div>`).join('')}</div>` : ''}
+          </div>`;
+      }).join('') || '<div class="note-box">검색 조건에 맞는 산업 카테고리가 없습니다.</div>';
+
+      document.querySelectorAll('[data-group-toggle]').forEach(button => button.addEventListener('click', () => {
+        if(state.openGroups.has(button.dataset.groupToggle)) state.openGroups.delete(button.dataset.groupToggle);
+        else state.openGroups.add(button.dataset.groupToggle);
+        renderIndustryTree();
+      }));
+
+      document.querySelectorAll('[data-cat-toggle]').forEach(button => button.addEventListener('click', () => toggleCat(button.dataset.catToggle)));
+      document.querySelectorAll('[data-cat-favorite]').forEach(button => button.addEventListener('click', () => toggleFavoriteCat(button.dataset.catFavorite)));
+    }
+
+    function toggleCat(code){
+      if(state.selectedCats.has(code)) state.selectedCats.delete(code);
+      else state.selectedCats.add(code);
+      state.recentCats = [code, ...state.recentCats.filter(item => item !== code)].slice(0, 4);
+      refreshWorkspace();
+    }
+
+    function toggleFavoriteCat(code){
+      if(state.favoriteCats.has(code)) state.favoriteCats.delete(code);
+      else state.favoriteCats.add(code);
+      renderIndustryTree();
+      renderInterestCollections();
+    }
+
+    function renderProjectList(list){
+      els.resultCount.textContent = `${list.length}건 표시 중`;
+      els.projectList.innerHTML = list.map(project => {
+        const isSaved = state.saved.has(project.id);
+        const isActive = state.selectedId === project.id;
+        return `
+          <article class="project-row ${isActive ? 'active' : ''}" data-id="${project.id}" tabindex="0" role="button" aria-label="${project.title} 상세 보기">
+            <div class="project-main">
+              <div class="project-main-top">
+                <div>
+                  <h3 class="project-title line-clamp-2 break">${project.title}</h3>
+                  <div class="project-priority" style="margin-top:8px">
+                    <span class="badge blue">${project.catCode}</span>
+                    <span class="badge ${getStatusBadge(project.status)}">${project.status}</span>
+                    <span class="badge blue">${project.catLabel}</span>
+                  </div>
+                </div>
+                <button class="save-btn ${isSaved ? 'saved' : ''}" data-save-id="${project.id}" aria-label="저장 토글">★</button>
+              </div>
+              <div class="project-meta">
+                <span>${project.keywords.join(' · ')}</span>
+                <span>관련 기업 ${project.relatedCompanies.join(', ')}</span>
+                <span>${project.sourceLabel}</span>
+              </div>
+            </div>
+            <div class="project-client break"><strong>${project.client}</strong><span class="small">${project.country} · ${project.region}</span></div>
+            <div class="col-strong">${project.amountLabel}<br><span class="small">공식 출처 ${project.officialSources}개</span></div>
+            <div class="project-stage"><strong>${project.stage}</strong><span class="small">${project.scope}</span></div>
+            <div class="project-update"><strong>${project.updatedAgo}</strong><span class="small">마감 ${project.deadline}</span></div>
+            <div class="project-ai"><strong>${project.fit}%</strong><span>AI 적합도 · Trust ${project.trust}</span></div>
+          </article>`;
+      }).join('');
+
+      document.querySelectorAll('.project-row').forEach(row => {
+        row.addEventListener('click', () => selectProject(Number(row.dataset.id)));
+        row.addEventListener('keydown', event => {
+          if(event.key === 'Enter' || event.key === ' '){
+            event.preventDefault();
+            selectProject(Number(row.dataset.id));
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-save-id]').forEach(button => {
+        button.addEventListener('click', event => {
+          event.stopPropagation();
+          toggleSave(Number(button.dataset.saveId));
+        });
+      });
+    }
+
+    function selectProject(id){
+      state.selectedId = id;
+      const project = projects.find(item => item.id === id);
+      if(!project) return;
+      state.recent = [id, ...state.recent.filter(item => item !== id)].slice(0, 4);
+      renderDetail(project);
+      renderProjectList(applyFilters());
+      renderRecent();
+      renderSaved();
+    }
+
+    function renderDetail(project){
+      els.projectDetail.innerHTML = `
+        <div class="detail-header">
+          <div>
+            <div class="project-priority">
+              <span class="badge blue">${project.catCode}</span>
+              <span class="badge ${getStatusBadge(project.status)}">${project.status}</span>
+              <span class="badge green">AI 적합도 ${project.fit}%</span>
+            </div>
+            <h3 class="break">${project.title}</h3>
+            <div class="small break">${project.client} · ${project.country} · ${project.region}</div>
+          </div>
+          <button class="btn secondary sm" id="detailSaveBtn">${state.saved.has(project.id) ? '저장됨' : '관심 저장'}</button>
+        </div>
+        <div class="detail-summary">${project.reason}</div>
+        <div class="detail-grid">
+          <div class="detail-kpi"><strong>${project.fit}%</strong><span>AI 적합도</span></div>
+          <div class="detail-kpi"><strong>${project.amountLabel}</strong><span>예상 규모</span></div>
+          <div class="detail-kpi"><strong>${project.stage}</strong><span>프로젝트 단계</span></div>
+          <div class="detail-kpi"><strong>${project.updatedAgo}</strong><span>최근 업데이트</span></div>
+        </div>
+        <div class="detail-info-grid">
+          <div class="detail-info"><strong>카테고리</strong><span>${project.catCode} ${project.catLabel}</span></div>
+          <div class="detail-info"><strong>발주처</strong><span>${project.client}</span></div>
+          <div class="detail-info"><strong>관련 기업</strong><span>${project.relatedCompanies.join(', ')}</span></div>
+          <div class="detail-info"><strong>마감 일정</strong><span>${project.deadline} · ${getDaysLabel(project.dueDays)}</span></div>
+        </div>
+        <div class="detail-tags">${project.keywords.map(keyword => `<span>${keyword}</span>`).join('')}</div>
+        <div class="detail-block">
+          <div class="panel-title"><h4>AI 추천 근거</h4><span class="small">설명 가능한 점수</span></div>
+          <div class="xai-list">${project.explanation.map(([score,text]) => `<div class="xai-item"><span class="score-pill">${score}</span><div>${text}</div></div>`).join('')}</div>
+        </div>
+        <div class="detail-block">
+          <div class="panel-title"><h4>최근 상태 변경</h4><span class="small">${project.sourceLabel}</span></div>
+          <div class="timeline-list">${project.timeline.map(item => `<div class="timeline-item"><span class="timeline-dot"></span><div><strong style="display:block;font-size:14px">${item}</strong><span class="small">${project.updatedAgo}</span></div></div>`).join('')}</div>
+        </div>
+        <div class="detail-block">
+          <div class="panel-title"><h4>세부 설명 및 다음 액션</h4><span class="badge green">Team Ready</span></div>
+          <div class="note-box">${project.notes}<br><br><strong>권장 액션:</strong> ${project.action}</div>
+        </div>`;
+
+      document.getElementById('detailSaveBtn').addEventListener('click', () => toggleSave(project.id));
+      els.recommendationNotes.innerHTML = project.explanation.map(([score,text]) => `<div class="mini-item"><span class="score-pill">${score}</span><div>${text}</div></div>`).join('');
+      els.recentViewedText.textContent = project.title.length > 22 ? `${project.title.slice(0,22)}…` : project.title;
+    }
+
+    function toggleSave(id){
+      if(state.saved.has(id)) state.saved.delete(id);
+      else state.saved.add(id);
+      renderSaved();
+      renderProjectList(applyFilters());
+      if(state.selectedId === id){
+        const active = projects.find(item => item.id === id);
+        if(active) renderDetail(active);
+      }
+    }
+
+    function renderSaved(){
+      const savedProjects = projects.filter(project => state.saved.has(project.id));
+      els.savedCount.textContent = savedProjects.length;
+      els.savedProjectList.innerHTML = savedProjects.length ? savedProjects.slice(0,4).map(project => `
+        <div class="intel-item">
+          <div>
+            <strong class="line-clamp-1 break" style="display:block;font-size:14px">${project.title}</strong>
+            <span class="small">${project.client} · ${project.catCode} · ${project.fit}%</span>
+          </div>
+          <button class="btn secondary sm" data-open-id="${project.id}">보기</button>
+        </div>`).join('') : '<div class="note-box">아직 저장한 프로젝트가 없습니다. 목록에서 ★를 눌러 저장해보세요.</div>';
+
+      document.querySelectorAll('[data-open-id]').forEach(button => {
+        button.addEventListener('click', () => selectProject(Number(button.dataset.openId)));
+      });
+    }
+
+    function renderRecent(){
+      els.recentCount.textContent = state.recent.length;
+      const recentProjects = state.recent.map(id => projects.find(project => project.id === id)).filter(Boolean);
+      els.recentViewedList.innerHTML = recentProjects.length ? recentProjects.map(project => `
+        <div class="intel-item">
+          <div>
+            <strong class="line-clamp-1 break" style="display:block;font-size:14px">${project.title}</strong>
+            <span class="small">${project.updatedAgo} · ${project.stage}</span>
+          </div>
+          <span class="badge blue">${project.fit}%</span>
+        </div>`).join('') : '<div class="note-box">아직 본 프로젝트가 없습니다. 목록을 클릭하면 이 영역에 최근 본 항목이 쌓입니다.</div>';
+    }
+
+    function renderLiveLogs(){
+      els.liveLog.innerHTML = liveLogs.map(log => `
+        <div class="live-item">
+          <span class="live-dot"></span>
+          <div><strong style="display:block;font-size:14px">${log}</strong><span class="small">최근 동기화 기준 반영</span></div>
+        </div>`).join('');
+    }
+
+    function activateQuickFilter(value){
+      state.currentQuick = value;
+      document.querySelectorAll('[data-quick]').forEach(button => button.classList.toggle('active', button.dataset.quick === value));
+      const list = applyFilters();
+      renderProjectList(list);
+      renderActiveCats();
+      if(list.length){
+        if(!list.some(item => item.id === state.selectedId)) state.selectedId = list[0].id;
+        renderDetail(projects.find(item => item.id === state.selectedId) || list[0]);
+      } else {
+        els.projectDetail.innerHTML = '<div class="note-box">조건에 맞는 프로젝트가 없습니다. 지역·상태·CAT 선택을 완화해보세요.</div>';
+        els.recommendationNotes.innerHTML = '<div class="mini-item"><span class="score-pill">--</span><div>선택 조건을 조정하면 추천 근거가 다시 표시됩니다.</div></div>';
+      }
+    }
+
+    function refreshWorkspace(){
+      renderInterestCollections();
+      renderIndustryTree();
+      activateQuickFilter(state.currentQuick);
+    }
+
+    function applyPreset(key){
+      state.selectedCats.clear();
+      state.query = '';
+      state.currentRegion = 'all';
+      state.currentStatus = 'all';
+      if(key === 'domestic-grid'){
+        ['CAT-05','CAT-31'].forEach(code => state.selectedCats.add(code));
+        state.currentRegion = '국내';
+      }
+      if(key === 'kogas'){
+        ['CAT-11','CAT-13'].forEach(code => state.selectedCats.add(code));
+        state.query = '한국가스공사';
+      }
+      if(key === 'epc-middle-east'){
+        state.selectedCats.add('CAT-14');
+        state.currentRegion = '중동';
+        state.query = 'EPC';
+      }
+      syncSearchInputs(state.query);
+      els.regionFilter.value = state.currentRegion;
+      els.statusFilter.value = state.currentStatus;
+      refreshWorkspace();
+    }
+
+    function resetFilters(){
+      state.query = '';
+      state.currentQuick = 'all';
+      state.currentRegion = 'all';
+      state.currentStatus = 'all';
+      state.currentSort = 'priority';
+      state.selectedCats.clear();
+      syncSearchInputs('');
+      els.regionFilter.value = 'all';
+      els.statusFilter.value = 'all';
+      els.sortFilter.value = 'priority';
+      refreshWorkspace();
+    }
+
+    function updateBilling(type){
+      document.querySelectorAll('[data-billing]').forEach(button => button.classList.toggle('active', button.dataset.billing === type));
+      document.querySelectorAll('[data-price-month]').forEach(el => {
+        const value = type === 'monthly' ? el.dataset.priceMonth : el.dataset.priceYear;
+        el.innerHTML = `₩${Number(value).toLocaleString('ko-KR')} <small>/${type === 'monthly' ? '월' : '월, 연간 결제 기준'}</small>`;
+      });
+    }
+
+    function openOverlay(id){
+      const overlay = document.getElementById(id);
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay(id){
+      const overlay = document.getElementById(id);
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    function renderInitial(){
+      renderCounts();
+      renderLiveLogs();
+      renderSaved();
+      renderRecent();
+      renderInterestCollections();
+      renderIndustryTree();
+      syncSearchInputs(state.query);
+      const list = applyFilters();
+      renderProjectList(list);
+      renderActiveCats();
+      if(list.length){
+        state.selectedId = list[0].id;
+        renderDetail(list[0]);
+        renderProjectList(list);
+      }
+    }
+
+    els.searchInput.addEventListener('input', event => {
+      state.query = event.target.value;
+      syncSearchInputs(state.query);
+      activateQuickFilter(state.currentQuick);
+    });
+    if(els.globalSearchInput){
+      els.globalSearchInput.addEventListener('input', event => {
+        state.query = event.target.value;
+        syncSearchInputs(state.query);
+        activateQuickFilter(state.currentQuick);
+      });
+    }
+    els.regionFilter.addEventListener('change', event => { state.currentRegion = event.target.value; activateQuickFilter(state.currentQuick); });
+    els.statusFilter.addEventListener('change', event => { state.currentStatus = event.target.value; activateQuickFilter(state.currentQuick); });
+    els.sortFilter.addEventListener('change', event => { state.currentSort = event.target.value; activateQuickFilter(state.currentQuick); });
+    if(els.catSearchInput){
+      els.catSearchInput.addEventListener('input', event => { state.catQuery = event.target.value; renderIndustryTree(); });
+    }
+    document.getElementById('clearCatFilterBtn').addEventListener('click', () => {
+      state.selectedCats.clear();
+      refreshWorkspace();
+    });
+    document.getElementById('resetFilterBtn').addEventListener('click', resetFilters);
+    document.querySelectorAll('[data-quick]').forEach(button => button.addEventListener('click', () => activateQuickFilter(button.dataset.quick)));
+    document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => applyPreset(button.dataset.preset)));
+    document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => button.parentElement.classList.toggle('open')));
+    document.querySelectorAll('[data-billing]').forEach(button => button.addEventListener('click', () => updateBilling(button.dataset.billing)));
+    document.querySelectorAll('[data-open-auth]').forEach(button => button.addEventListener('click', () => {
+      openOverlay('authOverlay');
+      if(button.dataset.openAuth === 'register') document.querySelector('[data-auth-tab="register"]').click();
+    }));
+    document.querySelectorAll('[data-close-overlay]').forEach(button => button.addEventListener('click', () => closeOverlay(button.dataset.closeOverlay)));
+    document.querySelectorAll('.modal-overlay').forEach(overlay => overlay.addEventListener('click', event => {
+      if(event.target === overlay) closeOverlay(overlay.id);
+    }));
+    document.querySelectorAll('.auth-tab').forEach(tab => tab.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(item => item.classList.remove('active'));
+      document.querySelectorAll('.auth-panel').forEach(item => item.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(`auth-${tab.dataset.authTab}`).classList.add('active');
+    }));
+    document.getElementById('demoLoginBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('데모 로그인 완료'); });
+    document.getElementById('demoRegisterBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('무료 체험 계정 생성 데모 완료'); });
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('siteHeader').classList.toggle('open'));
+
+    renderInitial();
+  </script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
