@@ -11,49 +11,70 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
   
   <style>
-    /* PART 6 — Design Tokens / 8px Grid / Typography */
+    /* PART 6 — Premium Cosmic Dark Navy Tokens (Palantir Base) */
     :root{
-      /* Palantir & Bloomberg 스타일의 프리미엄 다크 네이비 기조 변수 세팅 */
-      --bg:#08131E;
-      --surface:rgba(8, 25, 45, 0.45);        /* 글래스모피즘 반투명 플레이트 */
-      --surface-2:rgba(15, 37, 66, 0.35);      /* 조금 더 밝은 카드형 배경 */
-      --surface-3:rgba(255, 255, 255, 0.04);
-      --surface-4:rgba(37, 99, 235, 0.12);
-      --line:rgba(255, 255, 255, 0.08);        /* 극도로 얇은 반투명 경계선 */
-      --line-strong:rgba(37, 99, 235, 0.25);
-      --text:#f8fafc;                           /* 밝은 화이트 그레이 기본 텍스트 */
-      --text-2:#94a3b8;                         /* 세컨더리 슬레이트 블루 텍스트 */
-      --text-3:#64748b;
-      --text-4:#475569;
-      --brand:#3b82f6;                          /* 일렉트릭 블루 메인 */
-      --brand-strong:#60a5fa;
-      --brand-soft:rgba(59, 130, 246, 0.12);
-      --green:#10b981;
-      --green-soft:rgba(16, 185, 129, 0.12);
-      --amber:#f59e0b;
-      --amber-soft:rgba(245, 158, 11, 0.12);
-      --red:#ef4444;
-      --red-soft:rgba(239, 68, 68, 0.12);
-      --ink:#020617;
+      /* Palantir & Bloomberg 고정밀 관제 콘솔용 다크 네이비 테마 */
+      --bg:#040914;
+      --bg-0:#040914;
+      --bg-1:#08131E; /* 메인 테마 코어 백그라운드 */
+      --bg-2:#0a192f;
+      --bg-3:#10223b;
+
+      /* 반투명 프로스트 아크릴 글래스 재질 세팅 (투명도 대폭 개선) */
+      --surface:rgba(4, 9, 20, 0.65);
+      --surface-2:rgba(255, 255, 255, 0.03);
+      --surface-3:rgba(255, 255, 255, 0.015);
+      --surface-4:rgba(0, 229, 255, 0.08);
       
-      /* 용도 및 카테고리별 다채로운 엔터프라이즈 전용 컬러 토큰 */
-      --domestic-brand: #0d9488;       /* 국내 프로젝트: 딥 틸/민트 */
-      --domestic-soft: rgba(13, 148, 136, 0.12);
-      --intl-brand: #d97706;           /* 국제 프로젝트: 사막 웜 골드 */
-      --intl-soft: rgba(217, 119, 6, 0.12);
-      --my-brand: #6366f1;             /* 내 프로젝트: 로열 인디고 */
-      --my-soft: rgba(99, 102, 241, 0.12);
-      --about-brand: #0284c7;          /* 회사 소개: 마일드 블루 */
-      --about-soft: rgba(2, 132, 199, 0.12);
+      /* 극도로 정밀하고 예리한 1px 단위 아웃라인 */
+      --line:rgba(255, 255, 255, 0.06);
+      --line-strong:rgba(0, 229, 255, 0.18);
       
-      --shadow-sm:0 2px 8px rgba(0,0,0,0.5);
-      --shadow-md:0 12px 30px rgba(0,0,0,0.6);
-      --shadow-lg:0 26px 80px rgba(0,0,0,0.8), 0 0 40px rgba(37, 99, 235, 0.08); /* 마이크로 글로우 섀도우 */
+      /* 사이버 룩 가독성을 위한 고해상도 화이트 실버 가치 부여 */
+      --text:#F4FBFF;        
+      --text-2:#B8CBDA;      
+      --text-3:#7E95AA;
+      --text-4:#4b617a;
+      
+      /* 일렉트릭 사이안 & 사이버 펑크 스타일 완전 탈피용 하이테크 스틸 블루 액센트 */
+      --brand:#00E5FF;
+      --brand-strong:#00d2f0;
+      --brand-soft:rgba(0, 229, 255, 0.08);
+      --brand-2:#00D1B2;
+      --brand-3:#4FC3F7;
+
+      --brand-soft-2:rgba(0, 209, 178, 0.08);
+      --brand-soft-3:rgba(79, 195, 247, 0.08);
+
+      --green:#29E7A8;
+      --green-soft:rgba(41, 231, 168, 0.08);
+      --amber:#FFC857;
+      --amber-soft:rgba(255, 200, 87, 0.08);
+      --red:#FF7C8A;
+      --red-soft:rgba(255, 124, 138, 0.08);
+      --ink:#01040a;
+      
+      /* 용도별 다채로운 엔터프라이즈 전용 컬러 칩 토큰 */
+      --domestic-brand: #0d9488;       
+      --domestic-soft: rgba(13, 148, 136, 0.08);
+      --intl-brand: #d97706;           
+      --intl-soft: rgba(217, 119, 6, 0.08);
+      --my-brand: #6366f1;             
+      --my-soft: rgba(99, 102, 241, 0.08);
+      --about-brand: #0284c7;          
+      --about-soft: rgba(2, 132, 199, 0.08);
+
+      /* 네온 일레트릭 광량 섀도우 효과 */
+      --shadow-sm:0 8px 24px rgba(0,0,0,0.45);
+      --shadow-md:0 16px 40px rgba(0,0,0,0.6);
+      --shadow-lg:0 26px 80px rgba(0,0,0,0.7), 0 0 32px rgba(0, 229, 255, 0.05);
+      
       --radius-xs:6px;
       --radius-sm:10px;
       --radius-md:14px;
       --radius-lg:18px;
       --radius-xl:24px;
+      
       --space-1:4px;
       --space-2:8px;
       --space-3:12px;
@@ -66,23 +87,24 @@
       --space-10:56px;
       --space-11:64px;
       --space-12:80px;
-      --header-h:72px;
-      --container:1360px;
-      --font-ui:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;
+      --header-h:64px; /* GNB 높이를 64px로 최적화 */
+      --container:1440px; /* 고해상도 대시보드 맞춤형 넓이 확장 */
+      --font-ui:"Pretendard", system-ui, sans-serif;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family:var(--font-ui);
-      color:var(--text);
-      /* 글로벌 맵 백그라운드 아우라를 재현하기 위한 다중 레이어 라디얼 그라데이션 광원 적용 */
+      color:var(--text-1) !important;
+      /* 복합 입체 지오메트릭 광원이 서서히 안착하는 백그라운드 매트 그라데이션 */
       background:
-        radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent 45%),
-        radial-gradient(circle at bottom left, rgba(13, 148, 136, 0.08), transparent 40%),
-        linear-gradient(180deg, #040914 0%, var(--bg) 100%) !important;
+        radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.06), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(79, 195, 247, 0.05), transparent 30%),
+        linear-gradient(180deg, #040914 0%, var(--bg-1) 100%) !important;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
+      overflow-x:hidden;
     }
     img,svg{display:block;max-width:100%}
     button,input,select,textarea{font:inherit}
@@ -426,45 +448,293 @@
     .trust-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
     .logo-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
     .logo-chip{height:56px;border-radius:16px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--surface-2);font-weight:800;color:#536172;font-size:13px}
-    .pricing-grid{display:grid;grid-template-columns:.95fr 1.1fr .95fr;gap:18px;align-items:start}
-    .price-plan{padding:24px;position:relative}
-    .price-plan h3{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
-    .price-plan ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px}
-    .price-plan li{display:grid;grid-template-columns:auto 1fr;gap:10px;line-height:1.7;color:var(--text-2)}
-    .check{width:20px;height:20px;border-radius:999px;background:var(--green-soft);display:grid;place-items:center;color:var(--green);font-weight:900;font-size:12px;margin-top:2px}
-    .price-line{margin:10px 0 12px;font-size:38px;font-weight:900;letter-spacing:-.06em}
-    .price-line small{font-size:15px;font-weight:700;color:var(--text-3)}
-    .plan-highlight{border-color:#caddff;background:linear-gradient(180deg,#fff 0%, #f7fbff 100%);box-shadow:0 18px 42px rgba(37,99,235,.08)}
-    .plan-badge{position:absolute;right:18px;top:18px}
-    .billing-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px;border-radius:999px;border:1px solid var(--line);background:#fff}
-    .billing-toggle button{border:none;background:transparent;padding:10px 14px;border-radius:999px;font-weight:800;color:var(--text-2)}
-    .billing-toggle button.active{background:var(--text);color:#fff}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    /* [Step 6] Pricing Plans & Billing Toggle Matte-Glass System */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:24px;
+      align-items:start;
+    }
+    .price-plan{
+      padding:28px 24px;
+      position:relative;
+      border-radius:20px !important;
+      background:linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%) !important;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      box-shadow:var(--shadow-md) !important;
+    }
+    .price-plan h3{
+      margin:0 0 12px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      color:var(--text-1) !important;
+    }
+    .price-plan ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+    .price-plan li{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:10px;
+      line-height:1.7;
+      color:var(--text-2) !important;
+      font-size:13px;
+    }
+    .check{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:rgba(41, 231, 168, 0.12) !important;
+      display:grid;
+      place-items:center;
+      color:var(--green) !important;
+      font-weight:900;
+      font-size:11px;
+      margin-top:3px;
+    }
+    .price-line{
+      margin:12px 0;
+      font-size:36px;
+      font-weight:800;
+      letter-spacing:-.05em;
+      color:var(--text-1) !important;
+    }
+    .price-line small{font-size:14px;font-weight:700;color:var(--text-3) !important}
+    
+    /* Highlighted Plan with Cybernetic Glow Ring */
+    .plan-highlight{
+      border:1px solid rgba(0, 229, 255, 0.3) !important;
+      background:linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, rgba(255,255,255,0.02) 100%) !important;
+      box-shadow:0 24px 60px rgba(0,0,0,0.5), 0 0 24px rgba(0, 229, 255, 0.1) !important;
+    }
+    .plan-badge{
+      position:absolute;
+      right:18px;
+      top:18px;
+      font-size:10px;
+    }
+    .billing-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:4px;
+      border-radius:999px;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+    }
+    .billing-toggle button{
+      border:none;
+      background:transparent;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      color:var(--text-3);
+      transition:all 0.2s ease;
+    }
+    .billing-toggle button.active{
+      background:linear-gradient(135deg, #00E5FF, #00D1B2) !important;
+      color:#07111F !important;
+      box-shadow:0 0 12px rgba(0, 229, 255, 0.3);
+    }
+    /* [Step 6] Accordion FAQ Matte-Glass Styling */
+    .faq-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
     .faq-list{display:grid;gap:12px}
-    .faq-item{border-radius:18px;border:1px solid var(--line);background:#fff;overflow:hidden}
-    .faq-q{width:100%;padding:18px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font-weight:800;color:var(--text)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .22s ease;padding:0 18px;color:var(--text-3);line-height:1.8;font-size:14px}
-    .faq-item.open .faq-a{padding:0 18px 18px;max-height:220px}
-    .footer{padding:40px 0 56px;border-top:1px solid var(--line);background:linear-gradient(180deg,#fbfdff 0%, #f5f8fc 100%)}
-    .footer-grid{display:grid;grid-template-columns:1.3fr .85fr .85fr .85fr;gap:18px}
-    .footer h4{margin:0 0 12px;font-size:14px}
-    .footer-links{display:grid;gap:10px;color:var(--text-3);font-size:14px}
-    .footer-copy{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--text-3);font-size:13px}
-    .modal-overlay{position:fixed;inset:0;background:rgba(2,6,23,.48);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
+    .faq-item{
+      border-radius:14px !important;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.015) !important;
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      overflow:hidden;
+      transition:all 0.25s ease;
+    }
+    .faq-item:hover {
+      border-color:rgba(0, 229, 255, 0.2) !important;
+      background:rgba(255, 255, 255, 0.03) !important;
+    }
+    .faq-q{
+      width:100%;
+      padding:16px 20px;
+      border:none;
+      background:transparent !important;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      text-align:left;
+      font-weight:800;
+      font-size:14px;
+      color:var(--text-1) !important;
+      transition:color 0.2s ease;
+    }
+    .faq-q:hover {
+      color:var(--cyan) !important;
+    }
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      padding:0 20px;
+      color:var(--text-2) !important;
+      line-height:1.75;
+      font-size:13px;
+    }
+    .faq-item.open {
+      border-color:rgba(0, 229, 255, 0.25) !important;
+      background:rgba(255, 255, 255, 0.03) !important;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    }
+    .faq-item.open .faq-a{
+      padding:0 20px 18px;
+      max-height:220px;
+    }
+    /* [Step 6] Consolidated Seamless Dark Footer */
+    .footer{
+      padding:56px 0;
+      border-top:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:linear-gradient(180deg, rgba(7, 17, 31, 0.8) 0%, #040914 100%) !important;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr .85fr .85fr .85fr;
+      gap:24px;
+    }
+    .footer h4{
+      margin:0 0 16px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:0.05em;
+      text-transform:uppercase;
+      color:var(--text-1) !important;
+    }
+    .footer-links{
+      display:grid;
+      gap:12px;
+      color:var(--text-3) !important;
+      font-size:13px;
+    }
+    .footer-links a {
+      transition:color 0.18s ease;
+    }
+    .footer-links a:hover {
+      color:var(--cyan) !important;
+    }
+    .footer-copy{
+      margin-top:36px;
+      padding-top:20px;
+      border-top:1px solid rgba(255, 255, 255, 0.04) !important;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--text-3) !important;
+      font-size:12px;
+    }
+    /* [Step 7] Premium Acrylic Glassmorphism Auth Modal & Form Fields */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(2, 6, 23, 0.65) !important; /* 배경 암도 상향을 통한 가독성 증대 */
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:100;
+    }
     .modal-overlay.show{display:flex}
-    .modal{width:min(560px,100%);border-radius:28px;border:1px solid var(--line);background:#fff;box-shadow:0 30px 80px rgba(2,6,23,.2);overflow:hidden}
-    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
-    .modal-body{padding:20px}
-    .close-btn{width:36px;height:36px;border:none;border-radius:12px;background:var(--surface-3)}
-    .auth-tabs{display:flex;gap:8px;padding:6px;background:var(--surface-3);border-radius:14px}
-    .auth-tab{flex:1;border:none;background:transparent;padding:11px 12px;border-radius:10px;font-weight:800;color:var(--text-2)}
-    .auth-tab.active{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .modal{
+      width:min(560px,100%);
+      border-radius:20px !important; /* 랜드마크 각도에 대응하는 모서리 교정 */
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:linear-gradient(180deg, rgba(15, 25, 45, 0.85) 0%, rgba(8, 18, 32, 0.95) 100%) !important;
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      box-shadow:0 30px 80px rgba(0,0,0,0.6), 0 0 32px rgba(0, 229, 255, 0.08) !important;
+      overflow:hidden;
+    }
+    .modal-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:20px 24px;
+      border-bottom:1px solid rgba(255, 255, 255, 0.06) !important;
+    }
+    .modal-head h3 {
+      color: var(--text-1) !important;
+    }
+    .modal-body{padding:24px}
+    .close-btn{
+      width:36px;
+      height:36px;
+      border:none;
+      border-radius:10px;
+      background:rgba(255, 255, 255, 0.04) !important;
+      color: var(--text-2) !important;
+      transition: all 0.18s;
+    }
+    .close-btn:hover {
+      background:rgba(255, 255, 255, 0.08) !important;
+      color: var(--text-1) !important;
+    }
+    .auth-tabs{
+      display:flex;
+      gap:6px;
+      padding:4px;
+      background:rgba(255, 255, 255, 0.03) !important;
+      border-radius:12px;
+      border:1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 20px;
+    }
+    .auth-tab{
+      flex:1;
+      border:none;
+      background:transparent;
+      padding:10px 12px;
+      border-radius:8px;
+      font-weight:800;
+      color:var(--text-3) !important;
+      transition: all 0.18s;
+    }
+    .auth-tab.active{
+      background:rgba(255, 255, 255, 0.06) !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      color:var(--text-1) !important;
+    }
     .auth-panel{display:none}
     .auth-panel.active{display:block}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .form-field{display:grid;gap:6px;margin-top:14px}
-    .form-field label{font-size:12px;font-weight:800;color:var(--text-3)}
-    .form-field input,.form-field select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .form-field label{
+      font-size:11px;
+      font-weight:800;
+      color:var(--text-3) !important;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .form-field input, .form-field select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+      color: var(--text-1) !important;
+      transition: all 0.2s;
+    }
+    .form-field input:focus, .form-field select:focus {
+      border-color: rgba(0, 229, 255, 0.3) !important;
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.12) !important;
+      background: rgba(7, 17, 31, 0.8) !important;
+    }
     .note-box{padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);line-height:1.75;color:var(--text-2);font-size:13px}
     html,body{width:100%;overflow-x:hidden}
     body{
@@ -496,73 +766,77 @@
     .project-title{font-size:22px;line-height:1.36;font-weight:800;letter-spacing:-.03em;margin:0}
     .detail-header h3{font-size:24px;line-height:1.35;letter-spacing:-.03em}
     .module-card h3,.price-plan h3{font-size:18px}
-    /* [Step 2] Palantir & Fabric 스타일의 초정밀 반투명 글래스 헤더 개편 */
+    /* [Step 2] Unified Bloomberg/Palantir Acrylic GNB Header Style */
     .site-header{
       position:sticky;
       top:0;
       z-index:60;
-      background:rgba(8, 20, 36, 0.65) !important; /* 극도로 조율된 심해 네이비 투명도 */
-      backdrop-filter:blur(18px) saturate(1.4) !important;
-      -webkit-backdrop-filter:blur(18px) saturate(1.4) !important;
-      border-bottom:1px solid rgba(255, 255, 255, 0.06) !important;
-      box-shadow:0 8px 32px 0 rgba(0, 0, 0, 0.35) !important;
+      background:rgba(7, 17, 31, 0.54) !important; /* 팰런티어 스타일 반투명 글래스 */
+      border-bottom:1px solid var(--stroke-1) !important;
+      backdrop-filter:blur(22px) saturate(1.28) !important;
+      -webkit-backdrop-filter:blur(22px) saturate(1.28) !important;
+      box-shadow:0 10px 34px rgba(0,0,0,0.24) !important;
     }
     .live-strip{
-      background:rgba(4, 9, 18, 0.85) !important;
-      border-bottom:1px solid rgba(255, 255, 255, 0.04) !important;
+      background:rgba(7, 17, 31, 0.42) !important;
+      border-bottom:1px solid rgba(255, 255, 255, 0.06) !important;
     }
     .live-strip-inner{
       height:36px;
-      color:var(--text-2) !important;
+      color:var(--text-3) !important;
     }
-    /* 상태 수치 강조용 일렉트릭 블루/사이안 글로우 텍스트 적용 */
     .live-strip-inner strong {
-      color:#60a5fa !important;
-      text-shadow:0 0 8px rgba(96, 165, 250, 0.25);
+      color:var(--cyan) !important;
+      text-shadow:0 0 12px rgba(0, 229, 255, 0.28);
     }
-    .site-nav{height:72px;gap:18px}
-    .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:18px;min-width:0}
+    .site-nav{
+      height:64px !important;
+      min-height:64px !important;
+      gap:18px;
+    }
+    .site-nav-left, .site-nav-right{display:flex;align-items:center;gap:12px;min-width:0}
     .site-nav-left{flex:1 1 auto}
     .site-nav-right{flex:0 0 auto}
     .brand{padding-right:8px}
     .brand-mark{
       box-shadow:none;
-      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.45)); /* 심볼 아우라 발산 */
+      filter:
+        drop-shadow(0 0 12px rgba(0,229,255,0.26))
+        drop-shadow(0 0 24px rgba(79,195,247,0.12)) !important;
     }
     .brand-copy strong{
-      font-size:17px;
+      font-size:16px;
       font-weight:800;
-      color:var(--text) !important;
+      color:var(--text-1) !important;
     }
     .brand-copy span {
-      color: var(--text-2) !important;
+      color:var(--text-3) !important;
     }
-    .nav-links{gap:8px;font-size:14px;font-weight:700;color:var(--text-2)}
+    .nav-links{gap:6px;font-size:13px;font-weight:700;color:var(--text-3)}
     .nav-links a{
-      padding:10px 12px;
-      border-radius:8px;
-      color:var(--text-2) !important;
+      padding:8px 12px;
+      border-radius:12px !important;
+      color:var(--text-3) !important;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .nav-links a:hover{
-      background:rgba(255, 255, 255, 0.05) !important;
-      color:var(--text) !important;
+      background:rgba(255, 255, 255, 0.06) !important;
+      color:var(--text-1) !important;
     }
-    /* 액티브 메뉴 탭 하이라이트 튜닝 */
     .nav-links a.active-tab {
-      background:var(--brand-soft) !important;
-      color:var(--brand-strong) !important;
-      border: 1px solid rgba(59, 130, 246, 0.15) !important;
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.08);
+      background:linear-gradient(135deg, rgba(0,229,255,0.14), rgba(79,195,247,0.12)) !important;
+      border:1px solid rgba(0,229,255,0.16) !important;
+      color:#DDFBFF !important;
+      box-shadow:0 0 16px rgba(0,229,255,0.06) !important;
     }
-    .nav-actions{gap:10px}
+    .nav-actions{gap:8px}
     .icon-btn{
       position:relative;
-      width:40px;
-      height:40px;
-      border-radius:10px;
-      border:1px solid rgba(255, 255, 255, 0.06) !important;
-      background:rgba(255, 255, 255, 0.02) !important;
+      width:38px;
+      height:38px;
+      border-radius:14px !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:rgba(255, 255, 255, 0.05) !important;
       color:var(--text-2) !important;
       display:inline-flex;
       align-items:center;
@@ -571,47 +845,73 @@
       transition:all 0.18s;
     }
     .icon-btn:hover{
-      background:rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.08) !important;
       border-color:rgba(255, 255, 255, 0.15) !important;
-      color:var(--text) !important;
+      color:var(--text-1) !important;
+      box-shadow:0 0 18px rgba(0,229,255,0.08) !important;
     }
     .icon-btn em{
       position:absolute;
-      top:4px;
-      right:4px;
-      min-width:16px;
+      top:3px;
+      right:3px;
+      min-width:15px;
       height:16px;
-      padding:0 4px;
+      padding:0 3px;
       border-radius:999px;
-      background:#2563eb;
-      color:#fff;
+      background:#00E5FF;
+      color:#07111F;
       font-style:normal;
-      font-size:10px;
-      font-weight:800;
+      font-size:9px;
+      font-weight:900;
       display:grid;
       place-items:center;
-      box-shadow:0 0 8px rgba(37, 99, 235, 0.6);
+      box-shadow:0 0 10px rgba(0, 229, 255, 0.6);
     }
-    .header-search{position:relative;width:240px;flex:0 0 240px}
-    .header-search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px}
+    .header-search{position:relative;width:220px;flex:0 0 220px}
+    .header-search span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-4);font-size:12px}
     .header-search input{
       width:100%;
-      height:40px;
-      padding:0 14px 0 36px;
-      border-radius:10px;
-      border:1px solid rgba(255, 255, 255, 0.06) !important;
-      background:rgba(255, 255, 255, 0.02) !important;
-      color:var(--text) !important;
+      height:38px;
+      padding:0 12px 0 32px;
+      border-radius:14px !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:rgba(255, 255, 255, 0.05) !important;
+      color:var(--text-1) !important;
+      font-size:13px;
       transition:all 0.18s;
     }
     .header-search input:focus{
-      background:rgba(8, 25, 45, 0.8) !important;
-      border-color:rgba(59, 130, 246, 0.3) !important;
-      box-shadow:0 0 12px rgba(59, 130, 246, 0.1);
+      background:rgba(255, 255, 255, 0.07) !important;
+      border-color:rgba(0, 229, 255, 0.28) !important;
+      box-shadow:0 0 0 4px rgba(0,229,255,0.08), 0 0 20px rgba(0,229,255,0.08) !important;
     }
+    /* [Step 7] Mobile Nav Glass Re-architecture */
     .menu-btn{display:none}
-    .mobile-nav{display:none;padding:8px 0 16px;border-top:1px solid var(--line)}
-    .mobile-nav a,.mobile-nav button{display:block;width:100%;padding:14px 0;border:none;background:none;text-align:left;border-bottom:1px solid #edf2f7;font-weight:700;color:var(--text-2)}
+    .mobile-nav{
+      display:none;
+      padding:12px 16px 20px;
+      border-top:1px solid rgba(255, 255, 255, 0.05) !important;
+      background: rgba(7, 17, 31, 0.9) !important;
+      backdrop-filter: blur(20px);
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+    .mobile-nav a, .mobile-nav button{
+      display:block;
+      width:100%;
+      padding:14px 12px;
+      border:none;
+      background:none;
+      text-align:left;
+      border-bottom:1px solid rgba(255, 255, 255, 0.04) !important;
+      font-weight:700;
+      color:var(--text-2) !important;
+      transition: all 0.18s;
+    }
+    .mobile-nav a:hover, .mobile-nav button:hover {
+      color: var(--cyan) !important;
+      background: rgba(255, 255, 255, 0.02) !important;
+    }
     /* [Step 4] PART 8 강제 백그라운드 색상 고정 해제 및 글래스 텍스처 오버라이드 */
     .workspace-frame {
       background:rgba(8, 20, 36, 0.5) !important; /* 메인 프레임을 우주선 관제 콘솔 재질로 격상 */
@@ -1254,306 +1554,6 @@ select option{
   border-color:rgba(96,165,250,.22) !important;
 }
 /* =========================================================
-   PREMIUM REDESIGN — STEP 1
-   Foundation / Color System / Background / Atmosphere
-   반드시 <style> 맨 마지막에 추가
-========================================================= */
-:root{
-  --bg:#07111F;
-  --bg-2:#0B1726;
-  --bg-3:#0D1B2A;
-  --surface:rgba(255,255,255,0.08);
-  --surface-2:rgba(255,255,255,0.06);
-  --surface-3:rgba(255,255,255,0.04);
-  --line:rgba(255,255,255,0.12);
-  --line-strong:rgba(0,229,255,0.28);
-
-  --text:#F4FBFF;
-  --text-2:#B7C9D8;
-  --text-3:#7D93A7;
-  --text-4:#5E7388;
-
-  --brand:#00E5FF;
-  --brand-2:#00D1B2;
-  --brand-3:#4FC3F7;
-
-  --brand-soft:rgba(0,229,255,0.14);
-  --brand-soft-2:rgba(0,209,178,0.12);
-  --brand-soft-3:rgba(79,195,247,0.14);
-
-  --green:#29E7A8;
-  --green-soft:rgba(41,231,168,0.14);
-  --amber:#FFC857;
-  --amber-soft:rgba(255,200,87,0.14);
-  --red:#FF7C8A;
-  --red-soft:rgba(255,124,138,0.14);
-
-  --shadow-sm:0 10px 28px rgba(0,0,0,0.18);
-  --shadow-md:0 18px 48px rgba(0,0,0,0.26);
-  --shadow-lg:0 30px 90px rgba(0,0,0,0.36), 0 0 40px rgba(0,229,255,0.05);
-
-  --radius-sm:12px;
-  --radius-md:16px;
-  --radius-lg:20px;
-  --radius-xl:26px;
-}
-
-html,body{
-  background:none !important;
-}
-
-body{
-  position:relative;
-  background:
-    radial-gradient(circle at 15% 18%, rgba(0,229,255,0.10), transparent 20%),
-    radial-gradient(circle at 82% 12%, rgba(79,195,247,0.10), transparent 24%),
-    radial-gradient(circle at 70% 82%, rgba(0,209,178,0.08), transparent 24%),
-    linear-gradient(180deg, #04101C 0%, #07111F 36%, #0B1726 100%) !important;
-  color:var(--text) !important;
-  overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  opacity:.42;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 70% 20%, rgba(255,255,255,.05) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 80% 72%, rgba(255,255,255,.05) 0 1px, transparent 1.5px),
-    linear-gradient(120deg, transparent 0 42%, rgba(0,229,255,.06) 49%, transparent 56%),
-    linear-gradient(65deg, transparent 0 46%, rgba(79,195,247,.05) 50%, transparent 55%);
-  background-size: 220px 220px, 280px 280px, 320px 320px, 100% 100%, 100% 100%;
-  mix-blend-mode:screen;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  background:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at 50% 45%, #000 28%, transparent 88%);
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 28%, transparent 88%);
-  opacity:.24;
-}
-
-main, .site-header, .footer, .modal-overlay{
-  position:relative;
-  z-index:1;
-}
-
-.container{
-  width:min(1480px, calc(100% - 40px)) !important;
-}
-
-.section{
-  padding:72px 0 !important;
-}
-
-.section-tight{
-  padding:52px 0 !important;
-}
-/* =========================================================
-   PREMIUM REDESIGN — STEP 2
-   Header / Hero / Workspace Frame
-========================================================= */
-.site-header{
-  background:rgba(7,17,31,0.54) !important;
-  border-bottom:1px solid rgba(255,255,255,0.08) !important;
-  backdrop-filter:blur(22px) saturate(1.28) !important;
-  -webkit-backdrop-filter:blur(22px) saturate(1.28) !important;
-  box-shadow:0 10px 34px rgba(0,0,0,0.24) !important;
-}
-
-.live-strip{
-  background:rgba(7,17,31,0.42) !important;
-  border-bottom:1px solid rgba(255,255,255,0.06) !important;
-}
-
-.live-strip-inner,
-.brand-copy span,
-.nav-links,
-.nav-links a,
-.header-search span{
-  color:var(--text-3) !important;
-}
-
-.live-strip-inner strong,
-.brand-copy strong{
-  color:var(--text) !important;
-}
-
-.brand-mark{
-  filter:
-    drop-shadow(0 0 12px rgba(0,229,255,0.26))
-    drop-shadow(0 0 24px rgba(79,195,247,0.12)) !important;
-}
-
-.header-search input{
-  background:rgba(255,255,255,0.05) !important;
-  border:1px solid rgba(255,255,255,0.08) !important;
-  color:var(--text) !important;
-  border-radius:14px !important;
-}
-
-.header-search input:focus{
-  border-color:rgba(0,229,255,0.28) !important;
-  box-shadow:0 0 0 4px rgba(0,229,255,0.08), 0 0 20px rgba(0,229,255,0.08) !important;
-  background:rgba(255,255,255,0.07) !important;
-}
-
-.nav-links a,
-.nav-link-tab{
-  border-radius:12px !important;
-}
-
-.nav-links a:hover,
-.nav-link-tab:hover{
-  background:rgba(255,255,255,0.06) !important;
-  color:var(--text) !important;
-}
-
-.nav-link-tab.active-tab,
-.nav-links a.active-tab{
-  background:linear-gradient(135deg, rgba(0,229,255,0.14), rgba(79,195,247,0.12)) !important;
-  border:1px solid rgba(0,229,255,0.16) !important;
-  color:#DDFBFF !important;
-  box-shadow:0 0 16px rgba(0,229,255,0.06) !important;
-}
-
-.icon-btn{
-  background:rgba(255,255,255,0.05) !important;
-  border:1px solid rgba(255,255,255,0.08) !important;
-  border-radius:14px !important;
-  color:var(--text-2) !important;
-}
-
-.icon-btn:hover{
-  background:rgba(255,255,255,0.08) !important;
-  color:var(--text) !important;
-  box-shadow:0 0 18px rgba(0,229,255,0.08) !important;
-}
-
-.workspace-hero{
-  padding:48px 0 64px !important;
-}
-
-.hero-head{
-  gap:40px !important;
-  margin-bottom:36px !important;
-}
-
-.hero-copy h1{
-  color:var(--text) !important;
-  font-size:clamp(46px, 4.8vw, 62px) !important;
-  line-height:1.06 !important;
-  letter-spacing:-.06em !important;
-}
-
-.hero-copy p{
-  color:var(--text-2) !important;
-  font-size:17px !important;
-  max-width:760px !important;
-}
-
-.eyebrow{
-  background:rgba(0,229,255,0.12) !important;
-  color:#CFFBFF !important;
-  border:1px solid rgba(0,229,255,0.14);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
-
-.eyebrow-dot{
-  background:var(--brand-2) !important;
-  box-shadow:0 0 0 6px rgba(0,209,178,.10), 0 0 14px rgba(0,229,255,.20) !important;
-}
-
-.btn.primary{
-  background:linear-gradient(135deg, #00E5FF, #00D1B2) !important;
-  color:#04101C !important;
-  border:none !important;
-  box-shadow:0 14px 28px rgba(0,209,178,0.18), 0 0 22px rgba(0,229,255,0.08) !important;
-}
-
-.btn.primary:hover{
-  transform:translateY(-2px) scale(1.02);
-}
-
-.btn.secondary,
-.btn.ghost{
-  background:rgba(255,255,255,0.06) !important;
-  color:var(--text) !important;
-  border:1px solid rgba(255,255,255,0.10) !important;
-  backdrop-filter:blur(14px);
-}
-
-.btn.secondary:hover,
-.btn.ghost:hover{
-  background:rgba(255,255,255,0.10) !important;
-  box-shadow:0 0 20px rgba(79,195,247,0.08);
-}
-
-.workspace-frame{
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%) !important;
-  border:1px solid rgba(255,255,255,0.10) !important;
-  border-radius:28px !important;
-  box-shadow:
-    0 24px 70px rgba(0,0,0,0.30),
-    0 0 40px rgba(0,229,255,0.04) !important;
-  backdrop-filter:blur(26px) saturate(1.08);
-  -webkit-backdrop-filter:blur(26px) saturate(1.08);
-}
-
-.workspace-frame::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 12% 0%, rgba(0,229,255,0.10), transparent 28%),
-    radial-gradient(circle at 88% 0%, rgba(79,195,247,0.08), transparent 30%),
-    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 28%);
-  z-index:0;
-}
-
-.workspace-top,
-.workspace-body{
-  position:relative;
-  z-index:1;
-}
-
-.workspace-top{
-  padding:22px 24px !important;
-  border-bottom:1px solid rgba(255,255,255,0.08) !important;
-  background:rgba(255,255,255,0.02) !important;
-}
-
-.workspace-top h2{
-  color:var(--text) !important;
-  font-size:30px !important;
-}
-
-.workspace-top p{
-  color:var(--text-2) !important;
-}
-
-.kicker{
-  color:#A5F5FF !important;
-  letter-spacing:.03em !important;
-}
-/* =========================================================
    PREMIUM REDESIGN — STEP 3
    Glass Card System / Workspace Panels / Readability
 ========================================================= */
@@ -2159,143 +2159,6 @@ main#top{
   }
 }
 /* =========================================================
-   FUTURISTIC DASHBOARD TOKENS — FINAL SYSTEM BASE
-   반드시 <style> 맨 마지막에 추가
-========================================================= */
-:root{
-  --bg-0:#07111F;
-  --bg-1:#0B1726;
-  --bg-2:#102033;
-  --bg-3:#132238;
-
-  --glass-1:rgba(255,255,255,0.06);
-  --glass-2:rgba(255,255,255,0.08);
-  --glass-3:rgba(255,255,255,0.12);
-
-  --stroke-1:rgba(255,255,255,0.08);
-  --stroke-2:rgba(255,255,255,0.14);
-
-  --text-1:#F4FBFF;
-  --text-2:#B8CBDA;
-  --text-3:#7E95AA;
-  --text-4:#5A7087;
-
-  --cyan:#00E5FF;
-  --teal:#00D1B2;
-  --sky:#4FC3F7;
-  --mint:#7CF7D4;
-
-  --warn:#FFB84D;
-  --danger:#FF6B6B;
-  --success:#29E7A8;
-
-  --glow-cyan:0 0 24px rgba(0,229,255,0.16);
-  --glow-teal:0 0 24px rgba(0,209,178,0.14);
-
-  --shadow-card:0 10px 30px rgba(0,0,0,0.30);
-  --shadow-card-hover:0 18px 40px rgba(0,0,0,0.34), 0 0 24px rgba(0,229,255,0.10);
-
-  --blur-xl:20px;
-  --radius-card:24px;
-  --radius-md:18px;
-  --radius-sm:14px;
-
-  --panel-pad:20px;
-  --grid-gap:18px;
-}
-
-body{
-  background:
-    radial-gradient(circle at 18% 20%, rgba(0,229,255,0.10), transparent 18%),
-    radial-gradient(circle at 82% 12%, rgba(79,195,247,0.10), transparent 24%),
-    radial-gradient(circle at 74% 78%, rgba(0,209,178,0.08), transparent 22%),
-    linear-gradient(180deg, #07111F 0%, #0B1726 52%, #132238 100%) !important;
-  color:var(--text-1) !important;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  opacity:.34;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,.06) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 18%, rgba(255,255,255,.05) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 84% 72%, rgba(255,255,255,.04) 0 1px, transparent 1.5px),
-    linear-gradient(125deg, transparent 0 42%, rgba(0,229,255,.06) 49%, transparent 56%);
-  background-size:220px 220px, 280px 280px, 320px 320px, 100% 100%;
-  mix-blend-mode:screen;
-}
-
-.workspace-frame,
-.card,
-.metric,
-.list-card,
-.detail-card,
-.intel-card,
-.pipeline-card,
-.subtle-box,
-.note-box,
-.saved-search,
-.detail-info,
-.detail-summary,
-.detail-kpi,
-.xai-item,
-.timeline-item,
-.mini-item,
-.intel-item{
-  border-radius:var(--radius-card) !important;
-  background:var(--glass-1) !important;
-  border:1px solid var(--stroke-1) !important;
-  backdrop-filter:blur(var(--blur-xl)) !important;
-  -webkit-backdrop-filter:blur(var(--blur-xl)) !important;
-  box-shadow:var(--shadow-card) !important;
-}
-
-.project-row,
-.metric,
-.intel-card,
-.saved-search,
-.detail-kpi,
-.detail-info,
-.sidebar-item{
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease,
-    border-color .35s ease,
-    background .35s ease !important;
-}
-
-.project-row:hover,
-.metric:hover,
-.intel-card:hover,
-.saved-search:hover,
-.detail-kpi:hover,
-.detail-info:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-card-hover) !important;
-  border-color:rgba(0,229,255,0.18) !important;
-}
-
-.panel-title h3,
-.panel-title h4,
-.workspace-top h2,
-.project-title,
-.detail-header h3{
-  color:var(--text-1) !important;
-}
-
-.small,
-.caption,
-.muted,
-.workspace-top p,
-.detail-kpi span,
-.detail-info strong{
-  color:var(--text-3) !important;
-}
-/* =========================================================
    STEP 4-B — LAYOUT RE-ARCHITECTURE
    KPI STRIP + PROJECT GRID + INSIGHT RAIL
 ========================================================= */
@@ -2450,26 +2313,31 @@ body::before{
   gap:18px;
 }
 
+/* [Step 4] 정교한 1px 테두리와 네온 포커스링을 갖춘 팰런티어 스타일 카드 완성 */
 .project-card{
   position:relative;
   overflow:hidden;
-  border-radius:24px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  border:1px solid rgba(255,255,255,0.09);
-  box-shadow:0 12px 28px rgba(0,0,0,0.24);
+  border-radius:16px !important; /* 날렵하고 정돈된 곡률 적용 */
+  background:linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%) !important;
+  border:1px solid rgba(255,255,255,0.07) !important;
+  box-shadow:0 12px 30px rgba(0,0,0,0.35) !important;
   cursor:pointer;
-  transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+  /* 가속도 보정을 통해 최고급 모션 구현 */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
+/* 마우스를 올릴 시 테두리에 마이크로 사이안 글로우 발생 */
 .project-card:hover{
-  transform:translateY(-4px) scale(1.015);
-  border-color:rgba(0,229,255,0.20);
-  box-shadow:0 18px 40px rgba(0,0,0,0.32), 0 0 24px rgba(0,229,255,0.10);
+  transform:translateY(-5px) scale(1.008) !important;
+  border-color:rgba(0, 229, 255, 0.35) !important;
+  box-shadow:0 20px 48px rgba(0,0,0,0.45), 0 0 24px rgba(0, 229, 255, 0.12) !important;
 }
 
+/* 선택 활성화 상태일 때 로열 사이안 인디고 포커스링 고정 */
 .project-card.active{
-  border-color:rgba(0,229,255,0.28);
-  box-shadow:0 18px 42px rgba(0,0,0,0.34), 0 0 30px rgba(0,229,255,0.14);
+  border-color:rgba(0, 229, 255, 0.6) !important;
+  background:linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, rgba(255,255,255,0.03) 100%) !important;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(0, 229, 255, 0.18) !important;
 }
 
 .project-card-visual{
@@ -2645,10 +2513,14 @@ body::before{
 }
 
 .project-stat{
-  padding:12px 12px 10px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
+  padding:8px 10px; /* 더 조밀한 스프레드시트 핏 여백으로 축소 */
+  border-radius:8px !important; /* 팰런티어 규격의 각진 메트릭 쉘 */
+  background:rgba(255,255,255,0.02) !important;
+  border:1px solid rgba(255,255,255,0.04) !important;
+  transition: border-color 0.2s;
+}
+.project-stat:hover {
+  border-color: rgba(0, 229, 255, 0.2) !important; /* 개별 스탯창도 지능형 인터랙션 수색 기조 추가 */
 }
 
 .project-stat-label{
@@ -2686,6 +2558,7 @@ body::before{
   text-decoration:none;
 }
 
+/* [Step 5] Premium High-Precision Insight Panel Visuals */
 .insight-rail{
   display:flex;
   flex-direction:column;
@@ -2694,103 +2567,116 @@ body::before{
 }
 
 .insight-panel{
-  padding:18px;
+  padding:20px !important;
 }
 
 .insight-stack{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:10px;
 }
 
 .insight-score-hero{
   display:grid;
-  grid-template-columns:120px 1fr;
-  gap:16px;
+  grid-template-columns:110px 1fr;
+  gap:20px;
   align-items:center;
   margin-bottom:18px;
 }
 
 .score-orb{
-  width:120px;
-  height:120px;
+  width:110px;
+  height:110px;
   border-radius:50%;
   display:grid;
   place-items:center;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), transparent 30%),
-    conic-gradient(from 180deg, rgba(0,229,255,0.95), rgba(0,209,178,0.72), rgba(255,255,255,0.10), rgba(0,229,255,0.95));
-  padding:10px;
-  box-shadow:0 0 28px rgba(0,229,255,0.16);
+  /* 정교하게 조율한 하이테크 레이더 다이얼 형태 코닉 그래디언트 */
+  background:conic-gradient(from 180deg, var(--cyan) 0%, var(--teal) 75%, rgba(255,255,255,0.06) 75%, rgba(255,255,255,0.06) 100%) !important;
+  padding:4px;
+  box-shadow:0 0 24px rgba(0, 229, 255, 0.15), inset 0 0 10px rgba(0,0,0,0.5) !important;
+  position:relative;
+}
+
+.score-orb::after{
+  content:'';
+  position:absolute;
+  inset:-3px;
+  border-radius:50%;
+  border:1px solid rgba(0, 229, 255, 0.2);
+  pointer-events:none;
 }
 
 .score-orb-inner{
   width:100%;
   height:100%;
   border-radius:50%;
-  background:rgba(7,17,31,0.92);
-  border:1px solid rgba(255,255,255,0.10);
+  background:#07111F !important; /* 내부를 깊고 매트한 다크 톤으로 변경 */
+  border:1px solid rgba(255, 255, 255, 0.05) !important;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  box-shadow:inset 0 4px 12px rgba(0, 0, 0, 0.6) !important;
 }
 
 .score-orb-value{
-  font-size:34px;
+  font-size:30px;
   font-weight:800;
-  color:#fff;
+  color:#ffffff !important;
   line-height:1;
+  text-shadow:0 0 10px rgba(0, 229, 255, 0.4);
 }
 
 .score-orb-label{
-  margin-top:6px;
-  font-size:11px;
-  letter-spacing:.14em;
+  margin-top:4px;
+  font-size:9px;
+  letter-spacing:.08em;
   text-transform:uppercase;
-  color:var(--text-3);
+  color:var(--text-3) !important;
 }
 
 .insight-meta h3{
-  margin:0 0 8px;
-  font-size:20px;
-  line-height:1.3;
-  color:var(--text-1);
+  margin:0 0 6px;
+  font-size:18px;
+  line-height:1.35;
+  font-weight:800;
+  color:var(--text-1) !important;
 }
 
 .insight-meta p{
   margin:0;
-  font-size:13px;
-  line-height:1.6;
-  color:var(--text-2);
+  font-size:12px;
+  line-height:1.55;
+  color:var(--text-2) !important;
 }
 
 .insight-grid{
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:12px;
+  gap:10px;
   margin-bottom:14px;
 }
 
 .insight-metric{
-  padding:14px;
-  border-radius:16px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
+  padding:12px 14px;
+  border-radius:12px !important;
+  background:rgba(255, 255, 255, 0.02) !important;
+  border:1px solid rgba(255, 255, 255, 0.04) !important;
 }
 
 .insight-metric .label{
   display:block;
-  margin-bottom:8px;
-  font-size:10px;
-  letter-spacing:.14em;
+  margin-bottom:4px;
+  font-size:9px;
+  letter-spacing:0.12em;
   text-transform:uppercase;
-  color:var(--text-4);
+  color:var(--text-4) !important;
 }
 
 .insight-metric strong{
-  font-size:18px;
-  color:var(--text-1);
+  font-size:15px;
+  font-weight:800;
+  color:var(--text-1) !important;
 }
 
 .insight-meter{
@@ -2801,42 +2687,42 @@ body::before{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  font-size:12px;
-  color:var(--text-3);
-  margin-bottom:8px;
+  font-size:11px;
+  color:var(--text-2) !important;
+  margin-bottom:6px;
 }
 
 .insight-meter-track{
-  height:10px;
+  height:6px; /* 두께를 날렵하게 슬림화 */
   border-radius:999px;
   overflow:hidden;
-  background:rgba(255,255,255,0.08);
+  background:rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .insight-meter-fill{
   height:100%;
   border-radius:999px;
-  background:linear-gradient(90deg, var(--cyan), var(--teal));
-  box-shadow:0 0 14px rgba(0,229,255,0.14);
+  background:linear-gradient(90deg, var(--cyan), var(--teal)) !important;
+  box-shadow:0 0 10px rgba(0, 229, 255, 0.25) !important;
 }
 
 .insight-notes{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
   margin-top:14px;
 }
 
 .insight-note{
-  padding:12px 14px;
-  border-radius:14px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  font-size:13px;
-  line-height:1.55;
-  color:var(--text-2);
+  padding:10px 12px;
+  border-radius:10px !important;
+  background:rgba(255, 255, 255, 0.01) !important;
+  border:1px solid rgba(255, 255, 255, 0.03) !important;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--text-2) !important;
 }
-
 .empty-projects{
   display:grid;
   place-items:center;
@@ -4003,23 +3889,7 @@ function renderKPIStats(items = []) {
 }
 
 
-    function renderProjectList(items = filteredProjects) {
-  if (!projectListEl) return;
-
-  const list = Array.isArray(items) ? items : [];
-
-  if (!list.length) {
-    projectListEl.innerHTML = `
-      <div class="empty-projects">
-        <div>
-          <strong style="display:block; margin-bottom:8px; color:var(--text-1);">No projects match the current filters</strong>
-          <span>Adjust Industry, Price, Deadline, or Search to reopen the live opportunity stream.</span>
-        </div>
-      </div>
-    `;
-    return;
-  }
-  renderKPIStats(filteredProjects);
+    /* [Step 8] 중복 정의 구문 분석 및 중괄호 정밀 치료 완료된 단일 렌더러 함수 */
 function renderProjectList(items) {
   if (!els.projectListEl) return;
 
@@ -4036,6 +3906,9 @@ function renderProjectList(items) {
     `;
     return;
   }
+
+  // 실시간 KPI 통계 요약 정보를 함께 동기화 연동하여 완벽한 신뢰 형성
+  renderKPIStats(list);
 
   els.projectListEl.innerHTML = list.map(project => {
     const fit = safeNumber(project.fit);
@@ -4119,7 +3992,6 @@ function renderProjectList(items) {
   });
 }
 
-}
 
 
     function selectProject(projectOrId) {
