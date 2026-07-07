@@ -2727,11 +2727,48 @@ main#top{
   display:grid;
   place-items:center;
   min-height:280px;
-  border-radius:22px;
   border:1px dashed rgba(255,255,255,0.14);
   color:var(--text-3);
   text-align:center;
   padding:24px;
+}
+
+/* [수정 추가] 회사 기준 프로필 여닫기 애니메이션용 프리미엄 CSS */
+.panel-title.toggle-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.toggle-arrow {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-left: 6px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.panel-title.toggle-btn.collapsed .toggle-arrow {
+  transform: rotate(-90deg); /* 접혔을 때 화살표 왼쪽 회전 */
+}
+.collapsible-panel {
+  max-height: 600px; /* 콘텐츠를 수용할 수 있는 넉넉한 높이 */
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, padding 0.3s ease, margin 0.3s ease, border-color 0.3s ease !important;
+}
+.collapsible-panel.collapsed {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-color: transparent !important;
+  pointer-events: none;
 }
 
 @media (max-width: 1400px){
@@ -2988,8 +3025,17 @@ main#top{
   <aside class="control-rail" aria-label="팀 기준 및 산업 카테고리 필터">
 
 
-              <div class="panel-title"><h3>회사 기준 프로필</h3><span class="badge blue">현재 적용</span></div>
-              <div class="subtle-box control-section">
+              <!-- [수정 적용] 회사 기준 프로필 헤더 버튼 구조화 및 토글 화살표 추가 -->
+              <button type="button" class="panel-title toggle-btn" id="companyProfileToggle" aria-expanded="true" aria-controls="companyProfileContent">
+                <h3>회사 기준 프로필</h3>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                  <span class="badge blue">현재 적용</span>
+                  <b class="toggle-arrow">▾</b>
+                </div>
+              </button>
+              
+              <!-- [수정 적용] 접히는 본문 랩 영역에 collapsible-panel 클래스 및 ID 바인딩 -->
+              <div class="subtle-box control-section collapsible-panel" id="companyProfileContent">
                 <div><div class="control-label">주력 품목</div><div class="chip-group"><span class="chip active">220kV Transformer</span><span class="chip">GIS</span><span class="chip">Power Cable</span></div></div>
                 <div><div class="control-label">관심 지역</div><div class="chip-group"><span class="chip active">국내 공공</span><span class="chip active">중동 EPC</span><span class="chip">중남미 수처리</span></div></div>
                 <div><div class="control-label">제외 조건</div><div class="note-box">마감 24시간 미만 · 금액 불명확 · 현지 등록 불가 프로젝트는 우선순위를 낮춥니다.</div></div>
@@ -4348,6 +4394,18 @@ function renderProjectList(items) {
     }));
     document.getElementById('demoLoginBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('데모 로그인 완료'); });
     document.getElementById('demoRegisterBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('무료 체험 계정 생성 데모 완료'); });
+
+    // [수정 추가] 회사 기준 프로필 영역 여닫기 토글 기능 바인딩
+    const profileToggle = document.getElementById('companyProfileToggle');
+    const profileContent = document.getElementById('companyProfileContent');
+    if (profileToggle && profileContent) {
+      profileToggle.addEventListener('click', () => {
+        const isCollapsed = profileContent.classList.toggle('collapsed');
+        profileToggle.classList.toggle('collapsed', isCollapsed);
+        profileToggle.setAttribute('aria-expanded', !isCollapsed);
+      });
+    }
+
         const menuBtnEl = document.getElementById('menuBtn');
     const siteHeaderEl = document.getElementById('siteHeader');
     if(menuBtnEl && siteHeaderEl){
