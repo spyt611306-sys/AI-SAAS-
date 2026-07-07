@@ -2821,18 +2821,30 @@ main#top{
     align-items:flex-start;
   }
 }
-/* 임시 안정화: 기존 구형 우측 레일 숨김 */
+/* [Step 8] 4열 레이아웃 전격 복원: 우측 인텔(인사이트) 레일을 340px 고정 너비로 완전 격상 */
 .intel-rail{
-  display:none !important;
+  display: flex !important; /* 다시 노출 */
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(6, 15, 30, 0.4) !important; /* 팰런티어 고유의 가변 다크 글래스 배경 */
+  border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 20px !important;
+  max-height: 900px;
+  overflow-y: auto; /* 내용 초과 시 부드러운 스크롤 탑재 */
 }
 
-/* 구 레일 제거 시 4열 → 3열로 환원 */
+/* 메인 워크스페이스 프레임을 4열 레이아웃으로 변경 */
 .workspace-body.app-shell{
-  grid-template-columns:84px 280px minmax(0,1fr) !important;
+  grid-template-columns: 84px 280px minmax(0,1fr) 340px !important;
 }
 
 .workspace-frame.sidebar-expanded .workspace-body.app-shell{
-  grid-template-columns:228px 280px minmax(0,1fr) !important;
+  grid-template-columns: 228px 280px minmax(0,1fr) 340px !important;
+}
+
+/* 내포된 불완전 2단 그리드 파괴 및 플랫 윈도우 보장 */
+.dashboard-content-grid{
+  display: block !important;
 }
 
   </style>
@@ -3150,79 +3162,59 @@ main#top{
               </div>
 
               <!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE START -->
-<section class="dashboard-main">
-  <div class="kpi-strip" id="kpiStrip"></div>
+              <section class="dashboard-main">
+                <div class="kpi-strip" id="kpiStrip"></div>
 
-  <div class="dashboard-content-grid">
-    <section class="project-board glass-board">
-      <div class="project-board-head">
-        <div class="board-title-wrap">
-          <p class="eyebrow-label">PROJECT INTELLIGENCE</p>
-          <h3>Live Opportunity Board</h3>
-        </div>
+                <div class="dashboard-content-grid">
+                  <!-- [구조 최적화] 메인 Opportunity Board가 가로 너비를 100% 가득 사용하여 무너짐 방지 -->
+                  <section class="project-board glass-board" style="width: 100%;">
+                    <div class="project-board-head">
+                      <div class="board-title-wrap">
+                        <p class="eyebrow-label">PROJECT INTELLIGENCE</p>
+                        <h3>Live Opportunity Board</h3>
+                      </div>
 
-        <div class="board-head-actions">
-          <button class="finder-reset-btn" id="resetFiltersBtn" type="button">
-            <span>↺</span>
-            <span>Reset Filters</span>
-          </button>
-        </div>
-      </div>
+                      <div class="board-head-actions">
+                        <button class="finder-reset-btn" id="resetFiltersBtn" type="button">
+                          <span>↺</span>
+                          <span>Reset Filters</span>
+                        </button>
+                      </div>
+                    </div>
 
-      <div class="project-grid" id="projectGrid"></div>
-    </section>
-
-    <aside class="insight-rail">
-      <section class="insight-panel glass-board" id="detailPanel">
-        <!-- renderDetail() inject -->
-      </section>
-
-      <section class="insight-panel glass-board">
-        <div class="panel-title">
-          <h4>Recently Viewed</h4>
-        </div>
-        <div id="recentProjects" class="insight-stack"></div>
-      </section>
-
-      <section class="insight-panel glass-board">
-        <div class="panel-title">
-          <h4>Saved Projects</h4>
-        </div>
-        <div id="savedProjects" class="insight-stack"></div>
-      </section>
-
-      <section class="insight-panel glass-board">
-        <div class="panel-title">
-          <h4>Live Activity</h4>
-        </div>
-        <div id="liveActivity" class="insight-stack"></div>
-      </section>
-    </aside>
-  </div>
-</section>
-<!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE END -->
-
-
-            <aside class="intel-rail" aria-label="최근 본 프로젝트 및 AI 인사이트">
-              <div class="intel-card">
-                <div class="panel-title"><h4>최근 본 프로젝트</h4><span class="small" id="recentViewedText">없음</span></div>
-                <div class="intel-list" id="recentViewedList"></div>
-              </div>
-              <div class="intel-card">
-                <div class="panel-title"><h4>AI 추천 이유</h4><span class="badge blue">Explainable</span></div>
-                <div class="mini-list" id="recommendationNotes">
-                  <div class="mini-item"><span class="score-pill">95</span><div>선택된 프로젝트가 없으면 AI 설명 카드가 여기에 표시됩니다.</div></div>
+                    <div class="project-grid" id="projectGrid"></div>
+                  </section>
                 </div>
-              </div>
-              <div class="intel-card">
-                <div class="panel-title"><h4>실시간 변경 로그</h4><span class="small">최근 1시간</span></div>
-                <div id="liveLog"></div>
-              </div>
-              <div class="intel-card">
-                <div class="panel-title"><h4>저장한 프로젝트</h4><span class="badge green">Sync</span></div>
-                <div class="intel-list" id="savedProjectList"></div>
-              </div>
-            </aside>
+              </section>
+              <!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE END -->
+
+              <!-- [Step 8 대통합] 복잡했던 인사이트 패널 무리들을 우측 최상위 독립 관제창으로 안전하게 이관 완료 -->
+              <aside class="intel-rail" aria-label="최근 본 프로젝트 및 AI 인사이트">
+                <section class="insight-panel glass-board" id="detailPanel">
+                  <!-- renderDetail() inject -->
+                </section>
+
+                <section class="insight-panel glass-board">
+                  <div class="panel-title">
+                    <h4>Recently Viewed</h4>
+                  </div>
+                  <div id="recentProjects" class="insight-stack"></div>
+                </section>
+
+                <section class="insight-panel glass-board">
+                  <div class="panel-title">
+                    <h4>Saved Projects</h4>
+                  </div>
+                  <div id="savedProjects" class="insight-stack"></div>
+                </section>
+
+                <section class="insight-panel glass-board">
+                  <div class="panel-title">
+                    <h4>Live Activity</h4>
+                  </div>
+                  <div id="liveActivity" class="insight-stack"></div>
+                </section>
+              </aside>
           </div>
         </div>
       </div>
