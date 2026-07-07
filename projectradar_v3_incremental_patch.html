@@ -9,49 +9,72 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    /* PART 6 — Design Tokens / 8px Grid / Typography */
+    /* PART 6 — Premium Cosmic Dark Navy Tokens (Palantir Base) */
     :root{
-  --bg:#f4f7fb;
-  --surface:#ffffff;
-  --surface-2:#f8fafc;
-  --surface-3:#eef2f7;
-  --surface-4:#e7eef8;
-  --line:#dde5f0;
-  --line-strong:#c6d3e4;
-  --text:#0f172a;
-  --text-2:#334155;
-  --text-3:#64748b;
-  --text-4:#94a3b8;
-  --brand:#2563eb;
-  --brand-strong:#1d4ed8;
-  --brand-soft:#eaf2ff;
-  --green:#059669;
-  --green-soft:#ecfdf5;
-  --amber:#b45309;
-  --amber-soft:#fff7ed;
-  --red:#dc2626;
-  --red-soft:#fef2f2;
-  --ink:#020617;
+      /* Palantir & Bloomberg 고정밀 관제 콘솔용 다크 네이비 테마 */
+      --bg:#040914;
+      --bg-0:#040914;
+      --bg-1:#08131E; /* 메인 테마 코어 백그라운드 */
+      --bg-2:#0a192f;
+      --bg-3:#10223b;
 
-  /* [수정 추가] 용도 및 카테고리별 다채로운 엔터프라이즈 전용 컬러 토큰 */
-  --domestic-brand: #0d9488;       /* 국내 프로젝트: 딥 민트 틸 */
-  --domestic-soft: #f0fdfa;
-  --intl-brand: #d97706;           /* 국제 프로젝트: 사막 웜 골드 */
-  --intl-soft: #fffbeb;
-  --my-brand: #4f46e5;             /* 내 프로젝트: 로열 인디고 */
-  --my-soft: #f5f3ff;
-  --about-brand: #0284c7;          /* 회사 소개: 마일드 블루 */
-  --about-soft: #f0f9ff;
+      /* 반투명 프로스트 아크릴 글래스 재질 세팅 (투명도 대폭 개선) */
+      --surface:rgba(4, 9, 20, 0.65);
+      --surface-2:rgba(255, 255, 255, 0.03);
+      --surface-3:rgba(255, 255, 255, 0.015);
+      --surface-4:rgba(0, 229, 255, 0.08);
+      
+      /* 극도로 정밀하고 예리한 1px 단위 아웃라인 */
+      --line:rgba(255, 255, 255, 0.06);
+      --line-strong:rgba(0, 229, 255, 0.18);
+      
+      /* 사이버 룩 가독성을 위한 고해상도 화이트 실버 가치 부여 */
+      --text:#F4FBFF;        
+      --text-2:#B8CBDA;      
+      --text-3:#7E95AA;
+      --text-4:#4b617a;
+      
+      /* 일렉트릭 사이안 & 사이버 펑크 스타일 완전 탈피용 하이테크 스틸 블루 액센트 */
+      --brand:#00E5FF;
+      --brand-strong:#00d2f0;
+      --brand-soft:rgba(0, 229, 255, 0.08);
+      --brand-2:#00D1B2;
+      --brand-3:#4FC3F7;
 
-  --shadow-sm:0 1px 2px rgba(15,23,42,.05);
-      --shadow-md:0 12px 30px rgba(15,23,42,.06);
-      --shadow-lg:0 26px 80px rgba(15,23,42,.09);
-      --radius-xs:10px;
-      --radius-sm:14px;
-      --radius-md:18px;
-      --radius-lg:24px;
-      --radius-xl:32px;
+      --brand-soft-2:rgba(0, 209, 178, 0.08);
+      --brand-soft-3:rgba(79, 195, 247, 0.08);
+
+      --green:#29E7A8;
+      --green-soft:rgba(41, 231, 168, 0.08);
+      --amber:#FFC857;
+      --amber-soft:rgba(255, 200, 87, 0.08);
+      --red:#FF7C8A;
+      --red-soft:rgba(255, 124, 138, 0.08);
+      --ink:#01040a;
+      
+      /* 용도별 다채로운 엔터프라이즈 전용 컬러 칩 토큰 */
+      --domestic-brand: #0d9488;       
+      --domestic-soft: rgba(13, 148, 136, 0.08);
+      --intl-brand: #d97706;           
+      --intl-soft: rgba(217, 119, 6, 0.08);
+      --my-brand: #6366f1;             
+      --my-soft: rgba(99, 102, 241, 0.08);
+      --about-brand: #0284c7;          
+      --about-soft: rgba(2, 132, 199, 0.08);
+
+      /* 네온 일레트릭 광량 섀도우 효과 */
+      --shadow-sm:0 8px 24px rgba(0,0,0,0.45);
+      --shadow-md:0 16px 40px rgba(0,0,0,0.6);
+      --shadow-lg:0 26px 80px rgba(0,0,0,0.7), 0 0 32px rgba(0, 229, 255, 0.05);
+      
+      --radius-xs:6px;
+      --radius-sm:10px;
+      --radius-md:14px;
+      --radius-lg:18px;
+      --radius-xl:24px;
+      
       --space-1:4px;
       --space-2:8px;
       --space-3:12px;
@@ -64,21 +87,24 @@
       --space-10:56px;
       --space-11:64px;
       --space-12:80px;
-      --header-h:72px;
-      --container:1360px;
-      --font-ui:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",system-ui,-apple-system,sans-serif;
+      --header-h:64px; /* GNB 높이를 64px로 최적화 */
+      --container:1440px; /* 고해상도 대시보드 맞춤형 넓이 확장 */
+      --font-ui:"Pretendard", system-ui, sans-serif;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family:var(--font-ui);
-      color:var(--text);
+      color:var(--text-1) !important;
+      /* 복합 입체 지오메트릭 광원이 서서히 안착하는 백그라운드 매트 그라데이션 */
       background:
-        radial-gradient(circle at top right, rgba(37,99,235,.07), transparent 22%),
-        linear-gradient(180deg,#fbfdff 0%, var(--bg) 100%);
+        radial-gradient(circle at 10% 20%, rgba(0, 229, 255, 0.06), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(79, 195, 247, 0.05), transparent 30%),
+        linear-gradient(180deg, #040914 0%, var(--bg-1) 100%) !important;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
+      overflow-x:hidden;
     }
     img,svg{display:block;max-width:100%}
     button,input,select,textarea{font:inherit}
@@ -97,10 +123,7 @@
     .line-clamp-1,.line-clamp-2{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
     .line-clamp-1{-webkit-line-clamp:1}
     .line-clamp-2{-webkit-line-clamp:2}
-    .nowrap{white-space:nowrap}
     .break{overflow-wrap:anywhere;word-break:keep-all}
-    .hide-mobile{display:block}
-    .show-mobile{display:none}
     .stack{display:grid;gap:var(--space-4)}
     .card{
       background:var(--surface);
@@ -109,7 +132,13 @@
       box-shadow:var(--shadow-sm);
       min-width:0;
     }
-    .soft-card{background:linear-gradient(180deg,#fff 0%, #f8fbff 100%)}
+    .soft-card{
+  background:rgba(255,255,255,0.07) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+
     .badge{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
     .badge.blue{background:var(--brand-soft);color:var(--brand-strong)}
 .badge.green{background:var(--green-soft);color:var(--green)}
@@ -127,6 +156,15 @@
   background: var(--brand-soft) !important;
   color: var(--brand-strong) !important;
 }
+.nav-link-tab{
+  transition:background .18s ease, color .18s ease;
+}
+
+.nav-link-tab:hover{
+  background:#f1f5f9;
+  color:var(--text);
+}
+
     .metric{padding:var(--space-5);border-radius:var(--radius-md);border:1px solid var(--line);background:var(--surface)}
     .metric strong{display:block;font-size:30px;line-height:1;letter-spacing:-.05em;margin-bottom:8px}
     .metric span{display:block;font-size:14px;font-weight:700;color:var(--text-2)}
@@ -168,26 +206,115 @@
     .workspace-status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .workspace-body{display:grid;grid-template-columns:280px minmax(0,1fr) 340px;gap:0;min-width:0}
     .control-rail,.result-rail,.intel-rail{min-width:0}
-    .control-rail{padding:20px;border-right:1px solid var(--line);background:rgba(248,250,252,.78)}
-    .result-rail{padding:20px;border-right:1px solid var(--line);background:#fff}
-    .intel-rail{padding:20px;background:rgba(251,253,255,.92)}
+    /* [Step 4] 좌측 제어 바 및 고밀도 제어 패널 스타일 개편 */
+    .control-rail{
+      padding:20px;
+      border-right:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(6, 15, 30, 0.4) !important; /* 투명 글래스 레일 구조화 */
+      backdrop-filter:blur(12px);
+    }
+    .result-rail{
+      padding:20px;
+      border-right:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(4, 9, 20, 0.25) !important;
+    }
+    .intel-rail{
+      padding:20px;
+      background:rgba(6, 15, 30, 0.35) !important;
+    }
     .panel-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-    .panel-title h3,.panel-title h4{margin:0;font-size:15px;letter-spacing:-.02em}
-    .subtle-box{padding:14px;border-radius:16px;border:1px solid var(--line);background:#fff}
+    .panel-title h3,.panel-title h4{
+      margin:0;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      color:var(--text) !important;
+      text-transform:uppercase;
+    }
+    .subtle-box{
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.02) !important; /* 어두운 패널 내부 */
+    }
     .control-section{display:grid;gap:12px;margin-bottom:16px}
-    .control-label{font-size:12px;font-weight:800;color:var(--text-3);letter-spacing:-.01em}
+    .control-label{
+      font-size:11px;
+      font-weight:800;
+      color:var(--text-2) !important;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      margin-bottom: 4px;
+    }
     .field, .field input, .field select, .field textarea{width:100%}
-    .field input,.field select,.field textarea{padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text)}
+    .field input,.field select,.field textarea{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      background:rgba(4, 9, 20, 0.5) !important;
+      color:var(--text) !important;
+      font-size:13px;
+    }
     .field textarea{min-height:92px;resize:vertical}
-    .chip-group{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:9px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700;color:var(--text-2)}
-    .chip.active{background:var(--text);border-color:var(--text);color:#fff}
-    .saved-search{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:13px}
+    .chip-group{display:flex;flex-wrap:wrap;gap:6px}
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:6px;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+      font-size:11px;
+      font-weight:700;
+      color:var(--text-2) !important;
+      transition:all 0.18s ease;
+    }
+    .chip:hover{
+      background:rgba(255,255,255,0.06) !important;
+      border-color:rgba(255,255,255,0.15) !important;
+      color:var(--text) !important;
+    }
+    .chip.active{
+      background:var(--brand-soft) !important;
+      border-color:rgba(59, 130, 246, 0.3) !important;
+      color:var(--brand-strong) !important;
+      box-shadow:0 0 10px rgba(59, 130, 246, 0.1);
+    }
+    .saved-search{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255, 255, 255, 0.04) !important;
+      background:rgba(255, 255, 255, 0.01) !important;
+      font-size:13px;
+      color:var(--text) !important;
+      transition:all 0.18s;
+      text-align:left;
+    }
+    .saved-search:hover{
+      background:rgba(255,255,255,0.04) !important;
+      border-color:rgba(255,255,255,0.12) !important;
+      transform:translateX(2px);
+    }
     .saved-search strong{display:block;font-size:13px}
     .pipeline{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
     .pipeline-card{padding:14px;border-radius:16px;border:1px solid var(--line);background:#fff}
     .pipeline-card strong{display:block;font-size:24px;letter-spacing:-.04em;margin-bottom:4px}
-    .sticky-filter-bar{position:sticky;top:calc(var(--header-h) + 38px + 12px);z-index:20;background:#fff;padding-bottom:16px;margin-bottom:16px}
+    .sticky-filter-bar{
+  position:sticky;
+  top:calc(var(--header-h) + 38px + 12px);
+  z-index:20;
+  background:rgba(8,18,31,0.72) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding-bottom:16px;
+  margin-bottom:18px;
+}
+
     .search-row{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
     .search-input{position:relative}
     .search-input span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-4)}
@@ -200,12 +327,16 @@
     .list-shell{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:16px;min-width:0}
     /* [수정 적용] 가로 찌러짐 해소를 위해 스크롤 컨테이너 분리 */
 .list-card{
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:#fff;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04)) !important;
   min-width:0;
-  overflow-x:auto; /* 가로 너비 부족 시 스크롤바 제공 */
+  overflow-x:auto;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.20);
 }
+
 .detail-card{
   border:1px solid var(--line);
   border-radius:22px;
@@ -234,7 +365,6 @@
     .project-row:hover{background:#f9fbff}
     .project-row.active{background:linear-gradient(180deg,#f9fbff,#f4f8ff)}
     .project-main{min-width:0}
-    .project-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
     .project-title{margin:0 0 8px;font-size:15px;line-height:1.5;font-weight:800;letter-spacing:-.02em}
     .project-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--text-3)}
     .project-meta span{display:inline-flex;align-items:center;gap:6px;padding:6px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
@@ -278,7 +408,17 @@
     .xai-item,.timeline-item,.mini-item{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px;border-radius:14px;border:1px solid var(--line);background:#fff;min-width:0}
     .score-pill{min-width:50px;height:30px;padding:0 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-strong);display:grid;place-items:center;font-size:12px;font-weight:900}
     .timeline-dot{width:10px;height:10px;border-radius:999px;background:var(--green);margin-top:6px;box-shadow:0 0 0 7px rgba(5,150,105,.12)}
-    .intel-card{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff;margin-bottom:14px}
+    .intel-card{
+  padding:18px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05)) !important;
+  margin-bottom:14px;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 14px 38px rgba(0,0,0,0.18);
+}
+
     .intel-card:last-child{margin-bottom:0}
     .intel-list{display:grid;gap:10px}
     .intel-item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
@@ -308,50 +448,294 @@
     .trust-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
     .logo-wall{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
     .logo-chip{height:56px;border-radius:16px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--surface-2);font-weight:800;color:#536172;font-size:13px}
-    .pricing-grid{display:grid;grid-template-columns:.95fr 1.1fr .95fr;gap:18px;align-items:start}
-    .price-plan{padding:24px;position:relative}
-    .price-plan h3{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}
-    .price-plan ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px}
-    .price-plan li{display:grid;grid-template-columns:auto 1fr;gap:10px;line-height:1.7;color:var(--text-2)}
-    .check{width:20px;height:20px;border-radius:999px;background:var(--green-soft);display:grid;place-items:center;color:var(--green);font-weight:900;font-size:12px;margin-top:2px}
-    .price-line{margin:10px 0 12px;font-size:38px;font-weight:900;letter-spacing:-.06em}
-    .price-line small{font-size:15px;font-weight:700;color:var(--text-3)}
-    .plan-highlight{border-color:#caddff;background:linear-gradient(180deg,#fff 0%, #f7fbff 100%);box-shadow:0 18px 42px rgba(37,99,235,.08)}
-    .plan-badge{position:absolute;right:18px;top:18px}
-    .billing-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px;border-radius:999px;border:1px solid var(--line);background:#fff}
-    .billing-toggle button{border:none;background:transparent;padding:10px 14px;border-radius:999px;font-weight:800;color:var(--text-2)}
-    .billing-toggle button.active{background:var(--text);color:#fff}
-    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    /* [Step 6] Pricing Plans & Billing Toggle Matte-Glass System */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:24px;
+      align-items:start;
+    }
+    .price-plan{
+      padding:28px 24px;
+      position:relative;
+      border-radius:20px !important;
+      background:linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%) !important;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      box-shadow:var(--shadow-md) !important;
+    }
+    .price-plan h3{
+      margin:0 0 12px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:-.02em;
+      color:var(--text-1) !important;
+    }
+    .price-plan ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+    .price-plan li{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:10px;
+      line-height:1.7;
+      color:var(--text-2) !important;
+      font-size:13px;
+    }
+    .check{
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:rgba(41, 231, 168, 0.12) !important;
+      display:grid;
+      place-items:center;
+      color:var(--green) !important;
+      font-weight:900;
+      font-size:11px;
+      margin-top:3px;
+    }
+    .price-line{
+      margin:12px 0;
+      font-size:36px;
+      font-weight:800;
+      letter-spacing:-.05em;
+      color:var(--text-1) !important;
+    }
+    .price-line small{font-size:14px;font-weight:700;color:var(--text-3) !important}
+    
+    /* Highlighted Plan with Cybernetic Glow Ring */
+    .plan-highlight{
+      border:1px solid rgba(0, 229, 255, 0.3) !important;
+      background:linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, rgba(255,255,255,0.02) 100%) !important;
+      box-shadow:0 24px 60px rgba(0,0,0,0.5), 0 0 24px rgba(0, 229, 255, 0.1) !important;
+    }
+    .plan-badge{
+      position:absolute;
+      right:18px;
+      top:18px;
+      font-size:10px;
+    }
+    .billing-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      padding:4px;
+      border-radius:999px;
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+    }
+    .billing-toggle button{
+      border:none;
+      background:transparent;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      color:var(--text-3);
+      transition:all 0.2s ease;
+    }
+    .billing-toggle button.active{
+      background:linear-gradient(135deg, #00E5FF, #00D1B2) !important;
+      color:#07111F !important;
+      box-shadow:0 0 12px rgba(0, 229, 255, 0.3);
+    }
+    /* [Step 6] Accordion FAQ Matte-Glass Styling */
+    .faq-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
     .faq-list{display:grid;gap:12px}
-    .faq-item{border-radius:18px;border:1px solid var(--line);background:#fff;overflow:hidden}
-    .faq-q{width:100%;padding:18px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;font-weight:800;color:var(--text)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .22s ease;padding:0 18px;color:var(--text-3);line-height:1.8;font-size:14px}
-    .faq-item.open .faq-a{padding:0 18px 18px;max-height:220px}
-    .footer{padding:40px 0 56px;border-top:1px solid var(--line);background:linear-gradient(180deg,#fbfdff 0%, #f5f8fc 100%)}
-    .footer-grid{display:grid;grid-template-columns:1.3fr .85fr .85fr .85fr;gap:18px}
-    .footer h4{margin:0 0 12px;font-size:14px}
-    .footer-links{display:grid;gap:10px;color:var(--text-3);font-size:14px}
-    .footer-copy{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--text-3);font-size:13px}
-    .modal-overlay{position:fixed;inset:0;background:rgba(2,6,23,.48);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
+    .faq-item{
+      border-radius:14px !important;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:rgba(255, 255, 255, 0.015) !important;
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      overflow:hidden;
+      transition:all 0.25s ease;
+    }
+    .faq-item:hover {
+      border-color:rgba(0, 229, 255, 0.2) !important;
+      background:rgba(255, 255, 255, 0.03) !important;
+    }
+    .faq-q{
+      width:100%;
+      padding:16px 20px;
+      border:none;
+      background:transparent !important;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      text-align:left;
+      font-weight:800;
+      font-size:14px;
+      color:var(--text-1) !important;
+      transition:color 0.2s ease;
+    }
+    .faq-q:hover {
+      color:var(--cyan) !important;
+    }
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      padding:0 20px;
+      color:var(--text-2) !important;
+      line-height:1.75;
+      font-size:13px;
+    }
+    .faq-item.open {
+      border-color:rgba(0, 229, 255, 0.25) !important;
+      background:rgba(255, 255, 255, 0.03) !important;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    }
+    .faq-item.open .faq-a{
+      padding:0 20px 18px;
+      max-height:220px;
+    }
+    /* [Step 6] Consolidated Seamless Dark Footer */
+    .footer{
+      padding:56px 0;
+      border-top:1px solid rgba(255, 255, 255, 0.05) !important;
+      background:linear-gradient(180deg, rgba(7, 17, 31, 0.8) 0%, #040914 100%) !important;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr .85fr .85fr .85fr;
+      gap:24px;
+    }
+    .footer h4{
+      margin:0 0 16px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:0.05em;
+      text-transform:uppercase;
+      color:var(--text-1) !important;
+    }
+    .footer-links{
+      display:grid;
+      gap:12px;
+      color:var(--text-3) !important;
+      font-size:13px;
+    }
+    .footer-links a {
+      transition:color 0.18s ease;
+    }
+    .footer-links a:hover {
+      color:var(--cyan) !important;
+    }
+    .footer-copy{
+      margin-top:36px;
+      padding-top:20px;
+      border-top:1px solid rgba(255, 255, 255, 0.04) !important;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--text-3) !important;
+      font-size:12px;
+    }
+    /* [Step 7] Premium Acrylic Glassmorphism Auth Modal & Form Fields */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(2, 6, 23, 0.65) !important; /* 배경 암도 상향을 통한 가독성 증대 */
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:100;
+    }
     .modal-overlay.show{display:flex}
-    .modal{width:min(560px,100%);border-radius:28px;border:1px solid var(--line);background:#fff;box-shadow:0 30px 80px rgba(2,6,23,.2);overflow:hidden}
-    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
-    .modal-body{padding:20px}
-    .close-btn{width:36px;height:36px;border:none;border-radius:12px;background:var(--surface-3)}
-    .auth-tabs{display:flex;gap:8px;padding:6px;background:var(--surface-3);border-radius:14px}
-    .auth-tab{flex:1;border:none;background:transparent;padding:11px 12px;border-radius:10px;font-weight:800;color:var(--text-2)}
-    .auth-tab.active{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .modal{
+      width:min(560px,100%);
+      border-radius:20px !important; /* 랜드마크 각도에 대응하는 모서리 교정 */
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:linear-gradient(180deg, rgba(15, 25, 45, 0.85) 0%, rgba(8, 18, 32, 0.95) 100%) !important;
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      box-shadow:0 30px 80px rgba(0,0,0,0.6), 0 0 32px rgba(0, 229, 255, 0.08) !important;
+      overflow:hidden;
+    }
+    .modal-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:20px 24px;
+      border-bottom:1px solid rgba(255, 255, 255, 0.06) !important;
+    }
+    .modal-head h3 {
+      color: var(--text-1) !important;
+    }
+    .modal-body{padding:24px}
+    .close-btn{
+      width:36px;
+      height:36px;
+      border:none;
+      border-radius:10px;
+      background:rgba(255, 255, 255, 0.04) !important;
+      color: var(--text-2) !important;
+      transition: all 0.18s;
+    }
+    .close-btn:hover {
+      background:rgba(255, 255, 255, 0.08) !important;
+      color: var(--text-1) !important;
+    }
+    .auth-tabs{
+      display:flex;
+      gap:6px;
+      padding:4px;
+      background:rgba(255, 255, 255, 0.03) !important;
+      border-radius:12px;
+      border:1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 20px;
+    }
+    .auth-tab{
+      flex:1;
+      border:none;
+      background:transparent;
+      padding:10px 12px;
+      border-radius:8px;
+      font-weight:800;
+      color:var(--text-3) !important;
+      transition: all 0.18s;
+    }
+    .auth-tab.active{
+      background:rgba(255, 255, 255, 0.06) !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      color:var(--text-1) !important;
+    }
     .auth-panel{display:none}
     .auth-panel.active{display:block}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .form-field{display:grid;gap:6px;margin-top:14px}
-    .form-field label{font-size:12px;font-weight:800;color:var(--text-3)}
-    .form-field input,.form-field select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .form-field label{
+      font-size:11px;
+      font-weight:800;
+      color:var(--text-3) !important;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .form-field input, .form-field select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:rgba(255, 255, 255, 0.02) !important;
+      color: var(--text-1) !important;
+      transition: all 0.2s;
+    }
+    .form-field input:focus, .form-field select:focus {
+      border-color: rgba(0, 229, 255, 0.3) !important;
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.12) !important;
+      background: rgba(7, 17, 31, 0.8) !important;
+    }
     .note-box{padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface-2);line-height:1.75;color:var(--text-2);font-size:13px}
-    .skeleton{position:relative;overflow:hidden;background:#ebf1f7;border-radius:12px}
-    .skeleton::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.78) 50%, transparent 100%);transform:translateX(-100%);animation:shimmer 1.3s infinite}
-    @keyframes shimmer{100%{transform:translateX(100%)}}
-    /* PART 8 — Incremental UX patch (keep structure, improve readability/filters/nav) */
     html,body{width:100%;overflow-x:hidden}
     body{
       background:#f6f8fb;
@@ -382,35 +766,172 @@
     .project-title{font-size:22px;line-height:1.36;font-weight:800;letter-spacing:-.03em;margin:0}
     .detail-header h3{font-size:24px;line-height:1.35;letter-spacing:-.03em}
     .module-card h3,.price-plan h3{font-size:18px}
-    .site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:none;border-bottom:1px solid #e6ebf2;box-shadow:0 1px 0 rgba(15,23,42,.03)}
-    .live-strip{background:#f8fafc;border-bottom:1px solid #eef2f7}
-    .live-strip-inner{height:36px}
-    .site-nav{height:72px;gap:18px}
-    .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:18px;min-width:0}
+    /* [Step 2] Unified Bloomberg/Palantir Acrylic GNB Header Style */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background:rgba(7, 17, 31, 0.54) !important; /* 팰런티어 스타일 반투명 글래스 */
+      border-bottom:1px solid var(--stroke-1) !important;
+      backdrop-filter:blur(22px) saturate(1.28) !important;
+      -webkit-backdrop-filter:blur(22px) saturate(1.28) !important;
+      box-shadow:0 10px 34px rgba(0,0,0,0.24) !important;
+    }
+    .live-strip{
+      background:rgba(7, 17, 31, 0.42) !important;
+      border-bottom:1px solid rgba(255, 255, 255, 0.06) !important;
+    }
+    .live-strip-inner{
+      height:36px;
+      color:var(--text-3) !important;
+    }
+    .live-strip-inner strong {
+      color:var(--cyan) !important;
+      text-shadow:0 0 12px rgba(0, 229, 255, 0.28);
+    }
+    .site-nav{
+      height:64px !important;
+      min-height:64px !important;
+      gap:18px;
+    }
+    .site-nav-left, .site-nav-right{display:flex;align-items:center;gap:12px;min-width:0}
     .site-nav-left{flex:1 1 auto}
     .site-nav-right{flex:0 0 auto}
     .brand{padding-right:8px}
-    .brand-mark{box-shadow:none}
-    .brand-copy strong{font-size:17px;font-weight:800}
-    .nav-links{gap:8px;font-size:14px;font-weight:700;color:var(--text-2)}
-    .nav-links a{padding:10px 12px;border-radius:10px;color:#334155}
-    .nav-links a:hover{background:#f1f5f9;color:var(--text)}
-    .nav-actions{gap:10px}
-    .icon-btn{position:relative;width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text-2);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
-    .icon-btn:hover{background:#f8fafc}
-    .icon-btn em{position:absolute;top:6px;right:6px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:#2563eb;color:#fff;font-style:normal;font-size:10px;font-weight:800;display:grid;place-items:center}
-    .header-search{position:relative;width:240px;flex:0 0 240px}
-    .header-search span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px}
-    .header-search input{width:100%;height:40px;padding:0 14px 0 36px;border-radius:12px;border:1px solid var(--line);background:#f8fafc;color:var(--text)}
-    .header-search input:focus{background:#fff;border-color:#bfd5ff}
+    .brand-mark{
+      box-shadow:none;
+      filter:
+        drop-shadow(0 0 12px rgba(0,229,255,0.26))
+        drop-shadow(0 0 24px rgba(79,195,247,0.12)) !important;
+    }
+    .brand-copy strong{
+      font-size:16px;
+      font-weight:800;
+      color:var(--text-1) !important;
+    }
+    .brand-copy span {
+      color:var(--text-3) !important;
+    }
+    .nav-links{gap:6px;font-size:13px;font-weight:700;color:var(--text-3)}
+    .nav-links a{
+      padding:8px 12px;
+      border-radius:12px !important;
+      color:var(--text-3) !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links a:hover{
+      background:rgba(255, 255, 255, 0.06) !important;
+      color:var(--text-1) !important;
+    }
+    .nav-links a.active-tab {
+      background:linear-gradient(135deg, rgba(0,229,255,0.14), rgba(79,195,247,0.12)) !important;
+      border:1px solid rgba(0,229,255,0.16) !important;
+      color:#DDFBFF !important;
+      box-shadow:0 0 16px rgba(0,229,255,0.06) !important;
+    }
+    .nav-actions{gap:8px}
+    .icon-btn{
+      position:relative;
+      width:38px;
+      height:38px;
+      border-radius:14px !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:rgba(255, 255, 255, 0.05) !important;
+      color:var(--text-2) !important;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      transition:all 0.18s;
+    }
+    .icon-btn:hover{
+      background:rgba(255, 255, 255, 0.08) !important;
+      border-color:rgba(255, 255, 255, 0.15) !important;
+      color:var(--text-1) !important;
+      box-shadow:0 0 18px rgba(0,229,255,0.08) !important;
+    }
+    .icon-btn em{
+      position:absolute;
+      top:3px;
+      right:3px;
+      min-width:15px;
+      height:16px;
+      padding:0 3px;
+      border-radius:999px;
+      background:#00E5FF;
+      color:#07111F;
+      font-style:normal;
+      font-size:9px;
+      font-weight:900;
+      display:grid;
+      place-items:center;
+      box-shadow:0 0 10px rgba(0, 229, 255, 0.6);
+    }
+    .header-search{position:relative;width:220px;flex:0 0 220px}
+    .header-search span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-4);font-size:12px}
+    .header-search input{
+      width:100%;
+      height:38px;
+      padding:0 12px 0 32px;
+      border-radius:14px !important;
+      border:1px solid rgba(255, 255, 255, 0.08) !important;
+      background:rgba(255, 255, 255, 0.05) !important;
+      color:var(--text-1) !important;
+      font-size:13px;
+      transition:all 0.18s;
+    }
+    .header-search input:focus{
+      background:rgba(255, 255, 255, 0.07) !important;
+      border-color:rgba(0, 229, 255, 0.28) !important;
+      box-shadow:0 0 0 4px rgba(0,229,255,0.08), 0 0 20px rgba(0,229,255,0.08) !important;
+    }
+    /* [Step 7] Mobile Nav Glass Re-architecture */
     .menu-btn{display:none}
-    .mobile-nav{display:none;padding:8px 0 16px;border-top:1px solid var(--line)}
-    .mobile-nav a,.mobile-nav button{display:block;width:100%;padding:14px 0;border:none;background:none;text-align:left;border-bottom:1px solid #edf2f7;font-weight:700;color:var(--text-2)}
-    .workspace-frame,.soft-card,.footer,.plan-highlight{background:#fff}
-    .workspace-frame{box-shadow:0 14px 34px rgba(15,23,42,.06);border-radius:24px}
-    .control-rail{background:#fbfcfe}
-    .intel-rail{background:#fcfdff}
-    .saved-search,.chip,.subtle-box,.note-box,.metric,.release-row,.intel-item,.pipeline-card,.detail-kpi{background:#fff}
+    .mobile-nav{
+      display:none;
+      padding:12px 16px 20px;
+      border-top:1px solid rgba(255, 255, 255, 0.05) !important;
+      background: rgba(7, 17, 31, 0.9) !important;
+      backdrop-filter: blur(20px);
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+    }
+    .mobile-nav a, .mobile-nav button{
+      display:block;
+      width:100%;
+      padding:14px 12px;
+      border:none;
+      background:none;
+      text-align:left;
+      border-bottom:1px solid rgba(255, 255, 255, 0.04) !important;
+      font-weight:700;
+      color:var(--text-2) !important;
+      transition: all 0.18s;
+    }
+    .mobile-nav a:hover, .mobile-nav button:hover {
+      color: var(--cyan) !important;
+      background: rgba(255, 255, 255, 0.02) !important;
+    }
+    /* [Step 4] PART 8 강제 백그라운드 색상 고정 해제 및 글래스 텍스처 오버라이드 */
+    .workspace-frame {
+      background:rgba(8, 20, 36, 0.5) !important; /* 메인 프레임을 우주선 관제 콘솔 재질로 격상 */
+      border:1px solid rgba(255, 255, 255, 0.06) !important;
+      box-shadow:var(--shadow-lg) !important;
+      border-radius:24px;
+    }
+    .soft-card,.footer,.plan-highlight{background:#fff}
+    .control-rail{background:rgba(6, 15, 30, 0.4) !important}
+    .intel-rail{background:rgba(6, 15, 30, 0.3) !important}
+    
+    /* 흩어져 있는 작은 가젯들의 다크 모드 전용 배경으로 일괄 연동 */
+    .saved-search,.chip,.subtle-box,.note-box,.release-row,.intel-item {
+      background:rgba(255, 255, 255, 0.02) !important;
+      color:var(--text) !important;
+    }
+    .metric,.pipeline-card,.detail-kpi{
+      background:rgba(15, 37, 66, 0.25) !important;
+      border:1px solid rgba(255, 255, 255, 0.05) !important;
+    }
     .industry-summary{display:grid;gap:10px;margin-bottom:16px}
     .summary-pills{display:flex;flex-wrap:wrap;gap:8px}
     .summary-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700;color:var(--text-2)}
@@ -420,21 +941,88 @@
     .tree-wrap{display:grid;gap:10px;max-height:520px;overflow:auto;padding-right:4px}
     .tree-wrap::-webkit-scrollbar{width:8px}
     .tree-wrap::-webkit-scrollbar-thumb{background:#d9e3ef;border-radius:999px}
-    .industry-group{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
-    .industry-group-head{width:100%;padding:14px 14px 12px;border:none;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left}
-    .industry-group-head strong{display:block;font-size:14px;line-height:1.45;letter-spacing:-.02em}
-    .industry-group-head span{font-size:12px;color:var(--text-3)}
-    .industry-group-head b{font-size:14px;color:var(--text-3)}
-    .industry-cat-list{display:grid;gap:8px;padding:0 12px 12px}
-    .cat-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 10px 10px 12px;border-radius:14px;border:1px solid var(--line);background:#f8fafc}
-    .cat-item.active{background:#eff6ff;border-color:#bfdbfe}
-    .cat-main{display:flex;align-items:flex-start;gap:10px;min-width:0;text-align:left;border:none;background:transparent;padding:0}
-    .cat-check{width:18px;height:18px;border-radius:6px;border:1.5px solid #cbd5e1;background:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:12px;color:#2563eb}
-    .cat-item.active .cat-check{border-color:#2563eb;background:#dbeafe}
-    .cat-copy strong{display:block;font-size:13px;line-height:1.45;color:var(--text)}
-    .cat-copy span{display:block;font-size:12px;line-height:1.45;color:var(--text-3)}
-    .cat-favorite{width:32px;height:32px;border:none;border-radius:10px;background:#fff;color:#94a3b8}
-    .cat-favorite.active{color:#2563eb;background:#eff6ff}
+    /* [Step 4] CAT 코드 트리 노드 인터페이스 고밀도화 */
+    .industry-group{
+      border:1px solid rgba(255, 255, 255, 0.04) !important;
+      border-radius:12px;
+      background:rgba(255, 255, 255, 0.01) !important;
+      overflow:hidden;
+      margin-bottom: 8px;
+    }
+    .industry-group-head{
+      width:100%;
+      padding:12px 14px;
+      border:none;
+      background:transparent !important;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      text-align:left;
+      color: var(--text) !important;
+      transition: background 0.18s;
+    }
+    .industry-group-head:hover {
+      background: rgba(255, 255, 255, 0.02) !important;
+    }
+    .industry-group-head strong{display:block;font-size:13px;line-height:1.45;letter-spacing:-.02em}
+    .industry-group-head span{font-size:11px;color:var(--text-2)}
+    .industry-group-head b{font-size:12px;color:var(--text-2)}
+    .industry-cat-list{display:grid;gap:6px;padding:0 10px 10px}
+    .cat-item{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+      padding:8px 8px 8px 10px;
+      border-radius:8px;
+      border:1px solid rgba(255, 255, 255, 0.03) !important;
+      background:rgba(255, 255, 255, 0.01) !important;
+      transition: all 0.15s;
+    }
+    .cat-item:hover {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    .cat-item.active{
+      background:var(--brand-soft) !important;
+      border-color:rgba(59, 130, 246, 0.25) !important;
+    }
+    .cat-main{display:flex;align-items:flex-start;gap:8px;min-width:0;text-align:left;border:none;background:transparent;padding:0}
+    .cat-check{
+      width:16px;
+      height:16px;
+      border-radius:4px;
+      border:1px solid rgba(255, 255, 255, 0.15) !important;
+      background:rgba(0, 0, 0, 0.2) !important;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-size:10px;
+      color:var(--brand-strong);
+    }
+    .cat-item.active .cat-check{
+      border-color:var(--brand-strong) !important;
+      background:rgba(59, 130, 246, 0.2) !important;
+    }
+    .cat-copy strong{display:block;font-size:12px;line-height:1.4;color:var(--text)}
+    .cat-copy span{display:block;font-size:10px;line-height:1.4;color:var(--text-2)}
+    .cat-favorite{
+      width:28px;
+      height:28px;
+      border:none;
+      border-radius:6px;
+      background:transparent !important;
+      color:var(--text-2);
+      transition: all 0.15s;
+    }
+    .cat-favorite:hover {
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: var(--amber) !important;
+    }
+    .cat-favorite.active{
+      color:var(--amber) !important;
+    }
     .active-cat-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#f8fafc}
     .active-cat-list{display:flex;flex-wrap:wrap;gap:8px}
     .active-cat-tag{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--text-2)}
@@ -447,8 +1035,27 @@
   grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
   min-width: 900px !important;
 }
-    .project-list-head{font-size:12px}
-    .project-row{padding:18px}
+    /* [수정 적용] 전역 테이블 헤더의 둥근 모서리 곡률 보정 및 상단 마스크 우회 여백 확보 */
+  .project-list-head {
+    display: grid;
+    grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+    min-width: 900px !important;
+    
+    /* 상단 패딩을 24px로 확장하여 모서리 22px 라운드 안쪽으로 글씨가 절대 침범하지 못하도록 물리적 여백 고정 */
+    padding: 24px 18px 14px 18px !important; 
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-3);
+    letter-spacing: -.01em;
+    
+    /* 부모 카드 테두리와 일치하도록 둥근 값 부여 */
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+  }
+  .project-row{padding:18px}
     .project-row.active{background:#f8fbff}
     .project-main{display:grid;gap:10px}
     .project-main-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
@@ -483,12 +1090,17 @@
     .intel-item{align-items:center}
     .muted strong{color:var(--text)}
     @media (max-width:1280px){
-      .site-nav{gap:14px}
-      .header-search{width:200px;flex-basis:200px}
-      .workspace-body{grid-template-columns:280px minmax(0,1fr) 312px}
-      .list-shell{grid-template-columns:minmax(0,1fr) minmax(320px,.92fr)}
-      .project-list-head,.project-row{grid-template-columns:minmax(0,2.1fr) minmax(0,1.1fr) 104px 126px 100px 108px}
+    .site-nav{gap:14px}
+    .header-search{width:200px;flex-basis:200px}
+    .workspace-body{grid-template-columns:280px minmax(0,1fr) 312px}
+    .list-shell{grid-template-columns:minmax(0,1fr) minmax(320px,.92fr)}
+    
+    /* [수정 적용] 창 크기가 줄어들어도 테이블 헤더와 열이 900px 이하로 무너지지 않도록 방지 */
+    .project-list-head,.project-row{
+      grid-template-columns: minmax(280px, 2.4fr) minmax(130px, 1.2fr) 110px 130px 110px 100px !important;
+      min-width: 900px !important; /* [핵심] 미디어 쿼리 내에서도 최소 가로폭 900px을 유지하여 헤더 깎임 현상을 완벽히 차단합니다. */
     }
+  }
     @media (max-width:1120px){
       .site-nav{height:auto;min-height:72px;padding:12px 0;flex-wrap:wrap;align-items:center}
       .site-nav-left,.site-nav-right{width:100%;justify-content:space-between}
@@ -554,8 +1166,6 @@
       .control-rail,.result-rail,.intel-rail{padding:16px}
       .site-nav-right{gap:10px}
       .footer-grid{grid-template-columns:1fr 1fr}
-      .hide-mobile{display:none}
-      .show-mobile{display:block}
     }
     @media (max-width:520px){
       .footer-grid{grid-template-columns:1fr}
@@ -565,103 +1175,1879 @@
       *,*::before,*::after{scroll-behavior:auto !important;animation:none !important;transition:none !important}
     }
     :focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
+/* =========================
+   STEP 1 — Primary Icon Sidebar
+========================= */
+.workspace-body.app-shell{
+  grid-template-columns:84px 280px minmax(0,1fr) 340px !important;
+  align-items:stretch;
+  min-height:900px;
+}
+
+.app-sidebar{
+  position:relative;
+  min-width:0;
+  padding:16px 10px;
+  border-right:1px solid rgba(255,255,255,.06);
+  background:
+    linear-gradient(180deg, rgba(4,12,24,.92) 0%, rgba(5,16,29,.82) 100%);
+  backdrop-filter:blur(18px) saturate(1.06);
+  -webkit-backdrop-filter:blur(18px) saturate(1.06);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  overflow:hidden;
+  transition:padding .2s ease, background .2s ease;
+}
+
+.workspace-frame.sidebar-expanded .workspace-body.app-shell{
+  grid-template-columns:228px 280px minmax(0,1fr) 340px !important;
+}
+
+.workspace-frame.sidebar-expanded .app-sidebar{
+  padding:16px 14px;
+}
+
+.app-sidebar-top{
+  display:grid;
+  gap:12px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.sidebar-toggle-btn{
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  color:#dbeafe;
+  display:grid;
+  place-items:center;
+  transition:all .18s ease;
+}
+
+.sidebar-toggle-btn:hover{
+  background:rgba(59,130,246,.14);
+  color:#eff6ff;
+  box-shadow:0 0 18px rgba(59,130,246,.14);
+}
+
+.sidebar-toggle-btn svg{
+  width:18px;
+  height:18px;
+}
+
+.sidebar-brand-mini{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.sidebar-brand-mark{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.08em;
+  color:#e0f2fe;
+  background:
+    linear-gradient(135deg, rgba(34,211,238,.24), rgba(59,130,246,.28));
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 0 24px rgba(34,211,238,.12);
+  flex:0 0 auto;
+}
+
+.sidebar-brand-copy{
+  display:none;
+  min-width:0;
+}
+
+.workspace-frame.sidebar-expanded .sidebar-brand-copy{
+  display:grid;
+}
+
+.sidebar-brand-copy strong{
+  font-size:14px;
+  letter-spacing:-.02em;
+  color:#f8fbff;
+}
+
+.sidebar-brand-copy span{
+  font-size:11px;
+  color:rgba(203,213,225,.74);
+}
+
+.app-sidebar-nav{
+  display:grid;
+  gap:6px;
+}
+
+.sidebar-item{
+  position:relative;
+  width:100%;
+  min-height:48px;
+  border:none;
+  border-radius:14px;
+  background:transparent;
+  color:rgba(203,213,225,.78);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  text-align:left;
+  transition:all .18s ease;
+}
+
+.sidebar-item:hover{
+  background:rgba(255,255,255,.05);
+  color:#f8fbff;
+  transform:translateX(2px);
+}
+
+.sidebar-item.active{
+  background:linear-gradient(180deg, rgba(34,211,238,.12), rgba(59,130,246,.14));
+  color:#e0f2fe;
+  border:1px solid rgba(96,165,250,.2);
+  box-shadow:0 0 18px rgba(59,130,246,.08);
+}
+
+.sidebar-icon{
+  width:20px;
+  height:20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+
+.sidebar-icon svg{
+  width:20px;
+  height:20px;
+}
+
+.sidebar-label{
+  display:none;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+.workspace-frame.sidebar-expanded .sidebar-label{
+  display:inline-flex;
+}
+
+.sidebar-tooltip{
+  position:absolute;
+  left:calc(100% + 12px);
+  top:50%;
+  transform:translateY(-50%);
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(2,6,23,.94);
+  color:#e2e8f0;
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+  opacity:0;
+  pointer-events:none;
+  white-space:nowrap;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+  transition:opacity .16s ease, transform .16s ease;
+}
+
+.workspace-frame:not(.sidebar-expanded) .sidebar-item:hover .sidebar-tooltip{
+  opacity:1;
+  transform:translateY(-50%) translateX(0);
+}
+
+.workspace-frame.sidebar-expanded .sidebar-tooltip{
+  display:none;
+}
+
+@media (max-width:1480px){
+  .workspace-body.app-shell{
+    grid-template-columns:76px 264px minmax(0,1fr) 304px !important;
+  }
+
+  .workspace-frame.sidebar-expanded .workspace-body.app-shell{
+    grid-template-columns:220px 264px minmax(0,1fr) 304px !important;
+  }
+}
+
+@media (max-width:1120px){
+  .workspace-body.app-shell{
+    grid-template-columns:1fr !important;
+  }
+
+  .app-sidebar{
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:14px;
+  }
+
+  .workspace-frame.sidebar-expanded .workspace-body.app-shell{
+    grid-template-columns:1fr !important;
+  }
+
+  .sidebar-brand-copy,
+  .sidebar-label{
+    display:inline-flex !important;
+  }
+
+  .app-sidebar-nav{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
+
+  .sidebar-tooltip{
+    display:none !important;
+  }
+}
+
+@media (max-width:680px){
+  .app-sidebar-nav{
+    grid-template-columns:1fr;
+  }
+}
+/* =========================
+   Emergency Dark Theme Stabilizer
+   가장 마지막에 둬야 함
+========================= */
+:root{
+  --text:#eef6ff;
+  --text-2:#b8c7db;
+  --text-3:#7e92aa;
+  --text-4:#58708d;
+}
+
+/* 메인 프레임/레일 */
+.workspace-frame{
+  background:rgba(8,20,36,.56) !important;
+  border:1px solid rgba(255,255,255,.06) !important;
+}
+
+.control-rail,
+.result-rail,
+.intel-rail{
+  background:rgba(7,16,28,.62) !important;
+  border-color:rgba(255,255,255,.06) !important;
+}
+
+/* 흰 카드로 남아 있는 핵심 박스들 강제 다크화 */
+.list-card,
+.detail-card,
+.intel-card,
+.pipeline-card,
+.metric,
+.subtle-box,
+.note-box,
+.saved-search,
+.detail-info,
+.detail-summary,
+.detail-kpi,
+.xai-item,
+.timeline-item,
+.mini-item,
+.intel-item,
+.release-row,
+.summary-pill,
+.active-cat-bar,
+.project-meta span,
+.quick-pill,
+.save-btn,
+.field input,
+.field select,
+.field textarea{
+  background:rgba(255,255,255,.03) !important;
+  color:var(--text) !important;
+  border-color:rgba(255,255,255,.08) !important;
+}
+
+/* 리스트/상세 카드 자체는 조금 더 진하게 */
+.list-card,
+.detail-card,
+.intel-card{
+  background:
+    linear-gradient(180deg, rgba(11,21,37,.94), rgba(8,16,28,.96)) !important;
+}
+
+/* 테이블 헤더 */
+.project-list-head{
+  background:rgba(255,255,255,.04) !important;
+  color:var(--text-3) !important;
+  border-color:rgba(255,255,255,.08) !important;
+}
+
+/* row hover / active */
+.project-row:hover{
+  background:rgba(255,255,255,.04) !important;
+}
+
+.project-row.active{
+  background:
+    linear-gradient(180deg, rgba(96,165,250,.08), rgba(34,211,238,.05)) !important;
+}
+
+/* 주요 제목/본문 컬러 재고정 */
+.project-title,
+.detail-header h3,
+.project-client strong,
+.project-stage strong,
+.project-update strong,
+.detail-info span,
+.detail-kpi strong,
+.panel-title h3,
+.panel-title h4,
+.workspace-top h2,
+.small strong,
+.muted strong{
+  color:var(--text) !important;
+}
+
+/* 보조 텍스트 */
+.small,
+.caption,
+.project-client span,
+.detail-kpi span,
+.detail-info strong,
+.workspace-top p,
+.control-label{
+  color:var(--text-3) !important;
+}
+
+/* 플레이스홀더/입력 */
+.field input::placeholder,
+.field textarea::placeholder,
+.header-search input::placeholder{
+  color:var(--text-4) !important;
+}
+
+.field input,
+.field select,
+.field textarea,
+.header-search input{
+  color:var(--text) !important;
+}
+
+/* select 드롭다운 옵션 색 */
+select option{
+  background:#08131E;
+  color:#eef6ff;
+}
+
+/* 배지/칩 가독성 */
+.chip{
+  background:rgba(255,255,255,.03) !important;
+  color:var(--text-2) !important;
+  border-color:rgba(255,255,255,.06) !important;
+}
+
+.chip.active{
+  background:rgba(59,130,246,.12) !important;
+  color:#b9dbff !important;
+  border-color:rgba(96,165,250,.22) !important;
+}
+/* =========================================================
+   PREMIUM REDESIGN — STEP 3
+   Glass Card System / Workspace Panels / Readability
+========================================================= */
+.card,
+.metric,
+.subtle-box,
+.pipeline-card,
+.list-card,
+.detail-card,
+.intel-card,
+.release-row,
+.module-card,
+.compare-card,
+.price-plan,
+.faq-item,
+.modal,
+.saved-search,
+.note-box,
+.detail-info,
+.detail-summary,
+.detail-kpi,
+.xai-item,
+.timeline-item,
+.mini-item,
+.intel-item{
+  background:rgba(255,255,255,0.07) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  border-radius:20px !important;
+  backdrop-filter:blur(20px) saturate(1.06);
+  -webkit-backdrop-filter:blur(20px) saturate(1.06);
+  box-shadow:0 12px 38px rgba(0,0,0,0.18) !important;
+}
+
+.control-rail,
+.result-rail,
+.intel-rail{
+  padding:24px !important;
+  background:rgba(255,255,255,0.03) !important;
+  border-color:rgba(255,255,255,0.08) !important;
+}
+
+.panel-title h3,
+.panel-title h4,
+.project-title,
+.detail-header h3,
+.project-client strong,
+.project-stage strong,
+.project-update strong,
+.detail-info span,
+.detail-kpi strong,
+.module-card h3,
+.price-plan h3,
+.section-head h2{
+  color:var(--text) !important;
+}
+
+.muted,
+.small,
+.caption,
+.project-client span,
+.detail-kpi span,
+.detail-info strong,
+.section-head p,
+.project-ai span,
+.results-meta,
+.control-label{
+  color:var(--text-3) !important;
+}
+
+.metric strong,
+.project-ai strong,
+.price-line{
+  color:#F0FCFF !important;
+  text-shadow:0 0 16px rgba(79,195,247,0.08);
+}
+
+.list-card,
+.detail-card,
+.intel-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.045)) !important;
+}
+
+.project-list-head{
+  background:rgba(255,255,255,0.05) !important;
+  color:var(--text-3) !important;
+  border-bottom:1px solid rgba(255,255,255,0.08) !important;
+}
+
+.project-row{
+  border-bottom:1px solid rgba(255,255,255,0.06) !important;
+}
+
+.project-row:hover{
+  background:rgba(255,255,255,0.05) !important;
+}
+
+.project-row.active{
+  background:
+    linear-gradient(135deg, rgba(0,229,255,0.08), rgba(79,195,247,0.06)) !important;
+}
+
+.project-meta span,
+.detail-tags span,
+.summary-pill,
+.active-cat-tag,
+.quick-pill,
+.chip,
+.save-btn{
+  background:rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  color:var(--text-2) !important;
+}
+
+.quick-pill.active,
+.chip.active{
+  background:linear-gradient(135deg, rgba(0,229,255,0.14), rgba(0,209,178,0.10)) !important;
+  color:#D7FBFF !important;
+  border-color:rgba(0,229,255,0.18) !important;
+  box-shadow:0 0 18px rgba(0,229,255,0.06);
+}
+
+.save-btn.saved{
+  color:#9AF6FF !important;
+  background:rgba(0,229,255,0.12) !important;
+  border-color:rgba(0,229,255,0.18) !important;
+}
+
+.field input,
+.field select,
+.field textarea,
+.form-field input,
+.form-field select,
+.cat-search input{
+  background:rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  color:var(--text) !important;
+  border-radius:12px !important;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.form-field input:focus,
+.form-field select:focus,
+.cat-search input:focus{
+  border-color:rgba(0,229,255,0.28) !important;
+  box-shadow:0 0 0 4px rgba(0,229,255,0.06), 0 0 16px rgba(0,229,255,0.06) !important;
+}
+
+.project-meta span,
+.intel-item,
+.mini-item,
+.timeline-item,
+.xai-item,
+.detail-info,
+.detail-summary{
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.badge.blue{
+  background:rgba(0,229,255,0.14) !important;
+  color:#D8FBFF !important;
+}
+.badge.green{
+  background:rgba(0,209,178,0.14) !important;
+  color:#BDF8EB !important;
+}
+.badge.amber{
+  background:rgba(255,200,87,0.14) !important;
+  color:#FFE7AE !important;
+}
+.badge.red{
+  background:rgba(255,124,138,0.14) !important;
+  color:#FFD1D6 !important;
+}
+
+.score-pill{
+  background:linear-gradient(135deg, rgba(0,229,255,0.18), rgba(79,195,247,0.14)) !important;
+  color:#D8FBFF !important;
+  border:1px solid rgba(0,229,255,0.12);
+}
+
+.timeline-dot,
+.live-dot{
+  box-shadow:0 0 0 7px rgba(0,229,255,0.08) !important;
+}
+
+.pipeline-card strong,
+.detail-kpi strong,
+.metric strong{
+  letter-spacing:-.05em !important;
+}
+/* =========================================================
+   PREMIUM REDESIGN — STEP 4
+   Layout Breathing / Hover / Motion / Premium Polish
+========================================================= */
+.hero-metrics,
+.proof-metrics,
+.module-grid,
+.benchmark-grid,
+.trust-layout,
+.pricing-grid,
+.faq-grid,
+.list-shell{
+  gap:20px !important;
+}
+
+.workspace-body{
+  gap:0 !important;
+}
+
+.search-row{
+  gap:14px !important;
+  margin-bottom:14px !important;
+}
+
+.quick-filter-row{
+  gap:14px !important;
+}
+
+.active-cat-bar{
+  margin-bottom:14px !important;
+  padding:14px 16px !important;
+}
+
+.project-row,
+.intel-card,
+.card,
+.metric,
+.module-card,
+.compare-card,
+.price-plan,
+.saved-search,
+.sidebar-item,
+.pipeline-card,
+.detail-kpi,
+.detail-info{
+  transition:
+    transform .28s cubic-bezier(.22,.61,.36,1),
+    box-shadow .28s cubic-bezier(.22,.61,.36,1),
+    background .24s ease,
+    border-color .24s ease !important;
+}
+
+.card:hover,
+.metric:hover,
+.module-card:hover,
+.compare-card:hover,
+.price-plan:hover,
+.intel-card:hover,
+.pipeline-card:hover,
+.detail-kpi:hover,
+.detail-info:hover,
+.saved-search:hover{
+  transform:translateY(-4px) scale(1.012);
+  box-shadow:
+    0 20px 44px rgba(0,0,0,0.24),
+    0 0 24px rgba(0,229,255,0.05) !important;
+  border-color:rgba(0,229,255,0.14) !important;
+}
+
+.project-row:hover{
+  transform:translateY(-1px) scale(1.004);
+  border-color:rgba(0,229,255,0.10) !important;
+}
+
+.sidebar-item:hover{
+  box-shadow:0 0 20px rgba(79,195,247,0.05);
+}
+
+.workspace-frame,
+.card,
+.metric,
+.list-card,
+.detail-card,
+.intel-card{
+  animation:premiumFadeUp .75s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes premiumFadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* CTA 가독성 강화 */
+.hero-actions .btn{
+  min-height:48px !important;
+  padding-inline:18px !important;
+}
+
+/* 메트릭 카드에 광원 포인트 */
+.metric{
+  position:relative;
+  overflow:hidden;
+}
+
+.metric::before{
+  content:"";
+  position:absolute;
+  inset:auto -20% 55% auto;
+  width:120px;
+  height:120px;
+  border-radius:999px;
+  background:radial-gradient(circle, rgba(0,229,255,0.10), transparent 65%);
+  pointer-events:none;
+}
+
+/* 우측 패널 더 가볍게 */
+.intel-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05)) !important;
+}
+
+/* 푸터도 다크 프리미엄화 */
+.footer{
+  background:
+    linear-gradient(180deg, rgba(7,17,31,.78) 0%, rgba(6,13,24,.94) 100%) !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+}
+
+.footer-links,
+.footer-copy,
+.footer h4,
+.footer .muted{
+  color:var(--text-3) !important;
+}
+
+.footer .brand-copy strong{
+  color:var(--text) !important;
+}
+
+/* FAQ / Pricing / Compare 영역까지 올드한 흰 카드 제거 */
+.soft-card,
+.plan-highlight,
+.compare-card,
+.faq-item,
+.price-plan{
+  background:rgba(255,255,255,0.07) !important;
+  border-color:rgba(255,255,255,0.10) !important;
+}
+
+/* 모달도 동일 톤으로 */
+.modal{
+  background:linear-gradient(180deg, rgba(10,22,37,.96), rgba(8,18,31,.98)) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+}
+
+.auth-tabs{
+  background:rgba(255,255,255,0.05) !important;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.auth-tab.active{
+  background:rgba(255,255,255,0.08) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+}
+/* =========================================================
+   STEP 1 — Remove useless top UI / Move workspace up
+========================================================= */
+
+/* 헤더를 앱형 미니 바처럼 축소 */
+.site-header{
+  background:rgba(7,17,31,0.58) !important;
+  border-bottom:1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter:blur(18px) saturate(1.2) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.2) !important;
+}
+
+.site-nav{
+  height:64px !important;
+  min-height:64px !important;
+}
+
+.site-nav-left{
+  gap:12px !important;
+}
+
+.site-nav-right.nav-actions-minimal{
+  gap:0 !important;
+}
+
+/* 로고 텍스트 제거 대응 */
+.brand-minimal{
+  gap:0 !important;
+}
+
+.brand-minimal .brand-copy{
+  display:none !important;
+}
+
+/* 로고를 더 미래형 글로우 심볼로 */
+.brand-mark-future{
+  width:42px !important;
+  height:42px !important;
+  border-radius:14px !important;
+  filter:
+    drop-shadow(0 0 10px rgba(0,229,255,0.24))
+    drop-shadow(0 0 22px rgba(79,195,247,0.12)) !important;
+}
+
+/* 모바일 메뉴 버튼도 숨김 */
+.menu-btn,
+.mobile-nav{
+  display:none !important;
+}
+
+/* Hero 상단 여백 대폭 축소 */
+.workspace-hero{
+  padding:20px 0 36px !important;
+}
+
+/* hero-head 제거 후 첫 화면이 바로 workspace가 되도록 */
+.workspace-frame{
+  margin-top:0 !important;
+}
+
+/* workspace top을 첫 화면 헤더답게 더 밀도 높게 */
+.workspace-top.workspace-top-compact{
+  padding:20px 22px !important;
+}
+
+.workspace-top.workspace-top-compact h2{
+  font-size:30px !important;
+  line-height:1.18 !important;
+  letter-spacing:-.045em !important;
+}
+
+.workspace-top.workspace-top-compact p{
+  max-width:760px !important;
+  color:var(--text-2) !important;
+}
+
+/* status 뱃지 간소화 */
+.workspace-top.workspace-top-compact .workspace-status{
+  gap:8px !important;
+}
+
+/* 페이지 첫 화면을 더 앱처럼 */
+main#top{
+  padding-top:0 !important;
+}
+/* =========================================================
+   STEP 1-A
+   실제 워크스페이스를 상단으로 당기기
+========================================================= */
+.hero-video-bg,
+.hero-video,
+.hero-video-overlay{
+  display:none !important;
+}
+
+.workspace-hero{
+  padding:8px 0 24px !important;
+}
+
+.workspace-hero > .container{
+  margin-top:0 !important;
+}
+
+.workspace-frame{
+  margin-top:0 !important;
+}
+
+.workspace-top.workspace-top-compact,
+.workspace-top{
+  padding-top:18px !important;
+  padding-bottom:18px !important;
+}
+
+main#top{
+  padding-top:0 !important;
+}
+/* =========================================================
+   STEP 1-B
+   헤더 중앙 타이틀
+========================================================= */
+.site-nav{
+  position:relative;
+}
+
+.site-nav-center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.site-nav-center-title{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#E6FBFF;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 0 18px rgba(0,229,255,0.04);
+}
+
+@media (max-width: 980px){
+  .site-nav-center{
+    display:none;
+  }
+}
+/* =========================================================
+   STEP 1-C
+   인증 아이콘 버튼
+========================================================= */
+.auth-icon-btn{
+  margin-left:8px;
+}
+
+.auth-icon-btn:hover{
+  box-shadow:0 0 18px rgba(0,229,255,0.08) !important;
+}
+/* =========================================================
+   STEP 1-D
+   필터 바 UI 리디자인
+========================================================= */
+.sticky-filter-bar{
+  background:rgba(8,18,31,0.72) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding-bottom:18px !important;
+  margin-bottom:18px !important;
+}
+
+.search-toolbar-shell{
+  display:grid;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.search-toolbar-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.search-toolbar-copy{
+  display:grid;
+  gap:4px;
+}
+
+.search-toolbar-copy strong{
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--text) !important;
+}
+
+.search-toolbar-copy span{
+  font-size:12px;
+  line-height:1.55;
+  color:var(--text-3) !important;
+}
+
+.refined-search-row{
+  grid-template-columns:minmax(0,1.9fr) repeat(3, minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+
+.btn-reset-filter{
+  background:rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.10) !important;
+  color:var(--text) !important;
+}
+
+.btn-reset-filter:hover{
+  background:rgba(255,255,255,0.10) !important;
+  box-shadow:0 0 18px rgba(79,195,247,0.06);
+}
+
+@media (max-width: 920px){
+  .refined-search-row{
+    grid-template-columns:1fr 1fr !important;
+  }
+}
+
+@media (max-width: 680px){
+  .refined-search-row{
+    grid-template-columns:1fr !important;
+  }
+}
+/* =========================================================
+   STEP 4-B — LAYOUT RE-ARCHITECTURE
+   KPI STRIP + PROJECT GRID + INSIGHT RAIL
+========================================================= */
+
+.dashboard-main{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  min-height:0;
+}
+
+.kpi-strip{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:16px;
+}
+
+.kpi-card{
+  position:relative;
+  overflow:hidden;
+  padding:18px 18px 16px;
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border:1px solid rgba(255,255,255,0.10);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.26);
+}
+
+.kpi-card::before{
+  content:"";
+  position:absolute;
+  inset:auto -20% -40% auto;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,229,255,0.18), transparent 70%);
+  pointer-events:none;
+}
+
+.kpi-label{
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-3);
+  margin-bottom:10px;
+}
+
+.kpi-value{
+  font-size:30px;
+  line-height:1;
+  font-weight:800;
+  color:var(--text-1);
+  margin-bottom:8px;
+}
+
+.kpi-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  color:var(--text-3);
+}
+
+.kpi-delta{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,229,255,0.10);
+  color:var(--cyan);
+  border:1px solid rgba(0,229,255,0.16);
+  font-weight:700;
+}
+
+.dashboard-content-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.7fr) minmax(320px, .88fr);
+  gap:18px;
+  align-items:start;
+  min-height:0;
+}
+
+.glass-board{
+  padding:20px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 14px 32px rgba(0,0,0,0.30);
+}
+
+.project-board{
+  min-height:640px;
+}
+
+.project-board-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.board-title-wrap h3{
+  margin:4px 0 0;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:var(--text-1);
+}
+
+.eyebrow-label{
+  margin:0;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-3);
+}
+
+.board-head-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.finder-reset-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.08);
+  color:var(--text-1);
+  border:1px solid rgba(255,255,255,0.12);
+  cursor:pointer;
+  transition:all .28s ease;
+}
+
+.finder-reset-btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(0,229,255,0.24);
+  box-shadow:0 0 22px rgba(0,229,255,0.12);
+}
+
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+}
+
+/* [Step 4] 정교한 1px 테두리와 네온 포커스링을 갖춘 팰런티어 스타일 카드 완성 */
+.project-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px !important; /* 날렵하고 정돈된 곡률 적용 */
+  background:linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%) !important;
+  border:1px solid rgba(255,255,255,0.07) !important;
+  box-shadow:0 12px 30px rgba(0,0,0,0.35) !important;
+  cursor:pointer;
+  /* 가속도 보정을 통해 최고급 모션 구현 */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* 마우스를 올릴 시 테두리에 마이크로 사이안 글로우 발생 */
+.project-card:hover{
+  transform:translateY(-5px) scale(1.008) !important;
+  border-color:rgba(0, 229, 255, 0.35) !important;
+  box-shadow:0 20px 48px rgba(0,0,0,0.45), 0 0 24px rgba(0, 229, 255, 0.12) !important;
+}
+
+/* 선택 활성화 상태일 때 로열 사이안 인디고 포커스링 고정 */
+.project-card.active{
+  border-color:rgba(0, 229, 255, 0.6) !important;
+  background:linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, rgba(255,255,255,0.03) 100%) !important;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(0, 229, 255, 0.18) !important;
+}
+
+.project-card-visual{
+  position:relative;
+  height:150px;
+  padding:18px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,0.15), transparent 28%),
+    linear-gradient(135deg, rgba(0,229,255,0.26), rgba(0,209,178,0.18) 50%, rgba(7,17,31,0.12));
+}
+
+.visual-grid-lines{
+  position:absolute;
+  inset:0;
+  opacity:.14;
+  background-image:
+    linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+  background-size:24px 24px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.9), transparent);
+  pointer-events:none;
+}
+
+.project-card-badge-row{
+  position:absolute;
+  top:14px;
+  left:14px;
+  right:14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  z-index:2;
+}
+
+.project-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(7,17,31,0.28);
+  color:#F4FBFF;
+  backdrop-filter:blur(10px);
+}
+
+.project-chip.cyan{
+  color:var(--cyan);
+  border-color:rgba(0,229,255,0.18);
+  background:rgba(0,229,255,0.10);
+}
+
+.project-chip.teal{
+  color:var(--mint);
+  border-color:rgba(0,209,178,0.18);
+  background:rgba(0,209,178,0.10);
+}
+
+.project-chip.warn{
+  color:#FFD28C;
+  border-color:rgba(255,184,77,0.18);
+  background:rgba(255,184,77,0.10);
+}
+
+.project-symbol{
+  position:relative;
+  z-index:2;
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.18);
+  color:#fff;
+  font-size:18px;
+  font-weight:800;
+  backdrop-filter:blur(10px);
+}
+
+.project-mini-score{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
+  color:#fff;
+}
+
+.project-mini-score strong{
+  font-size:28px;
+  line-height:1;
+}
+
+.project-mini-score span{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.72;
+}
+
+.project-card-body{
+  padding:18px 18px 16px;
+}
+
+.project-card-topline{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.project-card-title{
+  margin:0;
+  font-size:18px;
+  font-weight:800;
+  line-height:1.28;
+  color:var(--text-1);
+}
+
+.project-card-client{
+  margin-top:4px;
+  font-size:13px;
+  color:var(--text-3);
+}
+
+.project-save-btn{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  color:var(--text-2);
+  cursor:pointer;
+  transition:all .24s ease;
+}
+
+.project-save-btn:hover{
+  color:var(--cyan);
+  border-color:rgba(0,229,255,0.18);
+  box-shadow:0 0 16px rgba(0,229,255,0.10);
+}
+
+.project-save-btn.saved{
+  color:var(--mint);
+  border-color:rgba(0,209,178,0.20);
+  background:rgba(0,209,178,0.10);
+}
+
+.project-card-summary{
+  min-height:42px;
+  margin:0 0 14px;
+  font-size:13px;
+  line-height:1.58;
+  color:var(--text-2);
+}
+
+.project-stat-row{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.project-stat{
+  padding:8px 10px; /* 더 조밀한 스프레드시트 핏 여백으로 축소 */
+  border-radius:8px !important; /* 팰런티어 규격의 각진 메트릭 쉘 */
+  background:rgba(255,255,255,0.02) !important;
+  border:1px solid rgba(255,255,255,0.04) !important;
+  transition: border-color 0.2s;
+}
+.project-stat:hover {
+  border-color: rgba(0, 229, 255, 0.2) !important; /* 개별 스탯창도 지능형 인터랙션 수색 기조 추가 */
+}
+
+.project-stat-label{
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-4);
+  margin-bottom:6px;
+}
+
+.project-stat-value{
+  font-size:15px;
+  font-weight:800;
+  color:var(--text-1);
+}
+
+.project-card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.project-source{
+  font-size:12px;
+  color:var(--text-3);
+}
+
+.project-link-mini{
+  font-size:12px;
+  font-weight:700;
+  color:var(--cyan);
+  text-decoration:none;
+}
+
+/* [Step 5] Premium High-Precision Insight Panel Visuals */
+.insight-rail{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  min-height:0;
+}
+
+.insight-panel{
+  padding:20px !important;
+}
+
+.insight-stack{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.insight-score-hero{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:20px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.score-orb{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  /* 정교하게 조율한 하이테크 레이더 다이얼 형태 코닉 그래디언트 */
+  background:conic-gradient(from 180deg, var(--cyan) 0%, var(--teal) 75%, rgba(255,255,255,0.06) 75%, rgba(255,255,255,0.06) 100%) !important;
+  padding:4px;
+  box-shadow:0 0 24px rgba(0, 229, 255, 0.15), inset 0 0 10px rgba(0,0,0,0.5) !important;
+  position:relative;
+}
+
+.score-orb::after{
+  content:'';
+  position:absolute;
+  inset:-3px;
+  border-radius:50%;
+  border:1px solid rgba(0, 229, 255, 0.2);
+  pointer-events:none;
+}
+
+.score-orb-inner{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#07111F !important; /* 내부를 깊고 매트한 다크 톤으로 변경 */
+  border:1px solid rgba(255, 255, 255, 0.05) !important;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  box-shadow:inset 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+}
+
+.score-orb-value{
+  font-size:30px;
+  font-weight:800;
+  color:#ffffff !important;
+  line-height:1;
+  text-shadow:0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.score-orb-label{
+  margin-top:4px;
+  font-size:9px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--text-3) !important;
+}
+
+.insight-meta h3{
+  margin:0 0 6px;
+  font-size:18px;
+  line-height:1.35;
+  font-weight:800;
+  color:var(--text-1) !important;
+}
+
+.insight-meta p{
+  margin:0;
+  font-size:12px;
+  line-height:1.55;
+  color:var(--text-2) !important;
+}
+
+.insight-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.insight-metric{
+  padding:12px 14px;
+  border-radius:12px !important;
+  background:rgba(255, 255, 255, 0.02) !important;
+  border:1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+.insight-metric .label{
+  display:block;
+  margin-bottom:4px;
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-4) !important;
+}
+
+.insight-metric strong{
+  font-size:15px;
+  font-weight:800;
+  color:var(--text-1) !important;
+}
+
+.insight-meter{
+  margin:14px 0;
+}
+
+.insight-meter-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:11px;
+  color:var(--text-2) !important;
+  margin-bottom:6px;
+}
+
+.insight-meter-track{
+  height:6px; /* 두께를 날렵하게 슬림화 */
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.insight-meter-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg, var(--cyan), var(--teal)) !important;
+  box-shadow:0 0 10px rgba(0, 229, 255, 0.25) !important;
+}
+
+.insight-notes{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:14px;
+}
+
+.insight-note{
+  padding:10px 12px;
+  border-radius:10px !important;
+  background:rgba(255, 255, 255, 0.01) !important;
+  border:1px solid rgba(255, 255, 255, 0.03) !important;
+  font-size:12px;
+  line-height:1.6;
+  color:var(--text-2) !important;
+}
+.empty-projects{
+  display:grid;
+  place-items:center;
+  min-height:280px;
+  border:1px dashed rgba(255,255,255,0.14);
+  color:var(--text-3);
+  text-align:center;
+  padding:24px;
+}
+
+/* [수정 추가] 회사 기준 프로필 여닫기 애니메이션용 프리미엄 CSS */
+.panel-title.toggle-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.toggle-arrow {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-left: 6px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.panel-title.toggle-btn.collapsed .toggle-arrow {
+  transform: rotate(-90deg); /* 접혔을 때 화살표 왼쪽 회전 */
+}
+.collapsible-panel {
+  max-height: 600px; /* 콘텐츠를 수용할 수 있는 넉넉한 높이 */
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, padding 0.3s ease, margin 0.3s ease, border-color 0.3s ease !important;
+}
+.collapsible-panel.collapsed {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-color: transparent !important;
+  pointer-events: none;
+}
+
+@media (max-width: 1400px){
+  .kpi-strip{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+  }
+
+  .project-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 1180px){
+  .dashboard-content-grid{
+    grid-template-columns:1fr;
+  }
+
+  .insight-rail{
+    grid-template-columns:1fr 1fr;
+    display:grid;
+  }
+}
+
+@media (max-width: 900px){
+  .kpi-strip{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .insight-rail{
+    display:flex;
+  }
+
+  .insight-score-hero{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .kpi-strip{
+    grid-template-columns:1fr;
+  }
+
+  .project-stat-row,
+  .insight-grid{
+    grid-template-columns:1fr;
+  }
+
+  .project-board-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+/* [Step 8] 4열 레이아웃 전격 복원: 우측 인텔(인사이트) 레일을 340px 고정 너비로 완전 격상 */
+.intel-rail{
+  display: flex !important; /* 다시 노출 */
+  flex-direction: column;
+  gap: 18px;
+  background: rgba(6, 15, 30, 0.4) !important; /* 팰런티어 고유의 가변 다크 글래스 배경 */
+  border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 20px !important;
+  max-height: 900px;
+  overflow-y: auto; /* 내용 초과 시 부드러운 스크롤 탑재 */
+}
+
+/* 메인 워크스페이스 프레임을 4열 레이아웃으로 변경 */
+.workspace-body.app-shell{
+  grid-template-columns: 84px 280px minmax(0,1fr) 340px !important;
+}
+
+.workspace-frame.sidebar-expanded .workspace-body.app-shell{
+  grid-template-columns: 228px 280px minmax(0,1fr) 340px !important;
+}
+
+/* 내포된 불완전 2단 그리드 파괴 및 플랫 윈도우 보장 */
+.dashboard-content-grid{
+  display: block !important;
+}
+
   </style>
+
 </head>
 <body>
   <!-- PART 5 — Rebuilt information architecture / operating SaaS first fold -->
   <header class="site-header" id="siteHeader">
-    <div class="live-strip">
-      <div class="container live-strip-inner">
-        <div class="live-strip-list">
-          <span><strong>최근 동기화</strong> 2026-07-04 08:40 UTC</span>
-          <span>오늘 신규 감지 <strong>43건</strong></span>
-          <span>상태 변경 <strong>218건</strong></span>
-          <span>AI 우선 검토 <strong>16건</strong></span>
-        </div>
-        <span class="caption">운영형 데모 · 실제 업무 흐름 재현용</span>
-      </div>
-    </div>
     <div class="container site-nav">
       <div class="site-nav-left">
-        <a href="#top" class="brand" aria-label="ProjectRadar 홈으로 이동">
-          <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="8" y="8" width="48" height="48" rx="15" fill="#2563EB"/>
-            <path d="M24 20H38C44.0751 20 49 24.9249 49 31C49 37.0751 44.0751 42 38 42H31.5V50H24V20Z" fill="white"/>
-            <path d="M31.5 27.5H37.5C39.433 27.5 41 29.067 41 31C41 32.933 39.433 34.5 37.5 34.5H31.5V27.5Z" fill="#BFDBFE"/>
+                <a href="#workspace" class="brand brand-minimal" aria-label="ProjectRadar 워크스페이스로 이동">
+          <svg class="brand-mark brand-mark-future" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="prFutureGradient" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00E5FF"/>
+                <stop offset="0.55" stop-color="#4FC3F7"/>
+                <stop offset="1" stop-color="#00D1B2"/>
+              </linearGradient>
+            </defs>
+            <rect x="8" y="8" width="48" height="48" rx="16" fill="url(#prFutureGradient)"/>
+            <circle cx="32" cy="32" r="14" fill="rgba(255,255,255,0.18)"/>
+            <path d="M24 21H34.5C40.299 21 45 25.701 45 31.5C45 37.299 40.299 42 34.5 42H29.5V49H24V21Z" fill="#07111F"/>
+            <path d="M29.5 27.5H34C36.485 27.5 38.5 29.515 38.5 32C38.5 34.485 36.485 36.5 34 36.5H29.5V27.5Z" fill="white" fill-opacity="0.86"/>
           </svg>
-          <span class="brand-copy"><strong>ProjectRadar</strong><span>운영형 B2B 프로젝트 인텔리전스</span></span>
         </a>
-        <nav class="nav-links" id="topNavLinks" aria-label="주요 메뉴">
-  <a href="javascript:void(0)" class="nav-link-tab active-tab" data-view="all">전체 홈</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="about">회사 소개</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="international">국제 프로젝트</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="domestic">국내 프로젝트</a>
-  <a href="javascript:void(0)" class="nav-link-tab" data-view="myprojects">내 프로젝트</a>
-</nav>
+
+            </div>
+
+      <div class="site-nav-center" aria-hidden="true">
+        <span class="site-nav-center-title">AI Project Radar</span>
       </div>
-      <div class="site-nav-right nav-actions">
-        <button class="icon-btn" type="button" aria-label="알림"><span>🔔</span><em>3</em></button>
-        <label class="header-search" aria-label="상단 검색">
-          <span>⌕</span>
-          <input id="globalSearchInput" type="text" placeholder="프로젝트 검색">
-        </label>
-        <button class="btn ghost sm" data-open-auth="login">로그인</button>
-        <button class="btn secondary sm" data-open-auth="register">회원가입</button>
-        <button class="btn primary sm" data-open-auth="register">무료 체험</button>
-        <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">☰</button>
-      </div>
-    </div>
-    <div class="container mobile-nav" id="mobileNav">
-      <a href="#workspace">워크스페이스</a>
-      <a href="#projectListShell">프로젝트</a>
-      <a href="#recommendationNotes">AI 추천</a>
-      <a href="#savedProjectList">저장 목록</a>
-      <button data-open-auth="login">로그인</button>
-      <button data-open-auth="register">회원가입</button>
-      <button data-open-auth="register">무료 체험</button>
-    </div>
+
+      <div class="site-nav-right nav-actions nav-actions-minimal">
+  <button class="icon-btn" type="button" aria-label="알림">
+    <span>🔔</span><em>3</em>
+  </button>
+  <button class="icon-btn auth-icon-btn" type="button" aria-label="로그인 또는 회원가입" data-open-auth="login">
+    <span>👤</span>
+  </button>
+</div>
+
+
   </header>
 
   <main id="top">
     <section class="workspace-hero" id="workspace">
-      <div class="container">
-        <div class="hero-head">
-          <div class="hero-copy">
-            <span class="eyebrow"><span class="eyebrow-dot"></span> 3초 안에 프로젝트를 판단하는 홈 화면</span>
-            <h1>광고형 랜딩이 아니라,<br>실제 영업팀이 여는 작업 첫 화면으로 다시 설계했습니다</h1>
-            <p>프로젝트명·발주처·예상 금액·진행 단계·업데이트 날짜·AI 신뢰 점수를 첫 화면에서 바로 확인하도록 정보 구조를 재정렬했습니다. 이제 사용자는 스크롤보다 판단을 먼저 하게 됩니다.</p>
-            <div class="hero-actions">
-              <button class="btn primary" data-open-auth="register">14일 무료 체험 시작</button>
-              <a href="#pricing" class="btn secondary">가격 정책 보기</a>
-            </div>
-          </div>
-          <div class="hero-metrics">
-            <div class="metric"><strong>10,482</strong><span>활성 추적 프로젝트</span><p>공공 발주, 대기업 조달, EPC·플랜트 관련 소스를 중심으로 누적 관리</p></div>
-            <div class="metric"><strong>97.8%</strong><span>추천 정확도</span><p>이번 주 추천 결과 중 실제 검토 지속 비율 기반 지표</p></div>
-            <div class="metric"><strong>85개국</strong><span>커버리지</span><p>국내외 플랜트·전력·해양 프로젝트를 동일 화면 구조로 정리</p></div>
-            <div class="metric"><strong>08:40</strong><span>오늘 마지막 동기화</span><p>실시간 운영 느낌을 위해 업데이트 시각과 변경 로그를 전면 노출</p></div>
-          </div>
-        </div>
+  <div class="hero-video-bg" aria-hidden="true">
+  <video
+    id="heroVideo"
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto">
+    <source src="assets/dashboard-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+</div>
+
+
+  <div class="container">
 
         <div class="workspace-frame">
-          <div class="workspace-top">
+                    <div class="workspace-top workspace-top-compact">
             <div>
-              <span class="kicker">Workspace Home</span>
-              <h2>상단 요약 → 고정 필터 → 리스트 → 우측 판단 패널</h2>
-              <p>참고한 작업형 UI의 장점을 반영해, ProjectRadar도 “찾기 → 검토 → 저장 → 공유” 흐름이 자연스럽게 이어지는 구조로 바꿨습니다.</p>
+              <span class="kicker">PROJECT WORKSPACE</span>
+              <h2>실시간 프로젝트 탐색 및 AI 매칭 대시보드</h2>
+              <p>산업군 필터링, 프로젝트 리스트 검토, 출처 확인, 추천 점수 분석을 한 화면에서 수행합니다.</p>
             </div>
             <div class="workspace-status">
               <span class="badge blue">최근 릴리즈 2026.07</span>
               <span class="badge green">AI 추천 정상</span>
               <span class="badge amber">역매칭 베타</span>
-              <span class="badge blue">감사 로그 활성</span>
             </div>
           </div>
 
-          <div class="workspace-body">
-            <aside class="control-rail" aria-label="팀 기준 및 산업 카테고리 필터">
-              <div class="panel-title"><h3>회사 기준 프로필</h3><span class="badge blue">현재 적용</span></div>
-              <div class="subtle-box control-section">
+
+                    <div class="workspace-body app-shell">
+  <aside class="app-sidebar" id="appSidebar" aria-label="주요 애플리케이션 메뉴" aria-expanded="false">
+    <div class="app-sidebar-top">
+      <button
+        class="sidebar-toggle-btn"
+        id="sidebarToggleBtn"
+        type="button"
+        aria-label="사이드바 확장 토글"
+        aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="sidebar-brand-mini">
+        <div class="sidebar-brand-mark">PR</div>
+        <div class="sidebar-brand-copy">
+          <strong>Radar OS</strong>
+          <span>Enterprise Console</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="app-sidebar-nav" aria-label="Dashboard Primary Navigation">
+      <button class="sidebar-item active" type="button" data-sidebar-item="project-data">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Project Data</span>
+        <span class="sidebar-tooltip">Project Data</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="tender">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M7 3h7l5 5v13H7z"/>
+            <path d="M14 3v5h5M10 13h6M10 17h6M10 9h2"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Tender</span>
+        <span class="sidebar-tooltip">Tender</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="procurement">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Procurement</span>
+        <span class="sidebar-tooltip">Procurement</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="ai">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"/>
+            <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">AI Score</span>
+        <span class="sidebar-tooltip">AI Score</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="analytics">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M5 19V9M12 19V5M19 19v-7"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Analytics</span>
+        <span class="sidebar-tooltip">Analytics</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="saved">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 4h12v16l-6-4-6 4z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Saved</span>
+        <span class="sidebar-tooltip">Saved</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="recent">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 8v5l3 2"/>
+            <path d="M12 3a9 9 0 1 0 9 9"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Recent</span>
+        <span class="sidebar-tooltip">Recent</span>
+      </button>
+
+      <button class="sidebar-item" type="button" data-sidebar-item="settings">
+        <span class="sidebar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 8.5A3.5 3.5 0 1 0 12 15.5A3.5 3.5 0 1 0 12 8.5z"/>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.4 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8L4.3 7A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1A2 2 0 1 1 19.7 7l-.1.1a1.7 1.7 0 0 0-.3 1.8v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1z"/>
+          </svg>
+        </span>
+        <span class="sidebar-label">Settings</span>
+        <span class="sidebar-tooltip">Settings</span>
+      </button>
+    </nav>
+  </aside>
+
+  <aside class="control-rail" aria-label="팀 기준 및 산업 카테고리 필터">
+
+
+              <!-- [수정 적용] 회사 기준 프로필 헤더 버튼 구조화 및 토글 화살표 추가 -->
+              <button type="button" class="panel-title toggle-btn" id="companyProfileToggle" aria-expanded="true" aria-controls="companyProfileContent">
+                <h3>회사 기준 프로필</h3>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                  <span class="badge blue">현재 적용</span>
+                  <b class="toggle-arrow">▾</b>
+                </div>
+              </button>
+              
+              <!-- [수정 적용] 접히는 본문 랩 영역에 collapsible-panel 클래스 및 ID 바인딩 -->
+              <div class="subtle-box control-section collapsible-panel" id="companyProfileContent">
                 <div><div class="control-label">주력 품목</div><div class="chip-group"><span class="chip active">220kV Transformer</span><span class="chip">GIS</span><span class="chip">Power Cable</span></div></div>
                 <div><div class="control-label">관심 지역</div><div class="chip-group"><span class="chip active">국내 공공</span><span class="chip active">중동 EPC</span><span class="chip">중남미 수처리</span></div></div>
                 <div><div class="control-label">제외 조건</div><div class="note-box">마감 24시간 미만 · 금액 불명확 · 현지 등록 불가 프로젝트는 우선순위를 낮춥니다.</div></div>
@@ -699,16 +3085,52 @@
 
             <section class="result-rail" aria-label="프로젝트 결과 목록">
               <div class="sticky-filter-bar">
-                <div class="search-row">
-                  <label class="field search-input">
-                    <span>⌕</span>
-                    <input id="searchInput" type="text" placeholder="프로젝트명, 발주처, CAT 코드, 키워드로 검색" aria-label="프로젝트 검색">
-                  </label>
-                  <label class="field"><select id="regionFilter" aria-label="지역 필터"><option value="all">전체 지역</option><option value="국내">국내</option><option value="중동">중동</option><option value="전국">전국</option><option value="경기">경기</option><option value="대전/충청">대전/충청</option></select></label>
-                  <label class="field"><select id="statusFilter" aria-label="상태 필터"><option value="all">전체 상태</option><option value="신규">신규</option><option value="변경">변경</option><option value="마감임박">마감임박</option><option value="협력사등록">협력사등록</option><option value="기본설계 진행중">기본설계 진행중</option></select></label>
-                  <label class="field"><select id="sortFilter" aria-label="정렬 기준"><option value="priority">AI 추천순</option><option value="deadline">마감 임박순</option><option value="trust">신뢰도순</option><option value="amount">금액순</option><option value="updated">최근 업데이트순</option></select></label>
-                  <button class="btn secondary sm" type="button" id="resetFilterBtn">필터 초기화</button>
+                                <div class="search-toolbar-shell">
+                  <div class="search-toolbar-head">
+                    <div class="search-toolbar-copy">
+                      <strong>Project Finder</strong>
+                      <span>검색 조건을 바꾸면 프로젝트 목록과 우측 분석 패널이 즉시 갱신됩니다.</span>
+                    </div>
+                    <button class="btn secondary sm btn-reset-filter" type="button" id="resetFilterBtn">필터 초기화</button>
+                  </div>
+
+                  <div class="search-row refined-search-row">
+                    <label class="field search-input">
+                      <span>⌕</span>
+                      <input id="searchInput" type="text" placeholder="프로젝트명, 발주처, CAT 코드, 키워드로 검색" aria-label="프로젝트 검색">
+                    </label>
+                    <label class="field">
+                      <select id="regionFilter" aria-label="지역 필터">
+                        <option value="all">전체 지역</option>
+                        <option value="국내">국내</option>
+                        <option value="중동">중동</option>
+                        <option value="전국">전국</option>
+                        <option value="경기">경기</option>
+                        <option value="대전/충청">대전/충청</option>
+                      </select>
+                    </label>
+                    <label class="field">
+                      <select id="statusFilter" aria-label="상태 필터">
+                        <option value="all">전체 상태</option>
+                        <option value="신규">신규</option>
+                        <option value="변경">변경</option>
+                        <option value="마감임박">마감임박</option>
+                        <option value="협력사등록">협력사등록</option>
+                        <option value="기본설계 진행중">기본설계 진행중</option>
+                      </select>
+                    </label>
+                    <label class="field">
+                      <select id="sortFilter" aria-label="정렬 기준">
+                        <option value="priority">AI 추천순</option>
+                        <option value="deadline">마감 임박순</option>
+                        <option value="trust">신뢰도순</option>
+                        <option value="amount">금액순</option>
+                        <option value="updated">최근 업데이트순</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
+
                 <div class="active-cat-bar">
                   <div>
                     <div class="control-label">선택된 산업 CAT</div>
@@ -720,6 +3142,14 @@
                     <span>최근 본 <strong id="recentCount">0</strong></span>
                   </div>
                 </div>
+                <div class="quick-filter-row" id="projectScopeTabs" style="margin-bottom:12px;">
+  <div class="quick-filters">
+    <button class="quick-pill active" type="button" data-scope="all">전체 프로젝트</button>
+    <button class="quick-pill" type="button" data-scope="domestic">국내 프로젝트</button>
+    <button class="quick-pill" type="button" data-scope="international">국제 프로젝트</button>
+  </div>
+</div>
+
                 <div class="quick-filter-row">
                   <div class="quick-filters" id="quickFilterGroup">
                     <button class="quick-pill active" data-quick="all">전체 <span id="countAll">0</span></button>
@@ -731,37 +3161,60 @@
                 </div>
               </div>
 
-              <div class="list-shell" id="projectListShell">
-                <div class="list-card">
-                  <div class="project-list-head">
-                    <span>프로젝트 / 카테고리</span><span>발주처 / 국가</span><span>예상 규모</span><span>프로젝트 단계</span><span>업데이트</span><span>AI 적합도</span>
-                  </div>
-                  <div class="project-list" id="projectList"></div>
-                </div>
-                <div class="detail-card" id="projectDetail"></div>
-              </div>
-            </section>
+              <!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE START -->
+              <section class="dashboard-main">
+                <div class="kpi-strip" id="kpiStrip"></div>
 
-            <aside class="intel-rail" aria-label="최근 본 프로젝트 및 AI 인사이트">
-              <div class="intel-card">
-                <div class="panel-title"><h4>최근 본 프로젝트</h4><span class="small" id="recentViewedText">없음</span></div>
-                <div class="intel-list" id="recentViewedList"></div>
-              </div>
-              <div class="intel-card">
-                <div class="panel-title"><h4>AI 추천 이유</h4><span class="badge blue">Explainable</span></div>
-                <div class="mini-list" id="recommendationNotes">
-                  <div class="mini-item"><span class="score-pill">95</span><div>선택된 프로젝트가 없으면 AI 설명 카드가 여기에 표시됩니다.</div></div>
+                <div class="dashboard-content-grid">
+                  <!-- [구조 최적화] 메인 Opportunity Board가 가로 너비를 100% 가득 사용하여 무너짐 방지 -->
+                  <section class="project-board glass-board" style="width: 100%;">
+                    <div class="project-board-head">
+                      <div class="board-title-wrap">
+                        <p class="eyebrow-label">PROJECT INTELLIGENCE</p>
+                        <h3>Live Opportunity Board</h3>
+                      </div>
+
+                      <div class="board-head-actions">
+                        <button class="finder-reset-btn" id="resetFiltersBtn" type="button">
+                          <span>↺</span>
+                          <span>Reset Filters</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="project-grid" id="projectGrid"></div>
+                  </section>
                 </div>
-              </div>
-              <div class="intel-card">
-                <div class="panel-title"><h4>실시간 변경 로그</h4><span class="small">최근 1시간</span></div>
-                <div id="liveLog"></div>
-              </div>
-              <div class="intel-card">
-                <div class="panel-title"><h4>저장한 프로젝트</h4><span class="badge green">Sync</span></div>
-                <div class="intel-list" id="savedProjectList"></div>
-              </div>
-            </aside>
+              </section>
+              <!-- STEP 4-A: MAIN DASHBOARD LAYOUT REPLACE END -->
+
+              <!-- [Step 8 대통합] 복잡했던 인사이트 패널 무리들을 우측 최상위 독립 관제창으로 안전하게 이관 완료 -->
+              <aside class="intel-rail" aria-label="최근 본 프로젝트 및 AI 인사이트">
+                <section class="insight-panel glass-board" id="detailPanel">
+                  <!-- renderDetail() inject -->
+                </section>
+
+                <section class="insight-panel glass-board">
+                  <div class="panel-title">
+                    <h4>Recently Viewed</h4>
+                  </div>
+                  <div id="recentProjects" class="insight-stack"></div>
+                </section>
+
+                <section class="insight-panel glass-board">
+                  <div class="panel-title">
+                    <h4>Saved Projects</h4>
+                  </div>
+                  <div id="savedProjects" class="insight-stack"></div>
+                </section>
+
+                <section class="insight-panel glass-board">
+                  <div class="panel-title">
+                    <h4>Live Activity</h4>
+                  </div>
+                  <div id="liveActivity" class="insight-stack"></div>
+                </section>
+              </aside>
           </div>
         </div>
       </div>
@@ -1102,35 +3555,87 @@
   recent:[],
   recentCats:['CAT-14','CAT-05'],
   favoriteCats:new Set(['CAT-05','CAT-11','CAT-14']),
-  selectedCats:new Set(), // 초기에 빈 Set으로 지정하여 첫 로딩 시 전체 프로젝트 리스트가 즉시 렌더링되도록 수정합니다.
+  selectedCats:new Set(),
   openGroups:new Set(allGroupIds),
   saved:initialSaved,
-  currentView: 'all' // [추가] 상단 카테고리 뷰 상태값 동기화용 변수
+  projectScope:'all'
 };
 
+
+
     const els = {
-      projectList:document.getElementById('projectList'),
-      projectDetail:document.getElementById('projectDetail'),
-      resultCount:document.getElementById('resultCount'),
-      recommendationNotes:document.getElementById('recommendationNotes'),
-      savedProjectList:document.getElementById('savedProjectList'),
-      recentViewedList:document.getElementById('recentViewedList'),
-      recentViewedText:document.getElementById('recentViewedText'),
-      savedCount:document.getElementById('savedCount'),
-      recentCount:document.getElementById('recentCount'),
-      liveLog:document.getElementById('liveLog'),
-      searchInput:document.getElementById('searchInput'),
-      globalSearchInput:document.getElementById('globalSearchInput'),
-      regionFilter:document.getElementById('regionFilter'),
-      statusFilter:document.getElementById('statusFilter'),
-      sortFilter:document.getElementById('sortFilter'),
-      catSearchInput:document.getElementById('catSearchInput'),
-      activeCatList:document.getElementById('activeCatList'),
-      industryTree:document.getElementById('industryTree'),
-      myInterestList:document.getElementById('myInterestList'),
-      recentCategoryList:document.getElementById('recentCategoryList'),
-      favoriteCategoryList:document.getElementById('favoriteCategoryList')
-    };
+  projectListEl: document.getElementById('projectGrid'),
+  kpiStripEl: document.getElementById('kpiStrip'),
+  detailPanelEl: document.getElementById('detailPanel'),
+
+  resultCount: document.getElementById('resultCount'),
+  recommendationNotes: document.getElementById('recommendationNotes'),
+
+  savedProjectList: document.getElementById('savedProjectList'),
+  recentViewedList: document.getElementById('recentViewedList'),
+  recentViewedText: document.getElementById('recentViewedText'),
+  liveLog: document.getElementById('liveLog'),
+
+  recentProjectsPanel: document.getElementById('recentProjects'),
+  savedProjectsPanel: document.getElementById('savedProjects'),
+  liveActivityPanel: document.getElementById('liveActivity'),
+
+  savedCount: document.getElementById('savedCount'),
+  recentCount: document.getElementById('recentCount'),
+
+  searchInput: document.getElementById('searchInput'),
+  globalSearchInput: document.getElementById('globalSearchInput'),
+  regionFilter: document.getElementById('regionFilter'),
+  statusFilter: document.getElementById('statusFilter'),
+  sortFilter: document.getElementById('sortFilter'),
+  catSearchInput: document.getElementById('catSearchInput'),
+
+  activeCatList: document.getElementById('activeCatList'),
+  industryTree: document.getElementById('industryTree'),
+  myInterestList: document.getElementById('myInterestList'),
+  recentCategoryList: document.getElementById('recentCategoryList'),
+  favoriteCategoryList: document.getElementById('favoriteCategoryList')
+};
+function normalizeProjectId(projectOrId) {
+  if (projectOrId && typeof projectOrId === 'object') return Number(projectOrId.id);
+  const id = Number(projectOrId);
+  return Number.isFinite(id) ? id : null;
+}
+
+function getCurrentSelectedProject(list = projects) {
+  return list.find(item => item.id === state.selectedId) || null;
+}
+
+function projectSummaryText(project) {
+  if (typeof project.summary === 'string' && project.summary.trim()) {
+    return project.summary.trim();
+  }
+
+  if (Array.isArray(project.explanation)) {
+    return project.explanation
+      .map(item => Array.isArray(item) ? item[1] : String(item))
+      .filter(Boolean)
+      .slice(0, 2)
+      .join(' · ');
+  }
+
+  if (typeof project.explanation === 'string' && project.explanation.trim()) {
+    return project.explanation.trim();
+  }
+
+  return 'AI-curated opportunity with strong matching signals and verified sourcing.';
+}
+
+function projectAmountText(project) {
+  if (project.amountLabel) return project.amountLabel;
+  if (project.amount !== null && project.amount !== undefined) return `${project.amount}`;
+  return '금액 미공개';
+}
+
+function setHTML(el, html) {
+  if (el) el.innerHTML = html;
+}
+
 
     function getCatLabel(code){
       for(const group of industryGroups){
@@ -1176,17 +3681,49 @@
       if(state.currentSort === 'priority') sorted.sort((a,b)=>(b.fit + b.trust/10) - (a.fit + a.trust/10));
       return sorted;
     }
+    function resolveSelectedProject(list){
+  if(!list.length){
+    state.selectedId = null;
+    return null;
+  }
+
+  const activeProject = list.find(item => item.id === state.selectedId) || list[0];
+  state.selectedId = activeProject.id;
+  return activeProject;
+}
+
 
     function applyFilters(){
-      const query = state.query.trim().toLowerCase();
-      let list = projects.filter(project => {
-        const catMatch = state.selectedCats.size === 0 || state.selectedCats.has(project.catCode);
-        const regionMatch = state.currentRegion === 'all' || project.region === state.currentRegion || (state.currentRegion === '국내' && ['경기','전국','대전/충청'].includes(project.region));
-        const statusMatch = state.currentStatus === 'all' || project.status === state.currentStatus || project.stage === state.currentStatus;
-        const querySource = [project.title, project.client, project.scope, project.region, project.category, project.catCode, project.catLabel, project.country, project.stage, project.keywords.join(' '), project.relatedCompanies.join(' ')].join(' ').toLowerCase();
-        const queryMatch = !query || querySource.includes(query);
-        return catMatch && regionMatch && statusMatch && queryMatch;
-      });
+  const query = state.query.trim().toLowerCase();
+  let list = projects.filter(project => {
+    const catMatch = state.selectedCats.size === 0 || state.selectedCats.has(project.catCode);
+    const regionMatch = state.currentRegion === 'all' || project.region === state.currentRegion || (state.currentRegion === '국내' && ['경기','전국','대전/충청'].includes(project.region));
+    const statusMatch = state.currentStatus === 'all' || project.status === state.currentStatus || project.stage === state.currentStatus;
+
+    const scopeMatch =
+      state.projectScope === 'all' ||
+      (state.projectScope === 'domestic' && project.country === '대한민국') ||
+      (state.projectScope === 'international' && project.country !== '대한민국');
+
+    const querySource = [
+      project.title,
+      project.client,
+      project.scope,
+      project.region,
+      project.category,
+      project.catCode,
+      project.catLabel,
+      project.country,
+      project.stage,
+      project.keywords.join(' '),
+      project.relatedCompanies.join(' ')
+    ].join(' ').toLowerCase();
+
+    const queryMatch = !query || querySource.includes(query);
+
+    return catMatch && regionMatch && statusMatch && scopeMatch && queryMatch;
+  });
+
 
       if(state.currentQuick === 'highFit') list = list.filter(project => project.fit >= 80);
       if(state.currentQuick === 'closingSoon') list = list.filter(project => project.dueDays <= 7);
@@ -1271,114 +3808,352 @@
       renderIndustryTree();
       renderInterestCollections();
     }
+function safeNumber(value, fallback = 0) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
 
-    function renderProjectList(list){
-      els.resultCount.textContent = `${list.length}건 표시 중`;
-      els.projectList.innerHTML = list.map(project => {
-        const isSaved = state.saved.has(project.id);
-        const isActive = state.selectedId === project.id;
-        return `
-          <article class="project-row ${isActive ? 'active' : ''}" data-id="${project.id}" tabindex="0" role="button" aria-label="${project.title} 상세 보기">
-            <div class="project-main">
-              <div class="project-main-top">
-                <div>
-                  <h3 class="project-title line-clamp-2 break">${project.title}</h3>
-                  <div class="project-priority" style="margin-top:8px">
-                    <span class="badge blue">${project.catCode}</span>
-                    <span class="badge ${getStatusBadge(project.status)}">${project.status}</span>
-                    <span class="badge blue">${project.catLabel}</span>
-                  </div>
-                </div>
-                <button class="save-btn ${isSaved ? 'saved' : ''}" data-save-id="${project.id}" aria-label="저장 토글">★</button>
-              </div>
-              <div class="project-meta">
-                <span>${project.keywords.join(' · ')}</span>
-                <span>관련 기업 ${project.relatedCompanies.join(', ')}</span>
-                <span>${project.sourceLabel}</span>
-              </div>
-            </div>
-            <div class="project-client break"><strong>${project.client}</strong><span class="small">${project.country} · ${project.region}</span></div>
-            <div class="col-strong">${project.amountLabel}<br><span class="small">공식 출처 ${project.officialSources}개</span></div>
-            <div class="project-stage"><strong>${project.stage}</strong><span class="small">${project.scope}</span></div>
-            <div class="project-update"><strong>${project.updatedAgo}</strong><span class="small">마감 ${project.deadline}</span></div>
-            <div class="project-ai"><strong>${project.fit}%</strong><span>AI 적합도 · Trust ${project.trust}</span></div>
-          </article>`;
-      }).join('');
+function projectInitials(title = '') {
+  return String(title)
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(word => word[0])
+    .join('')
+    .toUpperCase() || 'AI';
+}
 
-      document.querySelectorAll('.project-row').forEach(row => {
-        row.addEventListener('click', () => selectProject(Number(row.dataset.id)));
-        row.addEventListener('keydown', event => {
-          if(event.key === 'Enter' || event.key === ' '){
-            event.preventDefault();
-            selectProject(Number(row.dataset.id));
-          }
-        });
-      });
+function projectTheme(project) {
+  const text = `${project.title || ''} ${project.client || ''} ${project.country || ''}`.toLowerCase();
 
-      document.querySelectorAll('[data-save-id]').forEach(button => {
-        button.addEventListener('click', event => {
-          event.stopPropagation();
-          toggleSave(Number(button.dataset.saveId));
-        });
-      });
-    }
+  if (text.includes('energy') || text.includes('solar') || text.includes('grid')) {
+    return {
+      bg: 'linear-gradient(135deg, rgba(0,229,255,0.28), rgba(0,209,178,0.16) 52%, rgba(7,17,31,0.14))',
+      chip: 'teal'
+    };
+  }
 
-    function selectProject(id){
-      state.selectedId = id;
-      const project = projects.find(item => item.id === id);
-      if(!project) return;
-      state.recent = [id, ...state.recent.filter(item => item !== id)].slice(0, 4);
-      renderDetail(project);
-      renderProjectList(applyFilters());
-      renderRecent();
-      renderSaved();
-    }
+  if (text.includes('health') || text.includes('medical') || text.includes('hospital')) {
+    return {
+      bg: 'linear-gradient(135deg, rgba(79,195,247,0.28), rgba(0,229,255,0.15) 52%, rgba(7,17,31,0.14))',
+      chip: 'cyan'
+    };
+  }
 
-    function renderDetail(project){
-      els.projectDetail.innerHTML = `
-        <div class="detail-header">
-          <div>
-            <div class="project-priority">
-              <span class="badge blue">${project.catCode}</span>
-              <span class="badge ${getStatusBadge(project.status)}">${project.status}</span>
-              <span class="badge green">AI 적합도 ${project.fit}%</span>
-            </div>
-            <h3 class="break">${project.title}</h3>
-            <div class="small break">${project.client} · ${project.country} · ${project.region}</div>
+  if (text.includes('infra') || text.includes('transport') || text.includes('rail')) {
+    return {
+      bg: 'linear-gradient(135deg, rgba(255,184,77,0.22), rgba(0,229,255,0.14) 52%, rgba(7,17,31,0.14))',
+      chip: 'warn'
+    };
+  }
+
+  return {
+    bg: 'linear-gradient(135deg, rgba(0,229,255,0.26), rgba(0,209,178,0.18) 50%, rgba(7,17,31,0.12))',
+    chip: 'cyan'
+  };
+}
+
+function daysLeftLabel(project) {
+  const raw = project.dueDays ?? project.daysLeft ?? project.deadlineDays ?? project.remainingDays;
+  const days = safeNumber(raw, null);
+
+  if (days === null) return '일정 확인 필요';
+  if (days <= 7) return `${days}일 남음`;
+  if (days <= 21) return `${days}일 윈도우`;
+  return `${days}일 남음`;
+}
+
+
+function projectSourceLabel(project) {
+  return project.sourceLabel || project.source || project.origin || project.publisher || 'Verified source';
+}
+
+function renderKPIStats(items = []) {
+  if (!els.kpiStripEl) return;
+
+  const list = Array.isArray(items) ? items : [];
+  const total = list.length;
+  const avgFit = total ? Math.round(list.reduce((sum, p) => sum + safeNumber(p.fit), 0) / total) : 0;
+  const avgTrust = total ? Math.round(list.reduce((sum, p) => sum + safeNumber(p.trust), 0) / total) : 0;
+  const countries = new Set(list.map(p => p.country).filter(Boolean)).size;
+  const urgent = list.filter(p => safeNumber(p.dueDays ?? p.daysLeft ?? p.deadlineDays ?? p.remainingDays, 999) <= 14).length;
+
+  els.kpiStripEl.innerHTML = `
+    <article class="kpi-card">
+      <div class="kpi-label">Opportunities</div>
+      <div class="kpi-value">${total}</div>
+      <div class="kpi-meta">
+        <span>Visible pipeline</span>
+        <span class="kpi-delta">LIVE</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Average Fit</div>
+      <div class="kpi-value">${avgFit}<small>%</small></div>
+      <div class="kpi-meta">
+        <span>AI relevance score</span>
+        <span class="kpi-delta">+${Math.max(1, Math.round(avgFit / 12))}%</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Confidence</div>
+      <div class="kpi-value">${avgTrust}<small>%</small></div>
+      <div class="kpi-meta">
+        <span>Source trust blend</span>
+        <span class="kpi-delta">Stable</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Markets</div>
+      <div class="kpi-value">${countries}</div>
+      <div class="kpi-meta">
+        <span>Country coverage</span>
+        <span class="kpi-delta">Global</span>
+      </div>
+    </article>
+
+    <article class="kpi-card">
+      <div class="kpi-label">Urgent Closures</div>
+      <div class="kpi-value">${urgent}</div>
+      <div class="kpi-meta">
+        <span>≤ 14 day windows</span>
+        <span class="kpi-delta">${urgent ? 'Watch' : 'Clear'}</span>
+      </div>
+    </article>
+  `;
+}
+
+
+    /* [Step 8] 중복 정의 구문 분석 및 중괄호 정밀 치료 완료된 단일 렌더러 함수 */
+function renderProjectList(items) {
+  if (!els.projectListEl) return;
+
+  const list = Array.isArray(items) ? items : applyFilters();
+
+  if (!list.length) {
+    els.projectListEl.innerHTML = `
+      <div class="empty-projects">
+        <div>
+          <strong style="display:block; margin-bottom:8px; color:var(--text-1);">No projects match the current filters</strong>
+          <span>Adjust Industry, Region, Status, or Search to reopen the live opportunity stream.</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // 실시간 KPI 통계 요약 정보를 함께 동기화 연동하여 완벽한 신뢰 형성
+  renderKPIStats(list);
+
+  els.projectListEl.innerHTML = list.map(project => {
+    const fit = safeNumber(project.fit);
+    const trust = safeNumber(project.trust);
+    const amountText = projectAmountText(project);
+    const theme = projectTheme(project);
+    const isSaved = state.saved.has(project.id);
+    const activeClass = state.selectedId === project.id ? 'active' : '';
+    const summaryText = projectSummaryText(project);
+
+    return `
+      <article class="project-card ${activeClass}" data-project-id="${project.id}">
+        <div class="project-card-visual" style="background:${theme.bg};">
+          <div class="visual-grid-lines"></div>
+
+          <div class="project-card-badge-row">
+            <span class="project-chip ${theme.chip}">Fit ${fit}%</span>
+            <span class="project-chip">${daysLeftLabel(project)}</span>
           </div>
-          <button class="btn secondary sm" id="detailSaveBtn">${state.saved.has(project.id) ? '저장됨' : '관심 저장'}</button>
-        </div>
-        <div class="detail-summary">${project.reason}</div>
-        <div class="detail-grid">
-          <div class="detail-kpi"><strong>${project.fit}%</strong><span>AI 적합도</span></div>
-          <div class="detail-kpi"><strong>${project.amountLabel}</strong><span>예상 규모</span></div>
-          <div class="detail-kpi"><strong>${project.stage}</strong><span>프로젝트 단계</span></div>
-          <div class="detail-kpi"><strong>${project.updatedAgo}</strong><span>최근 업데이트</span></div>
-        </div>
-        <div class="detail-info-grid">
-          <div class="detail-info"><strong>카테고리</strong><span>${project.catCode} ${project.catLabel}</span></div>
-          <div class="detail-info"><strong>발주처</strong><span>${project.client}</span></div>
-          <div class="detail-info"><strong>관련 기업</strong><span>${project.relatedCompanies.join(', ')}</span></div>
-          <div class="detail-info"><strong>마감 일정</strong><span>${project.deadline} · ${getDaysLabel(project.dueDays)}</span></div>
-        </div>
-        <div class="detail-tags">${project.keywords.map(keyword => `<span>${keyword}</span>`).join('')}</div>
-        <div class="detail-block">
-          <div class="panel-title"><h4>AI 추천 근거</h4><span class="small">설명 가능한 점수</span></div>
-          <div class="xai-list">${project.explanation.map(([score,text]) => `<div class="xai-item"><span class="score-pill">${score}</span><div>${text}</div></div>`).join('')}</div>
-        </div>
-        <div class="detail-block">
-          <div class="panel-title"><h4>최근 상태 변경</h4><span class="small">${project.sourceLabel}</span></div>
-          <div class="timeline-list">${project.timeline.map(item => `<div class="timeline-item"><span class="timeline-dot"></span><div><strong style="display:block;font-size:14px">${item}</strong><span class="small">${project.updatedAgo}</span></div></div>`).join('')}</div>
-        </div>
-        <div class="detail-block">
-          <div class="panel-title"><h4>세부 설명 및 다음 액션</h4><span class="badge green">Team Ready</span></div>
-          <div class="note-box">${project.notes}<br><br><strong>권장 액션:</strong> ${project.action}</div>
-        </div>`;
 
-      document.getElementById('detailSaveBtn').addEventListener('click', () => toggleSave(project.id));
-      els.recommendationNotes.innerHTML = project.explanation.map(([score,text]) => `<div class="mini-item"><span class="score-pill">${score}</span><div>${text}</div></div>`).join('');
-      els.recentViewedText.textContent = project.title.length > 22 ? `${project.title.slice(0,22)}…` : project.title;
-    }
+          <div class="project-symbol">${projectInitials(project.title)}</div>
+
+          <div class="project-mini-score">
+            <strong>${trust}%</strong>
+            <span>Confidence</span>
+          </div>
+        </div>
+
+        <div class="project-card-body">
+          <div class="project-card-topline">
+            <div>
+              <h4 class="project-card-title">${project.title || 'Untitled Project'}</h4>
+              <div class="project-card-client">${project.client || 'Unknown Client'} · ${project.country || 'Global'}</div>
+            </div>
+
+            <button class="project-save-btn ${isSaved ? 'saved' : ''}" type="button" data-save-id="${project.id}" aria-label="Save project">
+              ${isSaved ? '★' : '☆'}
+            </button>
+          </div>
+
+          <p class="project-card-summary">${summaryText}</p>
+
+          <div class="project-stat-row">
+            <div class="project-stat">
+              <div class="project-stat-label">Budget</div>
+              <div class="project-stat-value">${amountText}</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-label">Stage</div>
+              <div class="project-stat-value">${project.stage || 'Discovery'}</div>
+            </div>
+            <div class="project-stat">
+              <div class="project-stat-label">Deadline</div>
+              <div class="project-stat-value">${project.deadline || daysLeftLabel(project)}</div>
+            </div>
+          </div>
+
+          <div class="project-card-footer">
+            <span class="project-source">${projectSourceLabel(project)}</span>
+            ${project.link ? `<a class="project-link-mini" href="${project.link}" target="_blank" rel="noopener noreferrer">Source ↗</a>` : `<span class="project-link-mini">Analyzed</span>`}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  els.projectListEl.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-save-id]')) return;
+      const id = Number(card.getAttribute('data-project-id'));
+      selectProject(id);
+    });
+  });
+
+  els.projectListEl.querySelectorAll('[data-save-id]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = Number(btn.getAttribute('data-save-id'));
+      toggleSave(id);
+    });
+  });
+}
+
+
+
+    function selectProject(projectOrId) {
+  const id = normalizeProjectId(projectOrId);
+  if (id === null) return;
+
+  state.selectedId = id;
+  const project = projects.find(item => item.id === id);
+  if (!project) return;
+
+  state.recent = [id, ...state.recent.filter(item => item !== id)].slice(0, 4);
+
+  const filtered = applyFilters();
+  renderKPIStats(filtered);
+  renderProjectList(filtered);
+  renderDetail(project);
+  renderRecent();
+  renderSaved();
+  renderLiveLogs();
+}
+
+
+    function renderDetail(project) {
+  if (!els.detailPanelEl) return;
+
+  const target = project || getCurrentSelectedProject();
+
+  if (!target) {
+    els.detailPanelEl.innerHTML = `
+      <div class="panel-title">
+        <h4>AI Insight Panel</h4>
+      </div>
+      <div class="empty-projects" style="min-height:220px;">
+        <div>
+          <strong style="display:block; margin-bottom:8px; color:var(--text-1);">No project selected</strong>
+          <span>Select a project card to inspect AI score, confidence, stage, source, and recommendation logic.</span>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const fit = safeNumber(target.fit);
+  const trust = safeNumber(target.trust);
+  const amountText = projectAmountText(target);
+  const summary = projectSummaryText(target);
+  const stage = target.stage || 'Discovery';
+  const timeline = target.deadline || daysLeftLabel(target);
+
+  els.detailPanelEl.innerHTML = `
+    <div class="panel-title" style="margin-bottom:14px;">
+      <h4>AI Project Insight</h4>
+    </div>
+
+    <div class="insight-score-hero">
+      <div class="score-orb">
+        <div class="score-orb-inner">
+          <div class="score-orb-value">${fit}</div>
+          <div class="score-orb-label">Match Score</div>
+        </div>
+      </div>
+
+      <div class="insight-meta">
+        <h3>${target.title || 'Untitled Project'}</h3>
+        <p>${summary}</p>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-metric">
+        <span class="label">Confidence</span>
+        <strong>${trust}%</strong>
+      </div>
+      <div class="insight-metric">
+        <span class="label">Stage</span>
+        <strong>${stage}</strong>
+      </div>
+      <div class="insight-metric">
+        <span class="label">Budget</span>
+        <strong>${amountText}</strong>
+      </div>
+      <div class="insight-metric">
+        <span class="label">Market</span>
+        <strong>${target.country || 'Global'}</strong>
+      </div>
+    </div>
+
+    <div class="insight-meter">
+      <div class="insight-meter-label">
+        <span>AI Confidence Meter</span>
+        <strong style="color:var(--text-1);">${trust}%</strong>
+      </div>
+      <div class="insight-meter-track">
+        <div class="insight-meter-fill" style="width:${Math.max(4, Math.min(trust, 100))}%;"></div>
+      </div>
+    </div>
+
+    <div class="insight-notes">
+      <div class="insight-note">
+        <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Source</strong>
+        ${projectSourceLabel(target)}
+      </div>
+
+      <div class="insight-note">
+        <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Timeline</strong>
+        ${timeline}
+      </div>
+
+      <div class="insight-note">
+        <strong style="display:block; margin-bottom:6px; color:var(--text-1);">Why this ranks high</strong>
+        ${summary}
+      </div>
+
+      ${target.link ? `
+        <div class="insight-note">
+          <strong style="display:block; margin-bottom:6px; color:var(--text-1);">External Source</strong>
+          <a href="${target.link}" target="_blank" rel="noopener noreferrer" style="color:var(--cyan); text-decoration:none;">Open source document ↗</a>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+
 
     function toggleSave(id){
       if(state.saved.has(id)) state.saved.delete(id);
@@ -1391,58 +4166,95 @@
       }
     }
 
-    function renderSaved(){
-      const savedProjects = projects.filter(project => state.saved.has(project.id));
-      els.savedCount.textContent = savedProjects.length;
-      els.savedProjectList.innerHTML = savedProjects.length ? savedProjects.slice(0,4).map(project => `
+    function renderSaved() {
+  const savedProjects = projects.filter(project => state.saved.has(project.id));
+  if (els.savedCount) els.savedCount.textContent = savedProjects.length;
+
+  const html = savedProjects.length
+    ? savedProjects.slice(0, 4).map(project => `
         <div class="intel-item">
           <div>
             <strong class="line-clamp-1 break" style="display:block;font-size:14px">${project.title}</strong>
             <span class="small">${project.client} · ${project.catCode} · ${project.fit}%</span>
           </div>
           <button class="btn secondary sm" data-open-id="${project.id}">보기</button>
-        </div>`).join('') : '<div class="note-box">아직 저장한 프로젝트가 없습니다. 목록에서 ★를 눌러 저장해보세요.</div>';
+        </div>
+      `).join('')
+    : '<div class="note-box">아직 저장한 프로젝트가 없습니다. 목록에서 ★를 눌러 저장해보세요.</div>';
 
-      document.querySelectorAll('[data-open-id]').forEach(button => {
-        button.addEventListener('click', () => selectProject(Number(button.dataset.openId)));
-      });
+  setHTML(els.savedProjectList, html);
+  setHTML(els.savedProjectsPanel, html);
+
+  document.querySelectorAll('[data-open-id]').forEach(button => {
+    button.addEventListener('click', () => selectProject(Number(button.dataset.openId)));
+  });
+
     }
 
-    function renderRecent(){
-      els.recentCount.textContent = state.recent.length;
-      const recentProjects = state.recent.map(id => projects.find(project => project.id === id)).filter(Boolean);
-      els.recentViewedList.innerHTML = recentProjects.length ? recentProjects.map(project => `
+    function renderRecent() {
+  if (els.recentCount) els.recentCount.textContent = state.recent.length;
+
+  const recentProjects = state.recent
+    .map(id => projects.find(project => project.id === id))
+    .filter(Boolean);
+
+  const html = recentProjects.length
+    ? recentProjects.map(project => `
         <div class="intel-item">
           <div>
             <strong class="line-clamp-1 break" style="display:block;font-size:14px">${project.title}</strong>
             <span class="small">${project.updatedAgo} · ${project.stage}</span>
           </div>
           <span class="badge blue">${project.fit}%</span>
-        </div>`).join('') : '<div class="note-box">아직 본 프로젝트가 없습니다. 목록을 클릭하면 이 영역에 최근 본 항목이 쌓입니다.</div>';
-    }
+        </div>
+      `).join('')
+    : '<div class="note-box">아직 본 프로젝트가 없습니다. 목록을 클릭하면 이 영역에 최근 본 항목이 쌓입니다.</div>';
 
-    function renderLiveLogs(){
-      els.liveLog.innerHTML = liveLogs.map(log => `
-        <div class="live-item">
-          <span class="live-dot"></span>
-          <div><strong style="display:block;font-size:14px">${log}</strong><span class="small">최근 동기화 기준 반영</span></div>
-        </div>`).join('');
-    }
+  setHTML(els.recentViewedList, html);
+  setHTML(els.recentProjectsPanel, html);
 
-    function activateQuickFilter(value){
-      state.currentQuick = value;
-      document.querySelectorAll('[data-quick]').forEach(button => button.classList.toggle('active', button.dataset.quick === value));
-      const list = applyFilters();
-      renderProjectList(list);
-      renderActiveCats();
-      if(list.length){
-        if(!list.some(item => item.id === state.selectedId)) state.selectedId = list[0].id;
-        renderDetail(projects.find(item => item.id === state.selectedId) || list[0]);
-      } else {
-        els.projectDetail.innerHTML = '<div class="note-box">조건에 맞는 프로젝트가 없습니다. 지역·상태·CAT 선택을 완화해보세요.</div>';
-        els.recommendationNotes.innerHTML = '<div class="mini-item"><span class="score-pill">--</span><div>선택 조건을 조정하면 추천 근거가 다시 표시됩니다.</div></div>';
-      }
-    }
+  if (els.recentViewedText) {
+    els.recentViewedText.textContent = recentProjects.length ? `${recentProjects.length}건` : '없음';
+  }
+}
+
+
+    function renderLiveLogs() {
+  const html = liveLogs.map(log => `
+    <div class="live-item">
+      <span class="live-dot"></span>
+      <div>
+        <strong style="display:block;font-size:14px">${log}</strong>
+        <span class="small">최근 동기화 기준 반영</span>
+      </div>
+    </div>
+  `).join('');
+
+  setHTML(els.liveLog, html);
+  setHTML(els.liveActivityPanel, html);
+}
+
+
+    function activateQuickFilter(value) {
+  state.currentQuick = value;
+
+  document.querySelectorAll('[data-quick]').forEach(button => {
+    button.classList.toggle('active', button.dataset.quick === value);
+  });
+
+  const list = applyFilters();
+  const activeProject = resolveSelectedProject(list);
+
+  renderActiveCats();
+  renderKPIStats(list);
+  renderProjectList(list);
+  renderDetail(activeProject);
+  renderRecent();
+  renderSaved();
+  renderLiveLogs();
+}
+
+
 
     function refreshWorkspace(){
       renderInterestCollections();
@@ -1510,23 +4322,25 @@
       document.body.style.overflow = '';
     }
 
-    function renderInitial(){
-      renderCounts();
-      renderLiveLogs();
-      renderSaved();
-      renderRecent();
-      renderInterestCollections();
-      renderIndustryTree();
-      syncSearchInputs(state.query);
-      const list = applyFilters();
-      renderProjectList(list);
-      renderActiveCats();
-      if(list.length){
-        state.selectedId = list[0].id;
-        renderDetail(list[0]);
-        renderProjectList(list);
-      }
-    }
+    function renderInitial() {
+  renderCounts();
+  renderInterestCollections();
+  renderIndustryTree();
+  renderActiveCats();
+
+  const list = applyFilters();
+  const activeProject = resolveSelectedProject(list);
+
+  renderKPIStats(list);
+  renderProjectList(list);
+  renderDetail(activeProject);
+  renderRecent();
+  renderSaved();
+  renderLiveLogs();
+}
+
+
+
 
     els.searchInput.addEventListener('input', event => {
       state.query = event.target.value;
@@ -1550,7 +4364,8 @@
       state.selectedCats.clear();
       refreshWorkspace();
     });
-    document.getElementById('resetFilterBtn').addEventListener('click', resetFilters);
+    document.getElementById('resetFilterBtn')?.addEventListener('click', resetFilters);
+    document.getElementById('resetFiltersBtn')?.addEventListener('click', resetFilters);
     document.querySelectorAll('[data-quick]').forEach(button => button.addEventListener('click', () => activateQuickFilter(button.dataset.quick)));
     document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => applyPreset(button.dataset.preset)));
     document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => button.parentElement.classList.toggle('open')));
@@ -1571,9 +4386,147 @@
     }));
     document.getElementById('demoLoginBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('데모 로그인 완료'); });
     document.getElementById('demoRegisterBtn').addEventListener('click', () => { closeOverlay('authOverlay'); alert('무료 체험 계정 생성 데모 완료'); });
-    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('siteHeader').classList.toggle('open'));
 
-    renderInitial();
+    // [수정 추가] 회사 기준 프로필 영역 여닫기 토글 기능 바인딩
+    const profileToggle = document.getElementById('companyProfileToggle');
+    const profileContent = document.getElementById('companyProfileContent');
+    if (profileToggle && profileContent) {
+      profileToggle.addEventListener('click', () => {
+        const isCollapsed = profileContent.classList.toggle('collapsed');
+        profileToggle.classList.toggle('collapsed', isCollapsed);
+        profileToggle.setAttribute('aria-expanded', !isCollapsed);
+      });
+    }
+
+        const menuBtnEl = document.getElementById('menuBtn');
+    const siteHeaderEl = document.getElementById('siteHeader');
+    if(menuBtnEl && siteHeaderEl){
+      menuBtnEl.addEventListener('click', () => siteHeaderEl.classList.toggle('open'));
+    }
+
+/* 상단 탭 active 처리 */
+document.querySelectorAll('#topNavLinks .nav-link-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('#topNavLinks .nav-link-tab').forEach(item => item.classList.remove('active-tab'));
+    tab.classList.add('active-tab');
+  });
+});
+
+/* 프로젝트 범위(전체/국내/국제) 탭 처리 */
+document.querySelectorAll('[data-scope]').forEach(button => {
+  button.addEventListener('click', () => {
+    state.projectScope = button.dataset.scope;
+    document.querySelectorAll('[data-scope]').forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+
+    if (state.projectScope === 'domestic') {
+      state.currentRegion = '국내';
+      els.regionFilter.value = '국내';
+    } else if (state.projectScope === 'international') {
+      state.currentRegion = '중동';
+      els.regionFilter.value = '중동';
+    } else {
+      state.currentRegion = 'all';
+      els.regionFilter.value = 'all';
+    }
+
+    activateQuickFilter(state.currentQuick);
+  });
+});
+
+(() => {
+  const heroVideoEl = document.getElementById('heroVideo');
+  const heroSection = document.querySelector('.workspace-hero');
+
+  if (!heroVideoEl || !heroSection) return;
+
+  const setHeroVideoState = (nextState) => {
+    heroSection.classList.remove('video-ready', 'video-fallback');
+    heroSection.classList.add(nextState);
+  };
+
+  heroVideoEl.addEventListener('playing', () => {
+    setHeroVideoState('video-ready');
+  }, { once: true });
+
+  heroVideoEl.addEventListener('error', () => {
+    setHeroVideoState('video-fallback');
+  });
+
+  heroVideoEl.querySelectorAll('source').forEach((sourceEl) => {
+    sourceEl.addEventListener('error', () => {
+      setHeroVideoState('video-fallback');
+    });
+  });
+
+  const playPromise = heroVideoEl.play();
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise
+      .then(() => {
+        setHeroVideoState('video-ready');
+      })
+      .catch(() => {
+        setHeroVideoState('video-fallback');
+      });
+  }
+})();
+(() => {
+  const workspaceFrame = document.querySelector('.workspace-frame');
+  const sidebar = document.getElementById('appSidebar');
+  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+  const sidebarItems = document.querySelectorAll('[data-sidebar-item]');
+
+  if (!workspaceFrame || !sidebar || !sidebarToggleBtn || !sidebarItems.length) return;
+
+  const syncSidebarState = () => {
+    const expanded = workspaceFrame.classList.contains('sidebar-expanded');
+    sidebar.setAttribute('aria-expanded', String(expanded));
+    sidebarToggleBtn.setAttribute('aria-pressed', String(expanded));
+  };
+
+  sidebarToggleBtn.addEventListener('click', () => {
+    workspaceFrame.classList.toggle('sidebar-expanded');
+    syncSidebarState();
+  });
+
+  sidebarItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      sidebarItems.forEach((node) => node.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  syncSidebarState();
+})();
+function hydrateWorkspaceBootState(){
+  state.currentQuick = 'all';
+  state.currentRegion = 'all';
+  state.currentStatus = 'all';
+  state.currentSort = 'priority';
+  state.projectScope = 'all';
+  state.query = '';
+  state.catQuery = '';
+  state.selectedCats.clear();
+
+  syncSearchInputs('');
+
+  if(els.regionFilter) els.regionFilter.value = 'all';
+  if(els.statusFilter) els.statusFilter.value = 'all';
+  if(els.sortFilter) els.sortFilter.value = 'priority';
+  if(els.catSearchInput) els.catSearchInput.value = '';
+
+  document.querySelectorAll('[data-quick]').forEach(button => {
+    button.classList.toggle('active', button.dataset.quick === 'all');
+  });
+
+  document.querySelectorAll('[data-scope]').forEach(button => {
+    button.classList.toggle('active', button.dataset.scope === 'all');
+  });
+}
+
+hydrateWorkspaceBootState();
+renderInitial();
+
   </script>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
